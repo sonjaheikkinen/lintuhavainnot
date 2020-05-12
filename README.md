@@ -1,7 +1,7 @@
 # Lintuhavainnot
 Tietokantasovellus, kesä 2020
 
-[Tietokantakaavio](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/dokumentaatio/lintuhavainnot_tietokantakaavio_12052020.png)
+[Tietokantakaavio](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/lintuhavainnot_tietokantakaavio_12052020.png)
 
 Projektikuvaus:
 
