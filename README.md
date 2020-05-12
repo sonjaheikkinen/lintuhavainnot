@@ -11,4 +11,4 @@ Projektin tarkoitus on toimia havaintotietokantana, johon kuka tahansa (kirjautu
 
 Yleisiä kommentteja:
 
-Dokumentaatiokieli on vielä hieman epäselvä, yritän seuraavaan deadlineen mennessä päättää olisiko englanti kuitenkin käsitteistön kannalta parempi valinta (tein tietokantakaavion suomeksi, mutta olen yleensä tehnyt koodia englanniksi, joten luultavasti toimin niin tämänkin kanssa, ja muutan kaaviota tarpeen mukaan, nythän siinä on vielä muitakin puutteita.
+Dokumentaatiokieli on vielä hieman epäselvä, yritän seuraavaan deadlineen mennessä päättää olisiko englanti kuitenkin käsitteistön kannalta parempi valinta (tein tietokantakaavion suomeksi, mutta olen yleensä tehnyt koodia englanniksi, joten mahdollisesti toimin niin tämänkin kanssa, ja muutan kaaviota tarpeen mukaan. Olen kuitenkin jo aloittanut suomeksi, niin en ole varma).
