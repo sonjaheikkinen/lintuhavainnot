@@ -12,7 +12,7 @@ class Species(db.Model):
     def __init__(self, name, species, genus, family, order, description):
         self.name = name
         self.species = species
-	self.genus = genus
-	self.family = family
-	self.order = order
-	self.description = description
+        self.genus = genus
+        self.family = family
+        self.order = order
+        self.description = description
