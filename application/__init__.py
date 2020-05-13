@@ -16,7 +16,7 @@ db = SQLAlchemy(app)
 
 # Luetaan tiedostot
 from application import views
-from application.tasks import models
+from application.species import models
 
 # Luodaan tietokantataulu
 db.create_all()
