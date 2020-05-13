@@ -11,12 +11,12 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///birds.db"
 # Pyydetään SQLAlchemyä tulostamaan kaikki SQL-kyselyt
 app.config["SQLALCHEMY_ECHO"] = True
 
-# Luodaan db-olio, jota käytetään tietokannan käsittelyyn
+# Luodaan db-olio
 db = SQLAlchemy(app)
 
-# Luetaan kansiosta application tiedoston views sisältö
+# Luetaan tiedostot
 from application import views
+from application.tasks import models
 
-
-# Luodaan lopulta tarvittavat tietokantataulut
+# Luodaan tietokantataulu
 db.create_all()
