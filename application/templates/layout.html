@@ -6,6 +6,10 @@
   </head>
 
   <body>
+     <ul>
+	<li><a href="{{ url_for('species_index') }}">Tarkastele lajilistaa</a></li>
+	<li><a href="{{ url_for('species_form') }}">Lisää uusi laji</a></li>
+      </ul>
     {% block body %}
       <p>
         Content.
