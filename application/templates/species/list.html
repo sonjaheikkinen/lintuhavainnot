@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Laji</th>
+      <th>Tieteellinen nimi</th>
+      <th>Kuvaus</th>
+    </tr>
+    {% for species in species %}
+    <tr>
+      <td>{{ species.name }}</td>
+      <td>{{ species.species }}</td>
+      <td>{{ species.description }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

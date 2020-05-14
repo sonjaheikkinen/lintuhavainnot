@@ -2,6 +2,10 @@ from application import app, db
 from flask import render_template, request
 from application.species.models import Species
 
+@app.route("/species", methods=["GET"])
+def species_index():
+    return render_template("species/list.html", species = Species.query.all())
+
 @app.route("/species/new/")
 def species_form():
     return render_template("species/new.html")
