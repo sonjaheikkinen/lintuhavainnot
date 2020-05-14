@@ -1,5 +1,6 @@
-from application import app
+from application import app, db
 from flask import render_template, request
+from application.species.models import Species
 
 @app.route("/species/new/")
 def species_form():
@@ -7,6 +8,9 @@ def species_form():
 
 @app.route("/species/", methods=["POST"])
 def species_create():
-    print(request.form.get("name"))
+    s = Species(request.form.get("name"))
+
+    db.session().add(s)
+    db.session().commit()
   
     return "Lintuja!"
