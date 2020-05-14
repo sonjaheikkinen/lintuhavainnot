@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Muokkaa lajin tietoja</h1>
+
+<h3>Vanhat tiedot</h3>
+
+  <table>
+    <tr>
+      <th>Laji</th>
+      <th>Tieteellinen nimi</th>
+      <th>Kuvaus</th>
+    </tr>
+    <tr>
+      <td>{{ species.name }}</td>
+      <td>{{ species.species }}</td>
+      <td>{{ species.description }}</td>
+    </tr>
+  </table>
+
+<h3>Syötä uudet tiedot</h3>
+<form method="POST" action="{{ url_for('species_edit_information', species_id=species.id) }}">
+  <label for="name">Muokkaa lajinimeä:</label><br>
+  <input type="text" name="name"/><br>
+  <label for="species">Muokkaa tieteellistä nimeä:</label><br>
+  <input type="text" name="species"/><br>
+  <label for="description">Muokkaa kuvausta:</label><br>
+  <input type="text" name="description"/><br>
+  <input type="submit" value="Lähetä tiedot"/>
+</form>
+
+{% endblock %}
