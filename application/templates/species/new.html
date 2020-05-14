@@ -2,7 +2,12 @@
   
 {% block body %}
 <form method="POST" action="{{ url_for('species_create') }}">
-  <input type="text" name="name"/>
-  <input type="submit" value="Add a new species"/>
+  <label for="name">Laji, kansakielinen (esim. talitiainen):</label><br>
+  <input type="text" name="name"/><br>
+  <label for="species">Lajinimi, tieteellinen (esim. Parus major):</label><br>
+  <input type="text" name="species"/><br>
+  <label for="description">Lajikuvaus:</label><br>
+  <input type="text" name="description"/><br>
+  <input type="submit" value="Lisää uusi laji"/>
 </form>
 {% endblock %}

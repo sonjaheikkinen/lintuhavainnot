@@ -8,7 +8,8 @@ def species_form():
 
 @app.route("/species/", methods=["POST"])
 def species_create():
-    s = Species(request.form.get("name"))
+    s = Species(request.form.get("name"), request.form.get("species"), 
+    request.form.get("description"))
 
     db.session().add(s)
     db.session().commit()
