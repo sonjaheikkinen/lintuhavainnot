@@ -10,7 +10,7 @@ class Species(db.Model):
     #description = db.Column(db.String(144), nullable=True)
 
     #def __init__(self, name, species, sp_genus, sp_family, sp_order, description):
-    #def __init__(self, name):
+    def __init__(self, name):
         self.name = name
         #self.species = species
         #self.sp_genus = sp_genus
