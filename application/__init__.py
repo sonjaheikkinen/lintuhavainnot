@@ -15,8 +15,11 @@ app.config["SQLALCHEMY_ECHO"] = True
 db = SQLAlchemy(app)
 
 # Luetaan tiedostot
+
 from application import views
+
 from application.species import models
+from application.species import views
 
 # Luodaan tietokantataulu
 db.create_all()
