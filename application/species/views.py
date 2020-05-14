@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request
+from flask import redirect, render_template, request, url_for
 from application.species.models import Species
 
 @app.route("/species", methods=["GET"])
@@ -18,4 +18,5 @@ def species_create():
     db.session().add(s)
     db.session().commit()
   
-    return "Lintuja!"
+    return redirect(url_for("species_index"))
+
