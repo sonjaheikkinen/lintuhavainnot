@@ -10,7 +10,7 @@ def species_index():
 def species_form():
     return render_template("species/new.html")
 
-@app.route("/species/<species_id>/", methods=["GET", "POST"])
+@app.route("/species/edit/<species_id>/", methods=["GET", "POST"])
 def species_edit_information(species_id):
 
     species = Species.query.get(species_id)
