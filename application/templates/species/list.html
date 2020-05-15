@@ -15,7 +15,12 @@
       <td>
       <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
 	  <input type="submit" value="Muokkaa tietoja"/>
-	</form>
+      </form>
+      </td>
+      <td>
+      <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
+	  <input type="submit" value="Poista"/>
+      </form>
       </td>
     </tr>
     {% endfor %}

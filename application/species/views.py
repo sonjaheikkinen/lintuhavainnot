@@ -28,7 +28,15 @@ def species_edit_information(species_id):
 
     db.session().commit()
   
-    return redirect(url_for("tasks_index"))
+    return redirect(url_for("species_index"))
+
+@app.route("/species/delete/<species_id>/", methods=["POST"])
+def species_delete(species_id):
+
+     species = Species.query.get(species_id)
+     db.session.delete(species)
+     db.session.commit()
+     return redirect(url_for("species_index"))
 
 @app.route("/species/", methods=["POST"])
 def species_create():
