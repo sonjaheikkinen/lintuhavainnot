@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
+  <table cellspacing="20">
     <tr>
       <th>Laji</th>
       <th>Tieteellinen nimi</th>
@@ -10,7 +10,7 @@
     {% for species in species %}
     <tr>
       <td>{{ species.name }}</td>
-      <td>{{ species.species }}</td>
+      <td><i>{{ species.species }}</i></td>
       <td>{{ species.description }}</td>
       <td>
       <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
