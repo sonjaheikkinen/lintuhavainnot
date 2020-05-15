@@ -4,8 +4,7 @@ Tietokantasovellus, kesä 2020
 [Tietokantakaavio](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/lintuhavainnot_tietokantakaavio_12052020.png))
 Projektin tietokanta on englanninkielinen, ja tietokantakaavio tullaan myöhemmin korjaamaan sitä vastaavaksi. 
 
-[Sovellus herokussa]
-(https://tsoha2020-lintuhavainnot.herokuapp.com/)
+[Sovellus herokussa](https://tsoha2020-lintuhavainnot.herokuapp.com/)
 
 Projektikuvaus:
 
