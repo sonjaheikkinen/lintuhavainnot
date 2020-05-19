@@ -43,10 +43,12 @@ def species_delete(species_id):
 
 @app.route("/species/", methods=["POST"])
 def species_create():
-    s = Species(request.form.get("name"), request.form.get("species"),
-    request.form.get("description"))
 
-    db.session().add(s)
+    form = SpeciesForm(request.form) 
+
+    species = Species(form.name.data, form.species.data, form.description.data)
+
+    db.session().add(species)
     db.session().commit()
   
     return redirect(url_for("species_index"))
