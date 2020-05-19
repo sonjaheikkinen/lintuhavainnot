@@ -2,7 +2,7 @@
   
 {% block body %}
 
-<h1>Syötä lajin tiedot</h1>
+<h1>Syötä lajin tiedot (vanha lomake)</h1>
 
 <form method="POST" action="{{ url_for('species_create') }}">
   <label for="name">Laji, kansakielinen (esim. talitiainen):</label><br>
@@ -14,4 +14,24 @@
   <br>
   <input type="submit" value="Lisää uusi laji"/>
 </form>
+
+<h1>Syötä lajin tiedot (uusi lomake)</h1>
+
+<form method="POST" action="{{ url_for('species_create') }}">
+    <table>
+      <tr>
+	<td>
+	  {{ form.name.label }}
+	</td>
+	<td>
+	  {{ form.name }}
+	</td>
+      </tr>
+      <tr>
+	<td colspan="2">
+	  <input type="submit" value="Lisää uusi laji"/>
+	</td>
+      </tr>
+  </form>
+
 {% endblock %}
