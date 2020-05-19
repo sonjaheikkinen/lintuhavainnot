@@ -33,7 +33,7 @@ def species_edit_information(species_id):
   
         return redirect(url_for("species_index"))
 
-    return render_template("species/edit.html", species=species, form = SpeciesEditForm())
+    return render_template("species/edit.html", species=species, form = SpeciesEditForm(obj=species))
 
 @app.route("/species/delete/<species_id>/", methods=["POST"])
 def species_delete(species_id):

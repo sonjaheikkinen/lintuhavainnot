@@ -21,18 +21,6 @@
 
 <h3>Syötä uudet tiedot</h3>
 <form method="POST" action="{{ url_for('species_edit_information', species_id=species.id) }}">
-  <label for="name">Muokkaa lajinimeä:</label><br>
-  <input type="text" name="name" value="{{ species.name }}"/><br>
-  <label for="species">Muokkaa tieteellistä nimeä:</label><br>
-  <input type="text" name="species" value="{{ species.species }}"/><br>
-  <label for="description">Muokkaa kuvausta:</label><br>
-  <textarea name="description" rows="10" cols="30">{{ species.description }}</textarea><br>
-  <br>
-  <input type="submit" value="Lähetä tiedot"/>
-</form>
-
-<h3>Syötä uudet tiedot (uusi lomake)</h3>
-<form method="POST" action="{{ url_for('species_edit_information', species_id=species.id) }}">
     <table>
       <tr><td>{{ form.name.label }}</td></tr>
       <tr>
