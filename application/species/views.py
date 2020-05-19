@@ -23,7 +23,7 @@ def species_edit_information(species_id):
         form = SpeciesEditForm(request.form) 
 
         if not form.validate():
-            return render_template("species/edit.html", form = form)
+            return render_template("species/edit.html", species=species, form = form)
 
         species.name = form.name.data
         species.species = form.species.data
