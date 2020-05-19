@@ -46,6 +46,9 @@ def species_create():
 
     form = SpeciesForm(request.form) 
 
+    if not form.validate():
+        return render_template("species/new.html", form = form)
+
     species = Species(form.name.data, form.species.data, form.description.data)
 
     db.session().add(species)
