@@ -1,7 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.species.models import Species
-from application.species.forms import SpeciesCreationForm
+from application.species.forms import SpeciesCreationForm, SpeciesEditForm
 
 
 
@@ -19,19 +19,21 @@ def species_edit_information(species_id):
     species = Species.query.get(species_id)
     
     if request.method == "POST":
-        species.name = request.form.get("name")
-        species.species = request.form.get("species")
-        species.description = request.form.get("description")
+
+        form = SpeciesEditForm(request.form) 
+
+        if not form.validate():
+            return render_template("species/edit.html", form = form)
+
+        species.name = form.name.data
+        species.species = form.species.data
+        species.description = form.description.data
 
         db.session().commit()
   
         return redirect(url_for("species_index"))
-    return render_template("species/edit.html", species=species)
 
-
-    db.session().commit()
-  
-    return redirect(url_for("species_index"))
+    return render_template("species/edit.html", species=species, form = SpeciesEditForm())
 
 @app.route("/species/delete/<species_id>/", methods=["POST"])
 def species_delete(species_id):

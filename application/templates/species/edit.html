@@ -31,4 +31,39 @@
   <input type="submit" value="Lähetä tiedot"/>
 </form>
 
+<h3>Syötä uudet tiedot (uusi lomake)</h3>
+<form method="POST" action="{{ url_for('species_edit_information', species_id=species.id) }}">
+    <table>
+      <tr><td>{{ form.name.label }}</td></tr>
+      <tr>
+        <td>{{ form.name }}</td>
+        <td>
+          <ul>
+	    {% for error in form.name.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+        </td>
+      </tr>
+      <tr><td>{{ form.species.label }}</td></tr>
+      <tr>
+        <td>{{ form.species }}</td>
+        <td>
+          <ul>
+	    {% for error in form.species.errors %}
+	    <li>{{ error }}</li>
+	    {% endfor %}
+	  </ul>
+        </td>
+      </tr>
+      <tr><td>{{ form.description.label }}</td></tr>
+      <tr><td>{{ form.description }}</td></tr>
+      <tr>
+ 	<td>
+          <br>
+	  <input type="submit" value="Lähetä"/>
+	</td>
+      </tr>
+  </form>
+
 {% endblock %}

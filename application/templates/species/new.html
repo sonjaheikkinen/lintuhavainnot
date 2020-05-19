@@ -5,7 +5,7 @@
 <h1>Syötä lajin tiedot</h1>
 
 <form method="POST" action="{{ url_for('species_create') }}">
-    <table cellspacing="10">
+    <table>
       <tr><td>{{ form.name.label }}</td></tr>
       <tr>
         <td>{{ form.name }}</td>
