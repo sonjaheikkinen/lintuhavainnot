@@ -1,7 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.species.models import Species
-from application.species.forms import SpeciesForm
+from application.species.forms import SpeciesCreationForm
 
 
 
@@ -11,7 +11,7 @@ def species_index():
 
 @app.route("/species/new/")
 def species_form():
-    return render_template("species/new.html", form = SpeciesForm())
+    return render_template("species/new.html", form = SpeciesCreationForm())
 
 @app.route("/species/edit/<species_id>/", methods=["GET", "POST"])
 def species_edit_information(species_id):
@@ -44,7 +44,7 @@ def species_delete(species_id):
 @app.route("/species/", methods=["POST"])
 def species_create():
 
-    form = SpeciesForm(request.form) 
+    form = SpeciesCreationForm(request.form) 
 
     if not form.validate():
         return render_template("species/new.html", form = form)
