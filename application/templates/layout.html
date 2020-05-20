@@ -6,6 +6,13 @@
   </head>
 
   <body>
+    {% if current_user.is_authenticated %}
+      <p>
+	Kirjautunut nimellä {{ current_user.name }}
+      </p>
+      {% else %}
+      <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+      {% endif %}
      <ul>
 	<li><a href="{{ url_for('species_index') }}">Tarkastele lajilistaa</a></li>
 	<li><a href="{{ url_for('species_form') }}">Lisää uusi laji</a></li>
