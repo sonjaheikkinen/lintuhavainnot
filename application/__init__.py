@@ -21,5 +21,7 @@ from application import views
 from application.species import models
 from application.species import views
 
+from application.auth import models 
+
 # Luodaan tietokantataulu
 db.create_all()
