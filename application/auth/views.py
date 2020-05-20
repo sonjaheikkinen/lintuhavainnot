@@ -101,7 +101,17 @@ def auth_changepassword():
   
         return redirect(url_for("auth_edit"))
 
-    return render_template("auth/password.html", oldPw = user.password, form = Password())   
+    return render_template("auth/password.html", oldPw = user.password, form = Password())
+
+@app.route("/auth/delete")
+@login_required
+def auth_delete():
+    
+    user= current_user
+    db.session.delete(user)
+    db.session.commit()
+    logout_user()
+    return redirect(url_for("index"))     
  
 
 @app.route("/auth/logout")
