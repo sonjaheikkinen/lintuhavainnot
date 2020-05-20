@@ -67,6 +67,12 @@ def auth_edit():
         if not form.validate():
             return render_template("auth/editform.html", form = form)
 
+        if form.username.data != current_user.username:
+            usernameFound = User.query.filter_by(username=form.username.data).first()
+            if usernameFound:
+                return render_template("auth/editform.html", form = form,
+                               error = "Käyttäjätunnus on jo käytössä")
+
         user.name = form.name.data
         user.username = form.username.data
         user.info = form.info.data
