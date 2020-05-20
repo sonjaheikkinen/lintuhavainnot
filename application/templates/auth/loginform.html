@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
 
 <h1>Kirjaudu</h1>
+{{ error }}
 
 <form method="POST" action="{{ url_for('auth_login') }}">
   <table>
