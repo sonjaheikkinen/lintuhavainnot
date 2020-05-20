@@ -1,9 +1,9 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
-from application.auth.forms import LoginForm, RegistrationForm
+from application.auth.forms import LoginForm, RegistrationForm, EditForm
 
 
 @app.route("/auth/register", methods = ["GET", "POST"])
@@ -52,6 +52,30 @@ def auth_login():
 
     login_user(user)
     return redirect(url_for("index"))  
+
+
+@app.route("/auth/edit/", methods = ["GET", "POST"])
+@login_required
+def auth_edit():
+   
+    user = current_user
+    
+    if request.method == "POST":
+
+        form = EditForm(request.form) 
+
+        if not form.validate():
+            return render_template("auth/editform.html", form = form)
+
+        user.name = form.name.data
+        user.username = form.username.data
+        user.info = form.info.data
+
+        db.session().commit()
+  
+        return redirect(url_for("index"))
+
+    return render_template("auth/editform.html", form = EditForm(obj=user))
 
 
 

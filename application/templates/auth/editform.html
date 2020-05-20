@@ -2,9 +2,9 @@
 
 {% block body %}
 
-<h1>Rekisteröidy</h1>
+<h1>Muokkaa tietoja</h1>
 
-<form method="POST" action="{{ url_for('auth_register') }}">
+<form method="POST" action="{{ url_for('auth_edit') }}">
   <table>
     <tr><td>{{ form.name.label }}</td></tr>
     <tr><td>{{ form.name }}</td></tr>
@@ -25,21 +25,12 @@
 	{% endfor %}
       </td>
     </tr>
-    <tr><td>{{ form.password.label }}</td></tr>
-    <tr><td>{{ form.password }}</td></tr> 
-     <tr>
-      <td>
-        {% for error in form.password.errors %}
-	  <li>{{ error }}</li>
-	{% endfor %}
-      </td>
-    </tr>
     <tr><td>{{ form.info.label }}</td></tr>
     <tr><td>{{ form.info }}</td></tr>
    
     <tr>
       <td colspan="2">
-	<input type="submit" value="Rekisteröidy"/>
+	<input type="submit" value="Lähetä"/>
       </td>
     </tr>
 </form>

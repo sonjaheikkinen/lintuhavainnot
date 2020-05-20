@@ -16,3 +16,11 @@ class RegistrationForm(FlaskForm):
   
     class Meta:
         csrf = False
+
+class EditForm(FlaskForm):
+    name = StringField("Muuta nimeä:", [validators.Length(min=1, max=255, message="Kentän tulee sisältää vähintään %(min)d ja enintään %(max)d merkkiä.")])
+    username = StringField("Vaihda käyttäjätunnus:", [validators.Length(min=1, max=255, message="Kentän tulee sisältää vähintään %(min)d ja enintään %(max)d merkkiä.")])
+    info = TextAreaField("Muokkaa lisätietoja:", render_kw={"rows": 10, "cols": 30})
+  
+    class Meta:
+        csrf = False

@@ -1,6 +1,5 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, validators
-from wtforms.ext.sqlalchemy.fields import QuerySelectField  
 
 class SpeciesCreationForm(FlaskForm):
     name = StringField("Lajinimi, kansakielinen (esim. talitiainen):", [validators.Length(min=1, max=255, message="Kentän tulee sisältää vähintään %(min)d ja enintään %(max)d merkkiä.")])	
