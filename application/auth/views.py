@@ -13,7 +13,8 @@ def auth_register():
 
     form = RegistrationForm(request.form)
 
-    # validate here
+    if not form.validate():
+            return render_template("auth/registrationform.html", form = form)
 
     username = User.query.filter_by(username=form.username.data).first()
 
@@ -39,7 +40,8 @@ def auth_login():
 
     form = LoginForm(request.form)
 
-    # validate here
+    if not form.validate():
+            return render_template("auth/loginform.html", form = form)
 
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
 

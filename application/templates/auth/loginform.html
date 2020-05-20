@@ -9,8 +9,22 @@
   <table>
     <tr><td>{{ form.username.label }}</td></tr>
     <tr><td>{{ form.username }}</td></tr>
+     <tr>
+      <td>
+        {% for error in form.username.errors %}
+	  <li>{{ error }}</li>
+	{% endfor %}
+      </td>
+    </tr>
     <tr><td>{{ form.password.label }}</td></tr>
     <tr><td>{{ form.password }}</td></tr>
+     <tr>
+      <td>
+        {% for error in form.password.errors %}
+	  <li>{{ error }}</li>
+	{% endfor %}
+      </td>
+    </tr>
     <tr>
       <td colspan="2">
 	<input type="submit" value="Kirjaudu sisään"/>

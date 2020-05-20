@@ -9,10 +9,31 @@
   <table>
     <tr><td>{{ form.name.label }}</td></tr>
     <tr><td>{{ form.name }}</td></tr>
+     <tr>
+      <td>
+        {% for error in form.name.errors %}
+	  <li>{{ error }}</li>
+	{% endfor %}
+      </td>
+    </tr>
     <tr><td>{{ form.username.label }}</td></tr>
     <tr><td>{{ form.username }}</td></tr>
+     <tr>
+      <td>
+        {% for error in form.username.errors %}
+	  <li>{{ error }}</li>
+	{% endfor %}
+      </td>
+    </tr>
     <tr><td>{{ form.password.label }}</td></tr>
     <tr><td>{{ form.password }}</td></tr> 
+     <tr>
+      <td>
+        {% for error in form.password.errors %}
+	  <li>{{ error }}</li>
+	{% endfor %}
+      </td>
+    </tr>
     <tr><td>{{ form.info.label }}</td></tr>
     <tr><td>{{ form.info }}</td></tr>
    
