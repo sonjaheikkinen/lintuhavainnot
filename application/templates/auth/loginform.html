@@ -2,6 +2,9 @@
 
 {% block body %}
 {{ error }}
+
+<h1>Kirjaudu</h1>
+
 <form method="POST" action="{{ url_for('auth_login') }}">
   <table>
     <tr><td>{{ form.username.label }}</td></tr>

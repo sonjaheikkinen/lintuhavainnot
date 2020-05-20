@@ -13,6 +13,7 @@
       </p>
       {% else %}
       <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+      <a href="{{ url_for('auth_register') }}">Rekisteröidy</a>
       {% endif %}
      <ul>
 	<li><a href="{{ url_for('species_index') }}">Tarkastele lajilistaa</a></li>

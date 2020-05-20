@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+
+<h1>Rekisteröidy</h1>
+
+<form method="POST" action="{{ url_for('auth_register') }}">
+  <table>
+    <tr><td>{{ form.name.label }}</td></tr>
+    <tr><td>{{ form.name }}</td></tr>
+    <tr><td>{{ form.username.label }}</td></tr>
+    <tr><td>{{ form.username }}</td></tr>
+    <tr><td>{{ form.password.label }}</td></tr>
+    <tr><td>{{ form.password }}</td></tr> 
+    <tr><td>{{ form.info.label }}</td></tr>
+    <tr><td>{{ form.info }}</td></tr>
+   
+    <tr>
+      <td colspan="2">
+	<input type="submit" value="Rekisteröidy"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}
