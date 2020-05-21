@@ -56,11 +56,11 @@ def auth_login():
                                error = "Virheellinen käyttäjätunnus tai salasana")
 
     testPassword = form.password.data
-    if not bcrypt.check_password_hash(user.password, testPassword):
+    if not bcrypt.check_password_hash(userFound.password, testPassword):
         return render_template("auth/login.html", form = form,
                                error = "Virheellinen käyttäjätunnus tai salasana")
 
-    login_user(user)
+    login_user(userFound)
     return redirect(url_for("index"))  
 
 
