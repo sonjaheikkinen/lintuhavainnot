@@ -42,3 +42,6 @@ def load_user(user_id):
 
 # Luodaan tietokantataulut
 db.create_all()
+
+# Lisätään tietokantaan testilintuja
+from application import fillDatabase
