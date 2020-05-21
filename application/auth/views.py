@@ -1,10 +1,13 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, login_required, current_user
+from flask_bcrypt import Bcrypt
 
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import Login, Registration, Edit, Password
 
+
+bcrypt = Bcrypt(app)
 
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_register():
@@ -22,12 +25,15 @@ def auth_register():
         return render_template("auth/registration.html", form = form,
                                error = "Käyttäjätunnus on jo käytössä")
     
-    user = User(form.name.data, form.username.data, form.password.data, form.info.data)
+    password = form.password.data
+    hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
+    
+    user = User(form.name.data, form.username.data, hashedPassword, form.info.data)
 
     db.session().add(user)
     db.session().commit()
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+    user = User.query.filter_by(username=form.username.data, password=hashedPassword).first()
 
     login_user(user)
     return redirect(url_for("index"))  
@@ -43,12 +49,16 @@ def auth_login():
     if not form.validate():
             return render_template("auth/login.html", form = form)
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+    userFound = User.query.filter_by(username=form.username.data).first()
 
-    if not user:
+    if not userFound:
         return render_template("auth/login.html", form = form,
                                error = "Virheellinen käyttäjätunnus tai salasana")
 
+    testPassword = form.password.data
+    if not bcrypt.check_password_hash(user.password, testPassword):
+        return render_template("auth/login.html", form = form,
+                               error = "Virheellinen käyttäjätunnus tai salasana")
 
     login_user(user)
     return redirect(url_for("index"))  
@@ -94,14 +104,14 @@ def auth_changepassword():
         form = Password(request.form) 
 
         if not form.validate():
-            return render_template("auth/password.html", oldPw = user.password, form = form)
+            return render_template("auth/password.html", form = form)
 
-        user.password = form.password.data
+        user.password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         db.session().commit()
   
         return redirect(url_for("auth_edit"))
 
-    return render_template("auth/password.html", oldPw = user.password, form = Password())
+    return render_template("auth/password.html", form = Password())
 
 @app.route("/auth/delete")
 @login_required
