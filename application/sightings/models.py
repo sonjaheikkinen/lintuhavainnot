@@ -8,7 +8,7 @@ class Sighting(db.Model):
                               onupdate=db.func.current_timestamp())
     info = info = db.Column(db.Text, nullable=True)    
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
-                           nullable=True)
+                           nullable=False)
 
 
     def __init__(self, info):
