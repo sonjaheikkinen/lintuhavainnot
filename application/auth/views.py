@@ -117,7 +117,7 @@ def auth_changepassword():
 @login_required
 def auth_delete():
     
-    user= current_user
+    user = current_user
     db.session.delete(user)
     db.session.commit()
     logout_user()

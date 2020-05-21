@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+
+<h1>Kerro havainnostasi</h1>
+
+<form method="POST" action="{{ url_for('sightings_add') }}">
+    <table>
+      <tr><td>{{ form.info.label }}</td></tr>
+      <tr><td>{{ form.info }}</td></tr>
+      <tr>
+ 	<td>
+	  <input type="submit" value="Lähetä havainto"/>
+	</td>
+      </tr>
+    </table>
+  </form>
+
+{% endblock %}

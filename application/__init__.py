@@ -21,6 +21,9 @@ from application.species import views
 from application.auth import models 
 from application.auth import views
 
+from application.sightings import models 
+from application.sightings import views
+
 #kirjautuminen
 from application.auth.models import User
 from os import urandom

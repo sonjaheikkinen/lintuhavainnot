@@ -20,6 +20,8 @@
         <li><a href="{{ url_for('index') }}">Etusivu</a></li>
 	<li><a href="{{ url_for('species_index') }}">Tarkastele lajilistaa</a></li>
 	<li><a href="{{ url_for('species_form') }}">Lisää uusi laji</a></li>
+        <li><a href="{{ url_for('sightings_list') }}">Tarkastele havaintoja</a></li>
+        <li><a href="{{ url_for('sightings_add') }}">Lisää havainto</a></li>
       </ul>
     {% block body %}
       <p>
