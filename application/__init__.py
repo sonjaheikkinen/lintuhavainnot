@@ -51,4 +51,4 @@ except:
     pass
 
 # Lisätään tietokantaan testilintuja
-from application import fillDatabase
+#from application import fillDatabase

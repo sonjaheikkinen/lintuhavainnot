@@ -8,3 +8,4 @@ Varpunen;Passer domesticus;Ruskeaharmaa pieni lintu. Yleinen, mutta kanta taantu
 Kesykyyhky;Columba livia domestica;Toiselta nimeltään pulu. Kalliokyyhkyn kaupunkielämään sopeutunut alalaji.
 Sepelkyyhky;Columba palumbus;Suomen suurin kyyhky, jota nykyään tavataan myös kaupungeissa. Kaulan sivulla valkea sepel. Huhuilee voimakasäänisesti.
 Viherpeippo;Chloris chloris;Yleisväriltään vihertävä, naaras harmaampi. Siivissä ja pyrstössä kirkkaankeltaista. Pesii katajassa tai kuusessa.
+
