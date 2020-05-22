@@ -1,3 +1,10 @@
 Sinitiainen;Cyanistes caeruleus;Keltainen vatsa. Päälaki, niska, siivet ja pyrstö siniset. Koiras naarasta kirkkaampi. Satakunnan maakuntalintu.
 Talitiainen;Parus major;Toiselta nimeltään talitintti. Keltaisen vatsan pystyjuova koiraalla leveämpi kuin naaraalla.Yleinen koko maassa.
 Harakka;Pica pica; Mustavalkoinen varislaji. Elävät yleensä koko elämänsä alle 10 km säteellä synnyinpaikastaan.
+Varis;Corvus corone cornix;Mustaharmaa, älykäs lintu. Suurin osa yksilöistä muuttaa talveksi pois Suomesta.
+Käpytikka;Dendrocopos major;Suomen yleisin tikka. Mustavalkoinen, punaista pyrstön tyvellä ja koiraalla lisäksi niskassa.
+Pikkuvarpunen;Passer montanus;Muistuttaa varpusta. Päälaki suklaanruskea. Valkoisessa poskessa musta täplä.
+Varpunen;Passer domesticus;Ruskeaharmaa pieni lintu. Yleinen, mutta kanta taantunut. Parveilee, ja pitää orapihlaja-aidoista.
+Kesykyyhky;Columba livia domestica;Toiselta nimeltään pulu. Kalliokyyhkyn kaupunkielämään sopeutunut alalaji.
+Sepelkyyhky;Columba palumbus;Suomen suurin kyyhky, jota nykyään tavataan myös kaupungeissa. Kaulan sivulla valkea sepel. Huhuilee voimakasäänisesti.
+Viherpeippo;Chloris chloris;Yleisväriltään vihertävä, naaras harmaampi. Siivissä ja pyrstössä kirkkaankeltaista. Pesii katajassa tai kuusessa.
