@@ -51,4 +51,7 @@ except:
     pass
 
 # Lisätään tietokantaan testilintuja
-#from application import fillDatabase
+if os.environ.get("HEROKU"):
+    from application import fillDatabaseHeroku
+else:
+    from application import fillDatabase
