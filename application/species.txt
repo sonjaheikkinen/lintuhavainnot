@@ -1,1 +1,3 @@
-Talitiainen;Parus major;Toiselta nimeltään talitintti
+Sinitiainen;Cyanistes caeruleus;Keltainen vatsa. Päälaki, niska, siivet ja pyrstö siniset. Koiras naarasta kirkkaampi. Satakunnan maakuntalintu.
+Talitiainen;Parus major;Toiselta nimeltään talitintti. Keltaisen vatsan pystyjuova koiraalla leveämpi kuin naaraalla.Yleinen koko maassa.
+Harakka;Pica pica; Mustavalkoinen varislaji. Elävät yleensä koko elämänsä alle 10 km säteellä synnyinpaikastaan.
