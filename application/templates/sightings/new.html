@@ -6,6 +6,8 @@
 
 <form method="POST" action="{{ url_for('sightings_add') }}">
     <table>
+       <tr><td>{{ form.species.label }}</td></tr>
+      <tr><td>{{ form.species }}</td></tr>
       <tr><td>{{ form.info.label }}</td></tr>
       <tr><td>{{ form.info }}</td></tr>
       <tr>

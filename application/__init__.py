@@ -50,6 +50,6 @@ try:
 except:
     pass
 
-# Lisätään tietokantaan testilintuja
+# Lisataan tietokantaan testilintuja
 if not os.environ.get("HEROKU"):
     from application import fillDatabase
