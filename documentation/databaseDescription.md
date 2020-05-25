@@ -10,7 +10,8 @@
 	species VARCHAR(255) NOT NULL, 
 	description TEXT, 
 	PRIMARY KEY (id)
-)```
+)
+```
 
 ### Account
 
@@ -23,7 +24,8 @@
 	password VARCHAR(255) NOT NULL, 
 	info TEXT, 
 	PRIMARY KEY (id)
-)```
+)
+```
 
 ### Sighting
 
@@ -37,6 +39,7 @@
 	PRIMARY KEY (id), 
 	FOREIGN KEY(account_id) REFERENCES account (id), 
 	FOREIGN KEY(species_id) REFERENCES species (id)
-)```
+)
+```
 
 
