@@ -90,7 +90,7 @@ UPDATE Account
 
 **3a. Havainnon lisäys**
 
-`INSERT INTO Sighting (info, account_id, species_id) VALUES (3?, ?, ?);`
+`INSERT INTO Sighting (info, account_id, species_id) VALUES (?, ?, ?);`
 
 **3b. Havaintojen listaus**
 
