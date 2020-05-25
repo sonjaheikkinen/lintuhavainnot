@@ -5,7 +5,7 @@ from application import app, db
 from application.sightings.models import Sighting
 from application.sightings.forms import AddSighting
 
-
+from application.species.models import Species
 
 @app.route("/sightings", methods=["GET"])
 def sightings_list():
@@ -15,9 +15,15 @@ def sightings_list():
 @login_required
 def sightings_add():
 
+    species = Species.query.all()
+    choiceList = []
+    for species in species:
+        choiceList.append((species.id, species.name))
+
     if request.method == "POST":
 
         form = AddSighting(request.form) 
+        form.species.choices = choiceList
 
         if not form.validate():
             return render_template("sightings/new.html", form = form)
@@ -31,8 +37,12 @@ def sightings_add():
   
         return redirect(url_for("sightings_list"))
 
+    else:
+    
+        form = AddSighting()  
+        form.species.choices = choiceList  
 
-    return render_template("sightings/new.html", form = AddSighting())
+        return render_template("sightings/new.html", form = form)
 
 
 
