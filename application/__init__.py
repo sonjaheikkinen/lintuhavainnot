@@ -26,7 +26,6 @@ from application.auth import models
 from application.auth import views
 
 from application.sightings import models 
-from application.sightings import views
 
 #kirjautuminen
 from application.auth.models import User
@@ -49,6 +48,8 @@ try:
     db.create_all()
 except:
     pass
+
+from application.sightings import views
 
 # Lisataan tietokantaan testilintuja
 if not os.environ.get("HEROKU"):
