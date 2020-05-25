@@ -23,7 +23,7 @@ def sightings_add():
             return render_template("sightings/new.html", form = form)
 
         sighting = Sighting(form.info.data)
-        sighting.user_id = current_user.id
+        sighting.account_id = current_user.id
         
         db.session().add(sighting)
         db.session().commit()
