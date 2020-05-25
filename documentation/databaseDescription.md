@@ -4,7 +4,8 @@
 
 ### Species
 
-```CREATE TABLE species (
+```
+CREATE TABLE species (
 	id INTEGER NOT NULL, 
 	name VARCHAR(255) NOT NULL, 
 	species VARCHAR(255) NOT NULL, 
@@ -15,7 +16,8 @@
 
 ### Account
 
-```CREATE TABLE account (
+```
+CREATE TABLE account (
 	id INTEGER NOT NULL, 
 	date_created DATETIME, 
 	date_modified DATETIME, 
@@ -29,7 +31,8 @@
 
 ### Sighting
 
-```CREATE TABLE sighting (
+```
+CREATE TABLE sighting (
 	id INTEGER NOT NULL, 
 	date_created DATETIME, 
 	date_modified DATETIME, 
