@@ -50,5 +50,4 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 # Lisataan tietokantaan testilintuja
-#if not os.environ.get("HEROKU"):
 from application import fillDatabase

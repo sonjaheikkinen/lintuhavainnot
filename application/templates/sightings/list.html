@@ -1,13 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h1>Havainnot</h1>
   <table cellspacing="20">
     <tr>
-      <th>Havaintoinformaatio</th>
+      <th>Laji</th><th>Havaintoinformaatio</th><th>Havaitsija</th>
     </tr>
     {% for sighting in sightings %}
     <tr>
-      <td>{{ sighting.info }}</td>
+      <td>{{ sighting[0] }}</td><td>{{ sighting[1] }}</td><td>{{ sighting[2] }}</td>
     </tr>
     {% endfor %}
   </table>

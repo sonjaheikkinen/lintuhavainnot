@@ -6,10 +6,24 @@ from application.sightings.models import Sighting
 from application.sightings.forms import AddSighting
 
 from application.species.models import Species
+from application.auth.models import User
 
 @app.route("/sightings", methods=["GET"])
 def sightings_list():
-    return render_template("sightings/list.html", sightings = Sighting.query.all())
+
+    sightingsList = Sighting.query.all()
+    sightings = []
+    for sighting in sightingsList:
+        species = Species.query.get(sighting.species_id)
+        account = User.query.get(sighting.account_id)
+        if account == None:
+            account = "Poistunut käyttäjä"
+        else:
+            account = account.name
+
+        sightings.append([species.name, sighting.info, account])
+
+    return render_template("sightings/list.html", sightings = sightings)
 
 @app.route("/sightings/new/", methods=["GET", "POST"])
 @login_required
