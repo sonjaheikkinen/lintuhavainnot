@@ -17,14 +17,8 @@ else:
 db = SQLAlchemy(app)
 
 #itse toteutetut toiminnallisuudet
-from application import views
-
 from application.species import models
-from application.species import views
-
 from application.auth import models 
-from application.auth import views
-
 from application.sightings import models 
 
 #kirjautuminen
@@ -49,6 +43,9 @@ try:
 except:
     pass
 
+from application import views
+from application.species import views
+from application.auth import views
 from application.sightings import views
 
 # Lisataan tietokantaan testilintuja
