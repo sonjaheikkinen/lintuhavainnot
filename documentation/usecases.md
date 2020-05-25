@@ -86,7 +86,7 @@ UPDATE Account
 
 `DELETE FROM Account WHERE id = ?;`
 
-##Havainnot
+## Havainnot
 
 **3a. Havainnon lisäys**
 
