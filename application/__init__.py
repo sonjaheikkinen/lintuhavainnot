@@ -16,10 +16,22 @@ else:
 # Luodaan db-olio
 db = SQLAlchemy(app)
 
-#itse toteutetut toiminnallisuudet
+# Ladataan tietokantamallit
 from application.species import models
 from application.auth import models 
 from application.sightings import models 
+
+# Luodaan tietokantataulut
+try: 
+    db.create_all()
+except:
+    pass
+
+# Ladataan nakymat
+from application import views
+from application.species import views
+from application.auth import views
+from application.sightings import views
 
 #kirjautuminen
 from application.auth.models import User
@@ -36,17 +48,6 @@ login_manager.login_message="Please login to use this functionality."
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
-# Luodaan tietokantataulut
-try: 
-    db.create_all()
-except:
-    pass
-
-from application import views
-from application.species import views
-from application.auth import views
-from application.sightings import views
 
 # Lisataan tietokantaan testilintuja
 if not os.environ.get("HEROKU"):
