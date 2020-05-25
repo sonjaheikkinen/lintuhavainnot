@@ -5,6 +5,7 @@ from application import app, db
 from application.species.models import Species
 from application.species.forms import SpeciesCreationForm, SpeciesEditForm
 
+from application.sightings.models import Sighting
 
 
 @app.route("/species", methods=["GET"])
@@ -44,6 +45,7 @@ def species_edit_information(species_id):
 def species_delete(species_id):
 
      species = Species.query.get(species_id)
+     db.session.query(Sighting).filter(Sighting.species_id == species_id).delete()
      db.session.delete(species)
      db.session.commit()
      return redirect(url_for("species_index"))
