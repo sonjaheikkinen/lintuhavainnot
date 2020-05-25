@@ -7,7 +7,7 @@ class Sighting(db.Model):
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
                               onupdate=db.func.current_timestamp())
     info = info = db.Column(db.Text, nullable=True)    
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
     species_id = db.Column(db.Integer, db.ForeignKey('species.id'), nullable=False)
    
 
