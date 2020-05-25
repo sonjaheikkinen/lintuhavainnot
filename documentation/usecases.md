@@ -30,6 +30,15 @@ Ylläpitäjänä haluan, että sivusto on tietoturvallinen. Käyttäjien henkil�
 
 Ylläpitäjänä haluan voida tarkastella, poistaa ja muokata paikkoihin liitettyjä elinympäristöjä. Jokaisessa havaintopaikassa voi olla useampaa eri elinympäristöä, ja toisaalta sama elinympäristö voi liittyä useampaan eri paikkaan. Käyttäjät voivat kuitenkin havaintoja tehdessään tunnistaa elinympäristön väärin, joten korjausmahdollisuus tarvitaan. 
 
+# Käyttötapauksiin liittyvät SQL-kyselyt
+
+**Lajin lisäys**
+
+
+**Lajien listaus**
+`SELECT * FROM Species;`
+
+
 
 
 
