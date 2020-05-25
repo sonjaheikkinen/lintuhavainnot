@@ -51,4 +51,4 @@ def load_user(user_id):
 
 # Lisataan tietokantaan testilintuja
 #if not os.environ.get("HEROKU"):
-    from application import fillDatabase
+from application import fillDatabase
