@@ -9,7 +9,7 @@ class Species(db.Model):
     #sp_order = db.Column(db.String(144), nullable=False)
     description = db.Column(db.Text, nullable=True)
 
-    sightings = db.relationship("Sighting", backref='species', lazy=True)
+    sightings = db.relationship("Sighting", backref='Species', lazy=True)
 
     #def __init__(self, name, species, sp_genus, sp_family, sp_order, description):
     def __init__(self, name, species, description):
