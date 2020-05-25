@@ -24,6 +24,7 @@ def sightings_add():
 
         sighting = Sighting(form.info.data)
         sighting.account_id = current_user.id
+        sighting.species_id = 1
         
         db.session().add(sighting)
         db.session().commit()
