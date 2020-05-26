@@ -21,6 +21,7 @@ from application import models
 from application.species import models
 from application.auth import models 
 from application.sightings import models 
+from application.places import models
 
 # Luodaan tietokantataulut
 try: 
