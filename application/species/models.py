@@ -1,16 +1,11 @@
 from application import db
+from application.models import Base, Name, Info
 
-class Species(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-                              onupdate=db.func.current_timestamp())
-    name = db.Column(db.String(255), nullable=False)
+class Species(Base, Name, Info):
     species = db.Column(db.String(255), nullable=False)
     #sp_genus = db.Column(db.String(144), nullable=False)
     #sp_family = db.Column(db.String(144), nullable=False)
     #sp_order = db.Column(db.String(144), nullable=False)
-    info = db.Column(db.Text, nullable=True)
 
     sightings = db.relationship("Sighting", backref='Species', lazy=True)
 

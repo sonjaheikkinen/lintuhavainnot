@@ -17,6 +17,7 @@ else:
 db = SQLAlchemy(app)
 
 # Ladataan tietokantamallit
+from application import models
 from application.species import models
 from application.auth import models 
 from application.sightings import models 

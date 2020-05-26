@@ -1,12 +1,8 @@
 from application import db
+from application.models import Base, Info
 
-class Sighting(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-                              onupdate=db.func.current_timestamp())
-    info = info = db.Column(db.Text, nullable=True)    
+class Sighting(Base, Info):
+   
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=True)
     species_id = db.Column(db.Integer, db.ForeignKey('species.id'), nullable=False)
    
