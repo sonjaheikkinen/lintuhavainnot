@@ -21,8 +21,18 @@ def sightings_list():
             account = "Poistunut käyttäjä"
         else:
             account = account.name
-
-        sightings.append([species.name, sighting.info, account])
+        place = db.session.query(Place).filter(sighting.place_id == Place.id).first()
+        placeString = place.name
+        placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place.id).all()
+        habitatIds = []
+        for habitat in placeHabitats:
+            habitatIds.append(habitat.habitat_id)
+        habitatString = ""
+        for id in habitatIds:
+            habitat = Habitat.query.get(id)
+            habitatString = habitatString + ", " + habitat.name
+        habitatString = placeString + habitatString
+        sightings.append([species.name, habitatString, account, sighting.info])
 
     return render_template("sightings/list.html", sightings = sightings)
 

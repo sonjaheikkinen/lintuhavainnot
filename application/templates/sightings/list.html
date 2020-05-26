@@ -4,11 +4,11 @@
 <h1>Havainnot</h1>
   <table cellspacing="20">
     <tr>
-      <th>Laji</th><th>Lisätietoja</th><th>Havaitsija</th>
+      <th>Laji</th><th>Havaintopaikka</th><th>Havaitsija</th><th>Lisätietoja</th>
     </tr>
     {% for sighting in sightings %}
     <tr>
-      <td>{{ sighting[0] }}</td><td>{{ sighting[1] }}</td><td>{{ sighting[2] }}</td>
+      <td>{{ sighting[0] }}</td><td>{{ sighting[1] }}</td><td>{{ sighting[2] }}</td><td>{{ sighting[3] }}</td>
     </tr>
     {% endfor %}
   </table>
