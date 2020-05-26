@@ -32,7 +32,7 @@ def species_edit_information(species_id):
 
         species.name = form.name.data
         species.species = form.species.data
-        species.description = form.description.data
+        species.info = form.info.data
 
         db.session().commit()
   
@@ -59,7 +59,7 @@ def species_create():
     if not form.validate():
         return render_template("species/new.html", form = form)
 
-    species = Species(form.name.data, form.species.data, form.description.data)
+    species = Species(form.name.data, form.species.data, form.info.data)
 
     db.session().add(species)
     db.session().commit()

@@ -11,7 +11,7 @@
     <tr>
       <td>{{ species.name }}</td>
       <td><i>{{ species.species }}</i></td>
-      <td>{{ species.description }}</td>
+      <td>{{ species.info }}</td>
       <td>
       <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
 	  <input type="submit" value="Muokkaa tietoja"/>
