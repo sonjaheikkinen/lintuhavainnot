@@ -23,7 +23,7 @@ habitatText = open("application/files/habitats.txt", "r")
 habitatList = []
 
 for line in habitatText:
-    habitatList.append(Habitat(line))   
+    habitatList.append(Habitat(line.strip()))   
     
 habitatText.close()
 
