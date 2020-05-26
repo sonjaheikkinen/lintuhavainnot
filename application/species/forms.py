@@ -10,7 +10,7 @@ class SpeciesCreationForm(FlaskForm):
         csrf = False
  
 class SpeciesEditForm(FlaskForm):
-    name = StringField("Muokkaa nimeä:", [validators.Length(min=1, max=255, message="Kentän tulee sisältää vähintään %(min)d ja enintään %(max)d merkkiä.")], default="test")	
+    name = StringField("Muokkaa nimeä:", [validators.Length(min=1, max=255, message="Kentän tulee sisältää vähintään %(min)d ja enintään %(max)d merkkiä.")])	
     species = StringField("Muokkaa tieteellistä nimeä:", [validators.Length(min=1, max=255, message="Kentän tulee sisältää vähintään %(min)d ja enintään %(max)d merkkiä.")])
     info = TextAreaField("Muokkaa kuvausta:", render_kw={"rows": 10, "cols": 30})
 

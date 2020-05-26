@@ -7,6 +7,7 @@ from application.sightings.forms import AddSighting
 
 from application.species.models import Species
 from application.auth.models import User
+from application.places.models import Place, PlaceHabitat, Habitat
 
 @app.route("/sightings", methods=["GET"])
 def sightings_list():
@@ -33,11 +34,16 @@ def sightings_add():
     choiceList = []
     for species in species:
         choiceList.append((species.id, species.name))
+    habitats = Habitat.query.all()
+    habitatList = []
+    for habitat in habitats:
+        habitatList.append((habitat.id, habitat.name))
 
     if request.method == "POST":
 
         form = AddSighting(request.form) 
         form.species.choices = choiceList
+        form.habitats.choices = habitatList
 
         if not form.validate():
             return render_template("sightings/new.html", form = form)
@@ -55,6 +61,7 @@ def sightings_add():
     
         form = AddSighting()  
         form.species.choices = choiceList  
+        form.habitats.choices = habitatList
 
         return render_template("sightings/new.html", form = form)
 
