@@ -26,14 +26,12 @@ def species_edit_information(species_id):
     if request.method == "POST":
 
         form = SpeciesEditForm(request.form) 
-
         if not form.validate():
             return render_template("species/edit.html", species=species, form = form)
 
         species.name = form.name.data
         species.species = form.species.data
         species.info = form.info.data
-
         db.session().commit()
   
         return redirect(url_for("species_index"))
@@ -55,12 +53,10 @@ def species_delete(species_id):
 def species_create():
 
     form = SpeciesCreationForm(request.form) 
-
     if not form.validate():
         return render_template("species/new.html", form = form)
 
     species = Species(form.name.data, form.species.data, form.info.data)
-
     db.session().add(species)
     db.session().commit()
   

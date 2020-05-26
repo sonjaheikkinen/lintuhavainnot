@@ -11,16 +11,15 @@ bcrypt = Bcrypt(app)
 
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_register():
+
     if request.method == "GET":
         return render_template("auth/registration.html", form = Registration())
 
     form = Registration(request.form)
-
     if not form.validate():
             return render_template("auth/registration.html", form = form)
 
     username = User.query.filter_by(username=form.username.data).first()
-
     if username:
         return render_template("auth/registration.html", form = form,
                                error = "Käyttäjätunnus on jo käytössä")
@@ -29,28 +28,26 @@ def auth_register():
     hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
     
     user = User(form.name.data, form.username.data, hashedPassword, form.info.data)
-
     db.session().add(user)
     db.session().commit()
 
     user = User.query.filter_by(username=form.username.data, password=hashedPassword).first()
-
     login_user(user)
+
     return redirect(url_for("index"))  
 
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
+
     if request.method == "GET":
         return render_template("auth/login.html", form = Login())
 
     form = Login(request.form)
-
     if not form.validate():
             return render_template("auth/login.html", form = form)
 
     userFound = User.query.filter_by(username=form.username.data).first()
-
     if not userFound:
         return render_template("auth/login.html", form = form,
                                error = "Virheellinen käyttäjätunnus tai salasana")
@@ -61,6 +58,7 @@ def auth_login():
                                error = "Virheellinen käyttäjätunnus tai salasana")
 
     login_user(userFound)
+
     return redirect(url_for("index"))  
 
 
@@ -73,7 +71,6 @@ def auth_edit():
     if request.method == "POST":
 
         form = Edit(request.form) 
-
         if not form.validate():
             return render_template("auth/edit.html", form = form)
 
@@ -86,7 +83,6 @@ def auth_edit():
         user.name = form.name.data
         user.username = form.username.data
         user.info = form.info.data
-
         db.session().commit()
   
         return redirect(url_for("index"))
@@ -102,7 +98,6 @@ def auth_changepassword():
     if request.method == "POST":
 
         form = Password(request.form) 
-
         if not form.validate():
             return render_template("auth/password.html", form = form)
 
@@ -127,5 +122,6 @@ def auth_delete():
 @app.route("/auth/logout")
 @login_required
 def auth_logout():
+    
     logout_user()
     return redirect(url_for("index"))    
