@@ -30,20 +30,14 @@ def sightings_list():
 @login_required
 def sightings_add():
 
-    species = Species.query.all()
-    choiceList = []
-    for species in species:
-        choiceList.append((species.id, species.name))
-    habitats = Habitat.query.all()
-    habitatList = []
-    for habitat in habitats:
-        habitatList.append((habitat.id, habitat.name))
+    speciesChoices = makeChoiceList(Species.query.all())
+    habitatChoices = makeChoiceList(Habitat.query.all())
 
     if request.method == "POST":
 
         form = AddSighting(request.form) 
-        form.species.choices = choiceList
-        form.habitats.choices = habitatList
+        form.species.choices = speciesChoices
+        form.habitats.choices = habitatChoices
 
         if not form.validate():
             return render_template("sightings/new.html", form = form)
@@ -51,7 +45,32 @@ def sightings_add():
         sighting = Sighting(form.info.data)
         sighting.account_id = current_user.id
         sighting.species_id = form.species.data
+        selectedPlace = form.place.data
+        selectedHabitats = form.habitats.data
+
+        placeFound = db.session.query(Place).filter(Place.name == selectedPlace).first()
+        newPlace = ""
+
+        if not placeFound:
+            newPlace = Place(selectedPlace)
+            db.session().add(newPlace)
+            db.session().commit()
+        else:
+            newPlace = placeFound
         
+        placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == newPlace.id).all()
+        idList = []
+        for item in placeHabitats:
+            idList.append(item.id)
+        
+        addList = []
+        for habitat in selectedHabitats:
+            if not habitat in idList:
+                addList.append(PlaceHabitat(newPlace.id, habitat))
+        db.session.add_all(addList)
+
+        sighting.place_id = newPlace.id
+
         db.session().add(sighting)
         db.session().commit()
   
@@ -60,10 +79,17 @@ def sightings_add():
     else:
     
         form = AddSighting()  
-        form.species.choices = choiceList  
-        form.habitats.choices = habitatList
+        form.species.choices = speciesChoices 
+        form.habitats.choices = habitatChoices
 
         return render_template("sightings/new.html", form = form)
+
+def makeChoiceList(items):
+    choiceList = []
+    for item in items:
+        choiceList.append((item.id, item.name))
+    return choiceList
+  
 
 
 
