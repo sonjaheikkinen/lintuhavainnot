@@ -87,7 +87,7 @@ def getHabitatString(place):
 
         placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place.id).all()
         habitatIds = []
-        habitatString = " | Elinympäristöt: "
+        habitatString = " ("
 
         for habitat in placeHabitats:
             habitatIds.append(habitat.habitat_id)
@@ -95,7 +95,9 @@ def getHabitatString(place):
         for id in habitatIds:
             habitat = Habitat.query.get(id)
             habitatString = habitatString  + habitat.name + ", "
-        return habitatString[:-2]
+      
+        habitatString = habitatString[:-2] + ")"
+        return habitatString
 
 def getPlaceId(selectedPlace):
 
