@@ -18,7 +18,8 @@ if not Species.query.all():
     db.session.commit()
 
 # Lisataan testikayttaja
-attributes = open("application/files/users.txt", "r").split(";")
+userText = open("application/files/users.txt", "r")
+attributes = userText.readline().split(";")
 user = User(attributes[0], attributes[1], attributes[2], attributes[3])
 if not User.query.all():
     db.session.add(user)
