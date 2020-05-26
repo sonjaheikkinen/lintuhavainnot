@@ -1,5 +1,6 @@
 from application import app, db
 from application.species.models import Species
+from application.places.models import Habitat
 from application.auth.models import User
 
 # Lisataan lajeja
@@ -15,6 +16,19 @@ speciesText.close()
 
 if not Species.query.all():
     db.session.add_all(speciesList)
+    db.session.commit()
+
+# Lisataan elinymparistoja
+habitatText = open("application/files/habitats.txt", "r")
+habitatList = []
+
+for line in habitatText:
+    habitatList.append(Habitat(line))   
+    
+habitatText.close()
+
+if not Habitat.query.all():
+    db.session.add_all(habitatList)
     db.session.commit()
 
 # Lisataan testikayttaja

@@ -1,0 +1,44 @@
+Karukkokangas
+Kuiva kangas
+Kuivahko kangas
+Tuore kangas
+Lehtomainen kangas
+Lehto
+Sekametsä
+Hakkuuaukea
+Taimia ja pensaita
+Kallio
+Rantakallio
+Kivikko
+Sora
+Louhos
+Hiekka
+Korpi
+Räme
+Neva
+Letto
+Luhta
+Kausikosteikko
+Tulvamaa
+Kirkasvetinen järvi
+Rehevöitynyt järvi
+Ruskeavetinen järvi
+Ruovikko
+Soistuva järvi
+Järven rannikko
+Meren rannikko
+Saaristomeri
+Avomeri
+Joen suisto, järvi
+Joen suisto, meri
+Joki
+Koski
+Oja
+Puro
+Pelto
+Niitty
+Puisto
+Taajama
+Kaupunki
+
+
