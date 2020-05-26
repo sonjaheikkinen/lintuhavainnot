@@ -37,9 +37,11 @@ Ylläpitäjänä haluan voida tarkastella, poistaa ja muokata paikkoihin liitett
 ## Lajit 
 
 **1a. Lajin lisäys**
+
 `INSERT INTO Species (name, species, description) VALUES (?, ?, ?);`
 
 **1b. Lajin muokkaus id:n perusteella**
+
 ```
 UPDATE Species
     SET name = ?, species = ?, description = ?
@@ -47,20 +49,25 @@ UPDATE Species
 ```
 
 **1c. Kaikkien lajien listaus**
+
 `SELECT * FROM Species;`
 
 **1d. Lajin poisto id:n perusteella**
+
 `DELETE FROM Species WHERE id = ?;`
 
 ## Käyttäjät
 
 **2a. Uuden käyttäjän lisäys**
+
 `INSERT INTO Account (name, username, password, info) VALUES (?, ?, ?);`
 
 **2b. Käyttäjän haku käyttäjänimen perusteella**
+
 `SELECT * FROM Account WHERE (username = ?);`
 
 **2c. Käyttäjän tietojen muokkaus id:n perusteella**
+
 ```
 UPDATE Account
     SET name = ?, username = ?, info = ?
@@ -68,6 +75,7 @@ UPDATE Account
 ```
 
 **2d. Käyttäjän salasanan vaihto id:n perusteella**
+
 ```
 UPDATE Account
     SET password = ?
@@ -75,17 +83,21 @@ UPDATE Account
 ```
 
 **2e. Käyttäjän poisto id:n perusteella**
+
 `DELETE FROM Account WHERE id = ?;`
 
-##Havainnot
+## Havainnot
 
 **3a. Havainnon lisäys**
-`INSERT INTO Sighting (info, account_id, species_id) VALUES (3?, ?, ?);`
+
+`INSERT INTO Sighting (info, account_id, species_id) VALUES (?, ?, ?);`
 
 **3b. Havaintojen listaus**
+
 `SELECT * FROM Sighting;`
 
 **3c. Havaintojen poisto lintulajin perusteella**
+
 `DELETE FROM Sighting WHERE species_id = ?;`
 
 
