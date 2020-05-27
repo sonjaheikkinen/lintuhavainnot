@@ -9,7 +9,9 @@ speciesList = []
 
 for line in speciesText:
     attributes = line.split(";")
-    species = Species(attributes[0], attributes[1], attributes[2])
+    species = Species(attributes[0], attributes[1],
+     attributes[2], attributes[3], attributes[4], 
+     int(attributes[5]), attributes[6])
     speciesList.append(species)   
     
 speciesText.close()

@@ -11,9 +11,9 @@
         <td>{{ form.name }}</td>
         <td>
           <ul>
-	    {% for error in form.name.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
+	          {% for error in form.name.errors %}
+	            <li>{{ error }}</li>
+	          {% endfor %}
 	        </ul>
         </td>
       </tr>
@@ -22,12 +22,47 @@
         <td>{{ form.species }}</td>
         <td>
           <ul>
-	    {% for error in form.species.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
+	          {% for error in form.species.errors %}
+	            <li>{{ error }}</li>
+	          {% endfor %}
+	        </ul>
         </td>
       </tr>
+      <tr><td>{{ form.sp_genus.label }}</td></tr>
+      <tr>
+        <td>{{ form.sp_genus }}</td>
+        <td>
+          <ul>
+	          {% for error in form.sp_genus.errors %}
+	            <li>{{ error }}</li>
+	          {% endfor %}
+	        </ul>
+        </td>
+      </tr>
+      <tr><td>{{ form.sp_family.label }}</td></tr>
+      <tr>
+        <td>{{ form.sp_family }}</td>
+        <td>
+          <ul>
+	          {% for error in form.sp_family.errors %}
+	            <li>{{ error }}</li>
+	          {% endfor %}
+	        </ul>
+        </td>
+      </tr>
+      <tr><td>{{ form.sp_order.label }}</td></tr>
+      <tr>
+        <td>{{ form.sp_order }}</td>
+        <td>
+          <ul>
+	          {% for error in form.sp_order.errors %}
+	            <li>{{ error }}</li>
+	          {% endfor %}
+	        </ul>
+        </td>
+      </tr>
+      <tr><td>{{ form.conserv_status.label }}</td></tr>
+      <tr><td>{{ form.conserv_status }}</td></tr>
       <tr><td>{{ form.info.label }}</td></tr>
       <tr><td>{{ form.info }}</td></tr>
       <tr>

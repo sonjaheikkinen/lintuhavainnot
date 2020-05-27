@@ -10,7 +10,11 @@ from application.sightings.models import Sighting
 
 @app.route("/species", methods=["GET"])
 def species_index():
-    return render_template("species/list.html", species = Species.query.all())
+
+    conservInfo = {1: "Elinvoimainen, LC", 2: "Silmälläpidettävä, NT", 3: "Vaarantunut, VU", 
+    4: "Erittäin uhanalainen, EN", 5: "Äärimmäisen uhanalainen, CR"}
+
+    return render_template("species/list.html", species = Species.query.all(), conservInfo = conservInfo)
 
 @app.route("/species/new/")
 @login_required
@@ -31,6 +35,10 @@ def species_edit_information(species_id):
 
         species.name = form.name.data
         species.species = form.species.data
+        species.sp_genus = form.sp_genus.data
+        species.sp_family = form.sp_family.data
+        species.sp_order = form.sp_order.data
+        species.conserv_status = form.conserv_status.data
         species.info = form.info.data
         db.session().commit()
   
@@ -56,7 +64,9 @@ def species_create():
     if not form.validate():
         return render_template("species/new.html", form = form)
 
-    species = Species(form.name.data, form.species.data, form.info.data)
+    species = Species(form.name.data, form.species.data,
+     form.sp_genus.data, form.sp_family.data, form.sp_order.data,
+     form.conserv_status.data, form.info.data)
     db.session().add(species)
     db.session().commit()
   
