@@ -7,12 +7,11 @@ from application.species.forms import SpeciesCreationForm, SpeciesEditForm
 
 from application.sightings.models import Sighting
 
+conservInfo = {1: "Elinvoimainen, LC", 2: "Silmälläpidettävä, NT", 3: "Vaarantunut, VU", 
+    4: "Erittäin uhanalainen, EN", 5: "Äärimmäisen uhanalainen, CR"}
 
 @app.route("/species", methods=["GET"])
-def species_index():
-
-    conservInfo = {1: "Elinvoimainen, LC", 2: "Silmälläpidettävä, NT", 3: "Vaarantunut, VU", 
-    4: "Erittäin uhanalainen, EN", 5: "Äärimmäisen uhanalainen, CR"}
+def species_search():
 
     return render_template("species/list.html", species = Species.query.all(), conservInfo = conservInfo)
 
@@ -42,7 +41,7 @@ def species_edit_information(species_id):
         species.info = form.info.data
         db.session().commit()
   
-        return redirect(url_for("species_index"))
+        return redirect(url_for("species_search"))
 
     return render_template("species/edit.html", species=species, form = SpeciesEditForm(obj=species))
 
@@ -54,7 +53,7 @@ def species_delete(species_id):
      db.session.query(Sighting).filter(Sighting.species_id == species_id).delete()
      db.session.delete(species)
      db.session.commit()
-     return redirect(url_for("species_index"))
+     return redirect(url_for("species_search"))
 
 @app.route("/species/", methods=["POST"])
 @login_required
@@ -70,5 +69,18 @@ def species_create():
     db.session().add(species)
     db.session().commit()
   
-    return redirect(url_for("species_index"))
+    return redirect(url_for("species_search"))
 
+@app.route("/species/show/<species_id>/")
+def species_show(species_id):
+
+    species = Species.query.get(species_id)
+
+    nameparts = species.species.split(" ")
+    nameLatin = ""
+    if len(nameparts) == 3:
+        nameLatin = nameparts[1] + " " + nameparts[2]
+    else:
+        nameLatin = nameparts[1]
+
+    return render_template("species/info.html", species = species, conservInfo = conservInfo, nameLatin = nameLatin)

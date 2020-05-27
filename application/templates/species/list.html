@@ -15,15 +15,22 @@
       <td>{{ conservInfo[species.conserv_status] }}</td>
       <td>{{ species.info }}</td>
       <td>
-      <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
-	  <input type="submit" value="Muokkaa tietoja"/>
-      </form>
+        <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
+          <input type="submit" value="Näytä lajin tiedot"/>
+        </form>
+      </td>
+      {% if current_user.is_authenticated %}
+      <td>
+        <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
+	        <input type="submit" value="Muokkaa tietoja"/>
+        </form>
       </td>
       <td>
-      <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
-	  <input type="submit" value="Poista"/>
-      </form>
+        <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
+	        <input type="submit" value="Poista"/>
+        </form>
       </td>
+      {% endif %}
     </tr>
     {% endfor %}
   </table>
