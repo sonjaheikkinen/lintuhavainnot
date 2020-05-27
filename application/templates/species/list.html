@@ -5,15 +5,11 @@
     <tr>
       <th>Laji</th>
       <th>Tieteellinen nimi</th>
-      <th>Uhanalaisuus</th>
-      <th>Kuvaus</th>
     </tr>
     {% for species in species %}
     <tr>
       <td>{{ species.name }}</td>
       <td><i>{{ species.species }}</i></td>
-      <td>{{ conservInfo[species.conserv_status] }}</td>
-      <td>{{ species.info }}</td>
       <td>
         <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
           <input type="submit" value="Näytä lajin tiedot"/>
