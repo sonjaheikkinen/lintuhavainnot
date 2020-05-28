@@ -16,7 +16,7 @@ Projektin tarkoitus on toimia havaintotietokantana, johon kuka tahansa (kirjautu
 
 ## Ohjeita
 
-Sovellus alustetaan valmiilla testilinnuilla, sekä yhdellä testikäyttäjällä. Kirjaudu testikäyttäjälle tiedoilla:
+Sovellus alustetaan valmiilla testilinnuilla. Lisäksi herokuun on valmiiksi rekisteröity testikäyttäjä. Kirjaudu testikäyttäjälle tiedoilla:
 
 tunnus: testi
 
