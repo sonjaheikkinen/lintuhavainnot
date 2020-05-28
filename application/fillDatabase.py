@@ -34,9 +34,9 @@ if not Habitat.query.all():
     db.session.commit()
 
 # Lisataan testikayttaja
-userText = open("application/files/users.txt", "r")
-attributes = userText.readline().split(";")
-user = User(attributes[0], attributes[1], attributes[2], attributes[3])
-if not User.query.all():
-    db.session.add(user)
-    db.session.commit()
+#userText = open("application/files/users.txt", "r")
+#attributes = userText.readline().split(";")
+#user = User(attributes[0], attributes[1], attributes[2], attributes[3])
+#if not User.query.all():
+#    db.session.add(user)
+#    db.session.commit()
