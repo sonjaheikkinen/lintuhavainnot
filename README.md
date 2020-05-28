@@ -22,7 +22,7 @@ tunnus: testi
 
 salasana: testi
 
-Voit vapaasti lisätä, muokata ja poistaa käyttäjiä ja lintulajeja. Älä muokkaa testikäyttäjän kirjautumistietoja tai poista sitä, jos käytät sovellusta herokussa. Paikallisesti voit tämän tehdä.
+Voit vapaasti lisätä, muokata ja poistaa käyttäjiä ja lintulajeja. Älä muokkaa annettuja testikäyttäjän kirjautumistietoja tai poista sitä.
 
 
 
