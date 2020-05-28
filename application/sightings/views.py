@@ -12,10 +12,14 @@ from application.places.models import Place, PlaceHabitat, Habitat
 @app.route("/sightings", methods=["GET"])
 def sightings_list():
 
+    speciesWithMostSightings = Sighting.speciesWithMostSightings()
+
     sightingsList = Sighting.query.all()
     sightings = getSightingInformation(sightingsList)
 
-    return render_template("sightings/list.html", sightings = sightings)
+    return render_template("sightings/list.html", sightings = sightings,
+     species = speciesWithMostSightings)
+
 
 @app.route("/sightings/new/", methods=["GET", "POST"])
 @login_required

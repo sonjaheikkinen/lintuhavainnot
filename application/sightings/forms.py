@@ -15,7 +15,9 @@ class AddSighting(FlaskForm):
 
     class Meta:
         csrf = False
-
+    
+    
+    
 
 
 

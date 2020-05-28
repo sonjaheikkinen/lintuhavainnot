@@ -1,5 +1,6 @@
 from application import db
 from application.models import Base, Info
+from sqlalchemy.sql import text
 
 class Sighting(Base, Info):
    
@@ -9,3 +10,22 @@ class Sighting(Base, Info):
 
     def __init__(self, info):
         self.info = info
+
+    @staticmethod
+    def speciesWithMostSightings():
+        stmt = text("SELECT Species.name, COUNT(*) AS count FROM Sighting"
+                    " JOIN Species ON Sighting.species_id = Species.id"
+                    " GROUP BY Species.id"
+                    " ORDER BY count DESC"
+                    " LIMIT 5")
+
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append(row)
+        return response
+
+
+    
+
+
