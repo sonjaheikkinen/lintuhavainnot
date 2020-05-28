@@ -1,6 +1,45 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<h1>Lajit</h1>
+
+<h2>Hae lajeja</h2>
+
+<form method="POST" action="{{ url_for('species_search', column='all', searchword='all', conservStatus='0') }}">
+  <table cellspacing="10">
+    <tr><th style="text-align:left">Etsi hakusanan perusteella</th></tr>
+    <tr>
+      <td>{{ form.column.label }}</td>
+      <td>{{ form.searchword.label }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.column }}</td>
+      <td>{{ form.searchword }}</td>
+      <td>
+        {% for error in form.searchword.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <th style="text-align:left">Rajaa uhanalaisuuden perusteella</th>
+    </tr>
+    <tr>
+      <td>{{ form.conservStatus.label }}</td>
+    </tr>
+    <tr>
+      <td>{{ form.conservStatus }}</td>
+    </tr>
+    <tr>
+      <td>
+	      <input type="submit" value="Hae"/>
+      </td>
+    </tr>
+  </table>
+</form>
+
+
   <table cellspacing="20">
     <tr>
       <th>Laji</th>

@@ -18,7 +18,7 @@
       {% endif %}
      <ul>
         <li><a href="{{ url_for('index') }}">Etusivu</a></li>
-        <li><a href="{{ url_for('species_search') }}">Tarkastele lajilistaa</a></li>
+        <li><a href="{{ url_for('species_search', column='all', searchword='all', conservStatus=0) }}">Tarkastele lajilistaa</a></li>
         <li><a href="{{ url_for('sightings_list') }}">Tarkastele havaintoja</a></li>
         {% if current_user.is_authenticated %}
 	      <li><a href="{{ url_for('species_form') }}">Lisää uusi laji</a></li>
