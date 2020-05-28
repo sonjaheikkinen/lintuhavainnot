@@ -13,6 +13,7 @@ class Sighting(Base, Info):
 
     @staticmethod
     def speciesWithMostSightings():
+        
         stmt = text("SELECT Species.name, COUNT(*) AS count FROM Sighting"
                     " JOIN Species ON Sighting.species_id = Species.id"
                     " GROUP BY Species.id"

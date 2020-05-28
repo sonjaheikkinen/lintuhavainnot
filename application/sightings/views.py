@@ -123,7 +123,7 @@ def addHabitats(placeId, selectedHabitats):
         placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == placeId).all()
         idList = []
         for item in placeHabitats:
-            idList.append(item.id)
+            idList.append(item.habitat_id)
         
         addList = []
         for habitat in selectedHabitats:
