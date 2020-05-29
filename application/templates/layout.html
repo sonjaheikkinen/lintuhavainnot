@@ -1,31 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="fi">
   <head>
     <meta charset="utf-8">
     <title>Lintuhavainnot</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
 
   <body>
-    {% if current_user.is_authenticated %}
-      <p>
-	    Kirjautunut nimellä {{ current_user.name }}. 
-        <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
-        <a href="{{ url_for('auth_edit') }}">Käyttäjäasetukset</a>
-      </p>
-      {% else %}
-      <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
-      <a href="{{ url_for('auth_register') }}">Rekisteröidy</a>
-      {% endif %}
-     <ul>
-        <li><a href="{{ url_for('index') }}">Etusivu</a></li>
-        <li><a href="{{ url_for('species_search', column='all', searchword='all', conservStatus=0) }}">Tarkastele lajilistaa</a></li>
-        <li><a href="{{ url_for('sightings_list') }}">Tarkastele havaintoja</a></li>
-        {% if current_user.is_authenticated %}
-	      <li><a href="{{ url_for('species_form') }}">Lisää uusi laji</a></li>
-        <li><a href="{{ url_for('sightings_add') }}">Lisää havainto</a></li>
-        {% endif %}
-      </ul>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="{{ url_for('index') }}">Lintuhavainnot</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('species_search', column='all', searchword='all', conservStatus=0) }}">Lajit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('sightings_list') }}">Havainnot</a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('species_form') }}">Lisää uusi laji</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('sightings_add') }}">Lisää havainto</a>
+          </li>
+          {% endif %}
+        </ul>
+        <div class="form-inline mt-2 mt-md-0">
+          {% if current_user.is_authenticated %}
+          <span class="navbar-text">
+            Kirjautunut nimellä {{ current_user.name }}
+          </span>
+          <li class="nav-item">
+            <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('auth_edit') }}">Käyttäjäasetukset</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('auth_register') }}">Rekisteröidy</a>
+          </li>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
     {% block body %}
       <p>
         Content.
