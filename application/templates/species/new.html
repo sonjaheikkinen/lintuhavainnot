@@ -4,73 +4,29 @@
 
 <h1>Syötä lajin tiedot</h1>
 
-<form method="POST" action="{{ url_for('species_create') }}">
-    <table>
-      <tr><td>{{ form.name.label }}</td></tr>
-      <tr>
-        <td>{{ form.name }}</td>
-        <td>
-          <ul>
-	          {% for error in form.name.errors %}
-	            <li>{{ error }}</li>
-	          {% endfor %}
-	        </ul>
-        </td>
-      </tr>
-      <tr><td>{{ form.species.label }}</td></tr>
-      <tr>
-        <td>{{ form.species }}</td>
-        <td>
-          <ul>
-	          {% for error in form.species.errors %}
-	            <li>{{ error }}</li>
-	          {% endfor %}
-	        </ul>
-        </td>
-      </tr>
-      <tr><td>{{ form.sp_genus.label }}</td></tr>
-      <tr>
-        <td>{{ form.sp_genus }}</td>
-        <td>
-          <ul>
-	          {% for error in form.sp_genus.errors %}
-	            <li>{{ error }}</li>
-	          {% endfor %}
-	        </ul>
-        </td>
-      </tr>
-      <tr><td>{{ form.sp_family.label }}</td></tr>
-      <tr>
-        <td>{{ form.sp_family }}</td>
-        <td>
-          <ul>
-	          {% for error in form.sp_family.errors %}
-	            <li>{{ error }}</li>
-	          {% endfor %}
-	        </ul>
-        </td>
-      </tr>
-      <tr><td>{{ form.sp_order.label }}</td></tr>
-      <tr>
-        <td>{{ form.sp_order }}</td>
-        <td>
-          <ul>
-	          {% for error in form.sp_order.errors %}
-	            <li>{{ error }}</li>
-	          {% endfor %}
-	        </ul>
-        </td>
-      </tr>
-      <tr><td>{{ form.conserv_status.label }}</td></tr>
-      <tr><td>{{ form.conserv_status }}</td></tr>
-      <tr><td>{{ form.info.label }}</td></tr>
-      <tr><td>{{ form.info }}</td></tr>
-      <tr>
- 	<td>
-	  <input type="submit" value="Lisää uusi laji"/>
-	</td>
-      </tr>
-    </table>
-  </form>
+<form method="POST" action="{{ url_for('species_create') }}" role="form"> 
+  <div class="formgroup">
+    {{ wtf.form_field(form.name, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.species, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.sp_genus, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.sp_family, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.sp_order, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.conserv_status, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.info, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Lisää uusi laji</button>
+</form>
 
 {% endblock %}

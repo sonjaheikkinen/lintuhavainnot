@@ -34,6 +34,7 @@
         <th>Tieteellinen nimi</th>
       </tr>
     </thead>
+    <tbody>
     {% for species in species %}
     <tr>
       <td>{{ species.name }}</td>
@@ -57,5 +58,6 @@
       {% endif %}
     </tr>
     {% endfor %}
+    </tbody>
   </table>
 {% endblock %}
