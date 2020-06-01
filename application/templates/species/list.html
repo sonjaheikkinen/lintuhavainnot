@@ -6,63 +6,52 @@
 
 <h2>Hae lajeja</h2>
 
-<form method="POST" action="{{ url_for('species_search', column='all', searchword='all', conservStatus='0') }}">
-  <table cellspacing="10">
-    <tr><th style="text-align:left">Etsi hakusanan perusteella</th></tr>
-    <tr>
-      <td>{{ form.column.label }}</td>
-      <td>{{ form.searchword.label }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.column }}</td>
-      <td>{{ form.searchword }}</td>
-      <td>
-        {% for error in form.searchword.errors %}
-          <li>{{ error }}</li>
-        {% endfor %}
-      </td>
-    </tr>
-    <tr>
-      <th style="text-align:left">Rajaa uhanalaisuuden perusteella</th>
-    </tr>
-    <tr>
-      <td>{{ form.conservStatus.label }}</td>
-    </tr>
-    <tr>
-      <td>{{ form.conservStatus }}</td>
-    </tr>
-    <tr>
-      <td>
-	      <input type="submit" value="Hae"/>
-      </td>
-    </tr>
-  </table>
+<form method="POST" action="{{ url_for('species_search',
+ column='all', searchword='all', conservStatus='0') }}" role="form"> 
+  <div class="row">
+    <div class="col">
+      {{ wtf.form_field(form.column, class='form-control') }}
+    </div>
+    <div class="col">
+      {{ wtf.form_field(form.searchword, class='form-control') }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    {{ wtf.form_field(form.conservStatus, class='form-control') }}
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Hae</button>
 </form>
 
+<br>
 
-  <table cellspacing="20">
-    <tr>
-      <th>Laji</th>
-      <th>Tieteellinen nimi</th>
-    </tr>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Laji</th>
+        <th>Tieteellinen nimi</th>
+      </tr>
+    </thead>
     {% for species in species %}
     <tr>
       <td>{{ species.name }}</td>
       <td><i>{{ species.species }}</i></td>
       <td>
         <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
-          <input type="submit" value="Näytä lajin tiedot"/>
+          <button type="submit">Näytä lajin tiedot</button>
         </form>
       </td>
       {% if current_user.is_authenticated %}
       <td>
         <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
-	        <input type="submit" value="Muokkaa tietoja"/>
+	        <button type="submit">Muokkaa tietoja</button>
         </form>
       </td>
       <td>
         <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
-	        <input type="submit" value="Poista"/>
+	        <button type="submit">Poista</button>
         </form>
       </td>
       {% endif %}
