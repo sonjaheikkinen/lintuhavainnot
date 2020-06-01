@@ -89,22 +89,22 @@ def getAccountString(sighting):
 
 def getHabitatString(place):
 
-        placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place.id).all()
+    placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place.id).all()
 
-        habitatIds = []
-        for habitat in placeHabitats:
-            habitatIds.append(habitat.habitat_id)
+    habitatIds = []
+    for habitat in placeHabitats:
+        habitatIds.append(habitat.habitat_id)
 
-        habitatString = ""
+    habitatString = ""
 
-        if habitatIds:
-            habitatString = " ("
-            for id in habitatIds:
-                habitat = Habitat.query.get(id)
-                habitatString = habitatString  + habitat.name + ", "      
-            habitatString = habitatString[:-2] + ")"
+    if habitatIds:
+        habitatString = " ("
+        for id in habitatIds:
+            habitat = Habitat.query.get(id)
+            habitatString = habitatString  + habitat.name + ", "      
+        habitatString = habitatString[:-2] + ")"
 
-        return habitatString
+    return habitatString
 
 def getPlaceId(selectedPlace):
 
@@ -123,17 +123,17 @@ def getPlaceId(selectedPlace):
 
 def addHabitats(placeId, selectedHabitats):
         
-        placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == placeId).all()
-        idList = []
-        for item in placeHabitats:
-            idList.append(item.habitat_id)
+    placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == placeId).all()
+    idList = []
+    for item in placeHabitats:
+        idList.append(item.habitat_id)
         
-        addList = []
-        for habitat in selectedHabitats:
-            if not habitat in idList:
-                addList.append(PlaceHabitat(placeId, habitat))
-        db.session.add_all(addList)
-        db.session.commit()
+    addList = []
+    for habitat in selectedHabitats:
+        if not habitat in idList:
+            addList.append(PlaceHabitat(placeId, habitat))
+    db.session.add_all(addList)
+    db.session.commit()
 
 
 

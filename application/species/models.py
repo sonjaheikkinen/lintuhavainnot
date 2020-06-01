@@ -26,6 +26,7 @@ class Species(Base, Name, Info):
         stmtString = "SELECT * FROM Species"
 
         if not searchword == "all":
+            searchword = searchword.upper()
             if not column == "all":
                 stmtString = Species.searchFromColumn(column, searchword, stmtString)
             else:
@@ -43,17 +44,17 @@ class Species(Base, Name, Info):
 
     @staticmethod
     def searchFromColumn(column, searchword, stmtString):
-        stmtString = stmtString + " WHERE (" + column + " LIKE '%" +  searchword + "%')"
+        stmtString = stmtString + " WHERE (upper(" + column + ") LIKE '%" +  searchword + "%')"
         return stmtString
     
     @staticmethod
     def searchFromAllColumns(searchword, stmtString):
-        stmtString = stmtString + " WHERE (name LIKE '%" +  searchword + "%'"
-        stmtString = stmtString + " OR species LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR sp_genus LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR sp_family LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR sp_order LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR info LIKE '%" + searchword + "%')" 
+        stmtString = stmtString + " WHERE (upper(name) LIKE '%" +  searchword + "%'"
+        stmtString = stmtString + " OR upper(species) LIKE '%" + searchword + "%'" 
+        stmtString = stmtString + " OR upper(sp_genus) LIKE '%" + searchword + "%'" 
+        stmtString = stmtString + " OR upper(sp_family) LIKE '%" + searchword + "%'" 
+        stmtString = stmtString + " OR upper(sp_order) LIKE '%" + searchword + "%'" 
+        stmtString = stmtString + " OR upper(info) LIKE '%" + searchword + "%')" 
         return stmtString
     
     @staticmethod
