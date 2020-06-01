@@ -5,6 +5,10 @@ app = Flask(__name__)
 # SQLAlchemy 
 from flask_sqlalchemy import SQLAlchemy
 
+# flask-bootsrap
+from flask_bootstrap import Bootstrap
+Bootstrap(app)
+
 import os
 
 if os.environ.get("HEROKU"):

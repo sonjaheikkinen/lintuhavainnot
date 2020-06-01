@@ -1,35 +1,18 @@
 {% extends "layout.html" %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block body %}
 
 <h1>Kirjaudu</h1>
 {{ error }}
 
-<form method="POST" action="{{ url_for('auth_login') }}">
-  <table>
-    <tr><td>{{ form.username.label }}</td></tr>
-    <tr><td>{{ form.username }}</td></tr>
-     <tr>
-      <td>
-        {% for error in form.username.errors %}
-	  <li>{{ error }}</li>
-	{% endfor %}
-      </td>
-    </tr>
-    <tr><td>{{ form.password.label }}</td></tr>
-    <tr><td>{{ form.password }}</td></tr>
-     <tr>
-      <td>
-        {% for error in form.password.errors %}
-	  <li>{{ error }}</li>
-	{% endfor %}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-	<input type="submit" value="Kirjaudu sisään"/>
-      </td>
-    </tr>
-  </table>
+<form method="POST" action="{{ url_for('auth_login') }}" role="form"> 
+  <div class="form-group">
+    {{ wtf.form_field(form.username, class='form-control', placeholder='Käyttäjätunnus') }}
+  </div>
+  <div class="form-group">
+    {{ wtf.form_field(form.password, class='form-control', placeholder='Salasana') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
 </form>
+
 {% endblock %}
