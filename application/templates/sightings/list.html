@@ -3,21 +3,25 @@
 {% block body %}
 <h1>Havainnot</h1>
 <h2>Eniten havaitut lajit</h2>
-<table cellspacing="5">
+<table class="table">
   {% for species in species %}
-   <tr><th style="text-align:left">{{ species[0] }}:</th><td>{{ species[1] }} havaintoa</td></tr>
+   <tr><th>{{ species[0] }}:</th><td>{{ species[1] }} havaintoa</td></tr>
   {% endfor %}
 </table>
 
 <h2>Kaikki havainnot</h2>
-  <table cellspacing="20">
+  <table class="table">
+    <thead>
     <tr>
       <th>Laji</th><th>Havaintopaikka</th><th>Havaitsija</th><th>Lisätietoja</th>
     </tr>
+    </thead>
+    <tbody>
     {% for sighting in sightings %}
     <tr>
       <td>{{ sighting[0] }}</td><td>{{ sighting[1] }}</td><td>{{ sighting[2] }}</td><td>{{ sighting[3] }}</td>
     </tr>
     {% endfor %}
+    </tbody>
   </table>
 {% endblock %}

@@ -4,31 +4,21 @@
 
 <h1>Kerro havainnostasi</h1>
 
-<form method="POST" action="{{ url_for('sightings_add') }}">
-    <table>
-       <tr><td>{{ form.species.label }}</td></tr>
-      <tr><td>{{ form.species }}</td></tr>
-      <tr><td>{{ form.place.label }}</td></tr>
-      <tr>
-        <td>{{ form.place }}</td>
-        <td>
-          <ul>
-	    {% for error in form.place.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	        </ul>
-        </td>
-      </tr>
-      <tr><td>{{ form.info.label }}</td></tr>
-      <tr><td>{{ form.info }}</td></tr>
-      <tr><td>{{ form.habitats.label }}</td></tr>
-      <tr><td>{{ form.habitats }}</td></tr>
-      <tr>
- 	<td>
-	  <input type="submit" value="Lähetä havainto"/>
-	</td>
-      </tr>
-    </table>
-  </form>
+<form method="POST" action="{{ url_for('sightings_add') }}" role="form"> 
+  <div class="formgroup">
+    {{ wtf.form_field(form.species, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.place, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.info, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.habitats, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Lähetä havainto</button>
+</form>
+
 
 {% endblock %}
