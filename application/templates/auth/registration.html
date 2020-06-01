@@ -4,6 +4,23 @@
 
 <h1>Rekisteröidy</h1>
 
+<form method="POST" action="{{ url_for('auth_register') }}" role="form"> 
+  <div class="form-group">
+    {{ wtf.form_field(form.name, class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ wtf.form_field(form.username, class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ wtf.form_field(form.password, class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ wtf.form_field(form.info, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
+</form>
+
+<!--
 <form method="POST" action="{{ url_for('auth_register') }}">
   <table>
     <tr><td>{{ form.name.label }}</td></tr>
@@ -44,4 +61,5 @@
     </tr>
   </table>
 </form>
+-->
 {% endblock %}
