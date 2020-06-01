@@ -94,14 +94,14 @@ def getHabitatString(place):
         habitatIds = []
         for habitat in placeHabitats:
             habitatIds.append(habitat.habitat_id)
-            
+
         habitatString = ""
 
         if habitatIds:
-             habitatString = " ("
+            habitatString = " ("
             for id in habitatIds:
-            habitat = Habitat.query.get(id)
-            habitatString = habitatString  + habitat.name + ", "      
+                habitat = Habitat.query.get(id)
+                habitatString = habitatString  + habitat.name + ", "      
             habitatString = habitatString[:-2] + ")"
 
         return habitatString
