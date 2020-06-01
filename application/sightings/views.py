@@ -90,17 +90,20 @@ def getAccountString(sighting):
 def getHabitatString(place):
 
         placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place.id).all()
-        habitatIds = []
-        habitatString = " ("
 
+        habitatIds = []
         for habitat in placeHabitats:
             habitatIds.append(habitat.habitat_id)
+            
+        habitatString = ""
 
-        for id in habitatIds:
+        if habitatIds:
+             habitatString = " ("
+            for id in habitatIds:
             habitat = Habitat.query.get(id)
-            habitatString = habitatString  + habitat.name + ", "
-      
-        habitatString = habitatString[:-2] + ")"
+            habitatString = habitatString  + habitat.name + ", "      
+            habitatString = habitatString[:-2] + ")"
+
         return habitatString
 
 def getPlaceId(selectedPlace):
