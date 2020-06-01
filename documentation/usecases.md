@@ -39,27 +39,27 @@ Ylläpitäjänä haluan voida tarkastella, poistaa ja muokata paikkoihin liitett
 ## Lajit 
 
 **1a. Lajin lisäys**
-
 ```
 INSERT INTO Species (name, species, sp_genus, sp_family, sp_order, conserv_status, info) 
 VALUES (?, ?, ?, ?, ?, ?, ?);
 ```
 
 **1b. Lajin muokkaus id:n perusteella**
-
 ```
 UPDATE Species
-    SET name = ?, species = ?, description = ?, sp_genus = ?, sp_family = ?, sp_order = ?, conserv_status = ?, info = ?
+    SET name = ?, species = ?, sp_genus = ?, sp_family = ?, sp_order = ?, conserv_status = ?, info = ?
     WHERE id = ?;
 ```
 
 **1c. Kaikkien lajien listaus**
-
-`SELECT * FROM Species;`
+```
+SELECT * FROM Species;
+```
 
 **1d. Lajin poisto id:n perusteella**
-
-`DELETE FROM Species WHERE id = ?;`
+```
+DELETE FROM Species WHERE id = ?;
+```
 
 **1e. Lajihaku yhden kentän ja hakusanan perusteella**
 ```
@@ -106,15 +106,16 @@ WHERE (upper(name) LIKE ?
 ## Käyttäjät
 
 **2a. Uuden käyttäjän lisäys**
-
-`INSERT INTO Account (name, username, password, info) VALUES (?, ?, ?, ?);`
+```
+INSERT INTO Account (name, username, password, info) VALUES (?, ?, ?, ?);
+```
 
 **2b. Käyttäjän haku käyttäjänimen perusteella**
-
-`SELECT * FROM Account WHERE (username = ?);`
+```
+SELECT * FROM Account WHERE (username = ?);
+```
 
 **2c. Käyttäjän tietojen muokkaus id:n perusteella**
-
 ```
 UPDATE Account
     SET name = ?, username = ?, info = ?
@@ -122,7 +123,6 @@ UPDATE Account
 ```
 
 **2d. Käyttäjän salasanan vaihto id:n perusteella**
-
 ```
 UPDATE Account
     SET password = ?
@@ -130,43 +130,49 @@ UPDATE Account
 ```
 
 **2e. Käyttäjän poisto id:n perusteella**
-
-`DELETE FROM Account WHERE id = ?;`
+```
+DELETE FROM Account WHERE id = ?;
+```
 
 ## Elinympäristöt
 
 **3a. Elinympäristön lisäys**
-
-`INSERT INTO Habitat (name) VALUES (?);`
+```
+INSERT INTO Habitat (name) VALUES (?);
+```
 
 ## Paikat
 
 **4a. Paikan lisäys**
-
-`INSERT INTO Place (name) VALUES (?);`
+```
+INSERT INTO Place (name) VALUES (?);
+```
 
 **4b. Elinympäristöjen lisäys paikalle**
-
-`INSERT INTO PlaceHabitat (place_id, habitat_id) VALUES (?, ?);`
+```
+INSERT INTO PlaceHabitat (place_id, habitat_id) VALUES (?, ?);
+```
 
 ## Havainnot
 
 **5a. Havainnon lisäys**
-
-`INSERT INTO Sighting (info, account_id, species_id, place_id) VALUES (?, ?, ?, ?);`
+```
+INSERT INTO Sighting (info, account_id, species_id, place_id) VALUES (?, ?, ?, ?);
+```
 
 **5b. Havaintojen listaus**
-
-`SELECT * FROM Sighting;`
+```
+SELECT * FROM Sighting;
+```
 
 **5c. Havaintojen poisto lintulajin perusteella**
-
-`DELETE FROM Sighting WHERE species_id = ?;`
+```
+DELETE FROM Sighting WHERE species_id = ?;
+```
 
 ## Useampien taulujen kyselyt
 
-**6a. Eniten havaittujen lintulajien ja havaintojen määrän listaus
-
+**6a. Eniten havaittujen lintulajien ja havaintojen määrän listaus**
 ```
 SELECT Species.name, COUNT(*) AS count FROM Sighting
 JOIN Species ON Sighting.species_id = Species.id
