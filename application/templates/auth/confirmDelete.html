@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Vahvista käyttäjän poisto</h1>
+
+<p>Haluatko varmasti poistaa tunnuksen {{ current_user.name }}?</p>
+
+<form method="POST" action="{{ url_for('auth_delete') }}" role="form"> 
+  <button type="submit" class="btn btn-primary">Kyllä</button>
+</form>
+<br>
+<form method="GET" action="{{ url_for('auth_edit') }}" role="form"> 
+    <button type="submit" class="btn btn-primary">Ei</button>
+</form>
+
+{% endblock %}

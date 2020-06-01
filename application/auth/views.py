@@ -108,7 +108,12 @@ def auth_changepassword():
 
     return render_template("auth/password.html", form = Password())
 
-@app.route("/auth/delete")
+@app.route("/auth/delete/confirm")
+@login_required
+def auth_confirmDelete():
+    return render_template("auth/confirmDelete.html")
+
+@app.route("/auth/delete", methods = ["POST"])
 @login_required
 def auth_delete():
     
