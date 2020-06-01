@@ -4,39 +4,23 @@
 
 <h1>Muokkaa tietoja</h1>
 
-<form method="POST" action="{{ url_for('auth_edit') }}">
-  <table>
-    <tr><td>{{ form.name.label }}</td></tr>
-    <tr><td>{{ form.name }}</td></tr>
-     <tr>
-      <td>
-        {% for error in form.name.errors %}
-	  <li>{{ error }}</li>
-	{% endfor %}
-      </td>
-    </tr>
-    <tr><td>{{ form.username.label }}</td></tr>
-    <tr><td>{{ form.username }}</td></tr>
-    <tr><td>{{ error }}</tr></td>
-     <tr>
-      <td>
-        {% for error in form.username.errors %}
-	  <li>{{ error }}</li>
-	{% endfor %}
-      </td>
-    </tr>
-    <tr><td>{{ form.info.label }}</td></tr>
-    <tr><td>{{ form.info }}</td></tr>
-   
-    <tr>
-      <td colspan="2">
-	<input type="submit" value="Lähetä"/>
-      </td>
-    </tr>
-  </table>
+<form method="POST" action="{{ url_for('auth_edit') }}" role="form"> 
+  <div class="form-group">
+    {{ wtf.form_field(form.name, class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ wtf.form_field(form.username, class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ wtf.form_field(form.info, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Muokkaa tietoja</button>
 </form>
 
+<br>
+
 <h1>Vaihda salasana tai poista tunnus</h1>
+
 <p><a href="{{ url_for('auth_changepassword') }}">Vaihda salasana</a></p>
 <p><a href="{{ url_for('auth_delete') }}">Poista tunnus</a></p>
 
