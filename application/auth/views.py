@@ -23,6 +23,9 @@ def auth_register():
     if username:
         return render_template("auth/registration.html", form = form,
                                error = "Käyttäjätunnus on jo käytössä")
+
+    if form.password.data != form.passwordConfirm.data:
+            return render_template("auth/registration.html", form = form, error = "Salasanat eivät vastaa toisiaan")
     
     password = form.password.data
     hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -100,6 +103,8 @@ def auth_changepassword():
         form = Password(request.form) 
         if not form.validate():
             return render_template("auth/password.html", form = form)
+        if form.password.data != form.passwordConfirm.data:
+            return render_template("auth/password.html", form = form, error = "Salasanat eivät vastaa toisiaan")
 
         user.password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         db.session().commit()
