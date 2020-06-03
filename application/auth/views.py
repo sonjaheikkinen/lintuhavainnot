@@ -30,7 +30,7 @@ def auth_register():
     password = form.password.data
     hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
     
-    user = User(form.name.data, form.username.data, hashedPassword, "USER", form.info.data)
+    user = User(form.name.data, form.username.data, hashedPassword, "ADMIN", form.info.data)
     db.session().add(user)
     db.session().commit()
 
