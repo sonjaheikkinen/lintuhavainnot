@@ -9,12 +9,24 @@ from application.species.models import Species
 from application.auth.models import User
 from application.places.models import Place, PlaceHabitat, Habitat
 
-@app.route("/sightings", methods=["GET"])
+@app.route("/sightings/", methods=["GET"])
 def sightings_list():
 
     speciesWithMostSightings = Sighting.speciesWithMostSightings()
 
     sightingsList = Sighting.query.all()
+    sightings = getSightingInformation(sightingsList)
+
+    return render_template("sightings/list.html", sightings = sightings,
+     species = speciesWithMostSightings)
+
+@app.route("/sightings/<account_id>", methods=["GET"])
+@login_required
+def sightings_listUserSightings(account_id):
+
+    speciesWithMostSightings = Sighting.speciesWithMostSightings()
+
+    sightingsList = db.session.query(Sighting).filter(Sighting.account_id == current_user.id)
     sightings = getSightingInformation(sightingsList)
 
     return render_template("sightings/list.html", sightings = sightings,
