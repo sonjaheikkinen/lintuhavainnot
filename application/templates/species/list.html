@@ -44,7 +44,7 @@
           <button type="submit">Näytä lajin tiedot</button>
         </form>
       </td>
-      {% if current_user.is_authenticated %}
+      {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
       <td>
         <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
 	        <button type="submit">Muokkaa tietoja</button>
