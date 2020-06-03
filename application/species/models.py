@@ -26,7 +26,7 @@ class Species(Base, Name, Info):
         stmtString = "SELECT * FROM Species"
 
         if not searchword == "all":
-            searchword = searchword.upper()
+            searchword = "%" + searchword.upper() + "%"
             if not column == "all":
                 stmtString = Species.searchFromColumn(column, searchword, stmtString)
             else:
@@ -35,7 +35,7 @@ class Species(Base, Name, Info):
         if not conservStatus == "0":
             stmtString = Species.searchByConservStatus(conservStatus, stmtString)
 
-        stmt = text(stmtString)
+        stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -44,23 +44,34 @@ class Species(Base, Name, Info):
 
     @staticmethod
     def searchFromColumn(column, searchword, stmtString):
-        stmtString = stmtString + " WHERE (upper(" + column + ") LIKE '%" +  searchword + "%')"
+        if column == "name":
+            stmtString = stmtString + " WHERE upper(name) LIKE :searchword"
+        elif column == "species":
+            stmtString = stmtString + " WHERE upper(species) LIKE :searchword"
+        elif column == "sp_genus":
+            stmtString = stmtString + " WHERE upper(sp_genus) LIKE :searchword"
+        elif column == "sp_family":
+            stmtString = stmtString + " WHERE upper(sp_family) LIKE :searchword"
+        elif column == "sp_order":
+            stmtString = stmtString + " WHERE upper(sp_order) LIKE :searchword"
+        elif column == "info":
+            stmtString = stmtString + " WHERE upper(info) LIKE :searchword"
         return stmtString
     
     @staticmethod
     def searchFromAllColumns(searchword, stmtString):
-        stmtString = stmtString + " WHERE (upper(name) LIKE '%" +  searchword + "%'"
-        stmtString = stmtString + " OR upper(species) LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR upper(sp_genus) LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR upper(sp_family) LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR upper(sp_order) LIKE '%" + searchword + "%'" 
-        stmtString = stmtString + " OR upper(info) LIKE '%" + searchword + "%')" 
+        stmtString = stmtString + " WHERE (upper(name) LIKE :searchword"
+        stmtString = stmtString + " OR upper(species) LIKE :searchword" 
+        stmtString = stmtString + " OR upper(sp_genus) LIKE :searchword"
+        stmtString = stmtString + " OR upper(sp_family) LIKE :searchword" 
+        stmtString = stmtString + " OR upper(sp_order) LIKE :searchword" 
+        stmtString = stmtString + " OR upper(info) LIKE :searchword)" 
         return stmtString
     
     @staticmethod
     def searchByConservStatus(conservStatus, stmtString):
         if "WHERE" in stmtString:
-            stmtString = stmtString + " AND conserv_status = " + conservStatus
+            stmtString = stmtString + " AND conserv_status = :conservStatus"
         else:
-            stmtString = stmtString + " WHERE conserv_status = " + conservStatus
+            stmtString = stmtString + " WHERE conserv_status = :conservStatus"
         return stmtString
