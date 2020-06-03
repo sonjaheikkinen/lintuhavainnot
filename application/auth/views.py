@@ -135,3 +135,22 @@ def auth_logout():
     
     logout_user()
     return redirect(url_for("index"))    
+
+@app.route("/auth/listAccounts")
+@login_required(role="ADMIN")
+def auth_listAccounts():
+    accounts = User.query.all()
+    return render_template("auth/listAccounts.html", accounts = accounts)
+
+@app.route("/auth/changeUserRole/<account_id>", methods = ["POST"])
+@login_required(role="ADMIN")
+def auth_changeUserRole(account_id):
+    user = User.query.get(account_id)
+    if user.role == "USER":
+        user.role = "ADMIN"
+    else:
+        user.role = "USER"
+    db.session.commit()
+    accounts = User.query.all()
+    return render_template("auth/listAccounts.html", accounts = accounts)
+

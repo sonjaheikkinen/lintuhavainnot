@@ -47,6 +47,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('sightings_add') }}">Lisää havainto</a>
           </li>
+          {% if current_user.role == "ADMIN" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth_listAccounts') }}">Muokkaa käyttäjärooleja</a>
+          </li>
+            {% endif %}
           {% endif %}
         </ul>
         <div class="form-inline mt-2 mt-md-0">

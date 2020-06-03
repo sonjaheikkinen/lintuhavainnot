@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Käyttäjät</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Nimi</th><th>Käyttäjätunnus</th><th>Luotu</th><th>Muokattu</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for account in accounts %}
+    <tr>
+      <td>{{ account.name }}</td><td>{{ account.username }}</td>
+      <td>{{ account.date_created }}</td><td>{{ account.date_modified }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('auth_changeUserRole', account_id=account.id) }}">
+            {% if account.role == "ADMIN" %}
+            <button type="submit">Poista admin-oikeudet</button>
+            {% else %}
+            <button type="submit">Anna admin-oikeudet</button>
+            {% endif %}
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
