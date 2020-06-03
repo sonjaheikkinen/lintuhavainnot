@@ -34,7 +34,7 @@ def species_search(column, searchword, conservStatus):
           conservInfo = conservInfo, form = SearchSpecies())
 
 @app.route("/species/edit/<species_id>/", methods=["GET", "POST"])
-@login_required
+@login_required(role="ADMIN")
 def species_edit_information(species_id):
 
     species = Species.query.get(species_id)
@@ -59,7 +59,7 @@ def species_edit_information(species_id):
     return render_template("species/edit.html", species=species, form = SpeciesEditForm(obj=species))
 
 @app.route("/species/delete/<species_id>/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def species_delete(species_id):
 
      species = Species.query.get(species_id)
