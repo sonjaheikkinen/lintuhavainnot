@@ -16,13 +16,13 @@ Projektin tarkoitus on toimia havaintotietokantana, johon kuka tahansa (kirjautu
 
 ## Ohjeita
 
-Sovellus alustetaan valmiilla testilinnuilla. Lisäksi herokuun on valmiiksi rekisteröity testikäyttäjä. Kirjaudu testikäyttäjälle tiedoilla:
+Sovellus alustetaan valmiilla testilinnuilla. Lisäksi Herokuun alustetaan valmiiksi kaksi testikäyttäjää: yksi tavallinen, ja yksi admin-käyttäjä. 
 
-tunnus: testi
+Kirjaudu admin-käyttäjälle tiedoilla: `tunnus: testAdmin, salasana: testAdmin`
 
-salasana: testi
+Kirjaudu tavalliselle käyttäjälle tiedoilla: `tunnus: testi, salasana: testi`
 
-Voit vapaasti lisätä, muokata ja poistaa käyttäjiä ja lintulajeja. Älä muokkaa annettuja testikäyttäjän kirjautumistietoja tai poista sitä.
+Voit vapaasti lisätä, muokata ja poistaa käyttäjiä ja lintulajeja. Älä muokkaa annettuja testikäyttäjien kirjautumistietoja tai poista niitä. Kaikki uudet rekisteröidyt käyttäjät varustetaan tällä hetkellä admin-oikeuksin. Jos haluat luoda uusia tavallisia käyttäjiä, luo ensin uusi käyttäjä, ja poista sitten admin-oikeudet yläpalkin linkistä "Muokkaa käyttäjärooleja". 
 
 
 
