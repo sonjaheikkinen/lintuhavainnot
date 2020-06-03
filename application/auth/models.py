@@ -7,13 +7,15 @@ class User(Base, Name, Info):
 
     username = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    role = db.Column(db.String(255), nullable=False)
 
     sightings = db.relationship("Sighting", backref='account', lazy=True)
 
-    def __init__(self, name, username, password, info):
+    def __init__(self, name, username, password, role,  info):
         self.name = name
         self.username = username
         self.password = password
+        self.role = role
         self.info = info
   
     def get_id(self):
@@ -27,3 +29,6 @@ class User(Base, Name, Info):
 
     def is_authenticated(self):
         return True
+
+    def getRole(self):
+        return self.role

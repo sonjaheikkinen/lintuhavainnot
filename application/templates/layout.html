@@ -39,9 +39,11 @@
             <a class="nav-link" href="{{ url_for('sightings_list') }}">Havainnot</a>
           </li>
           {% if current_user.is_authenticated %}
+            {% if current_user.role == "ADMIN" %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('species_form') }}">Lisää uusi laji</a>
+            <a class="nav-link" href="{{ url_for('species_create') }}">Lisää uusi laji</a>
           </li>
+            {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('sightings_add') }}">Lisää havainto</a>
           </li>

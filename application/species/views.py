@@ -1,7 +1,6 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
 
-from application import app, db
+from application import app, db, login_required
 from application.species.models import Species
 from application.species.forms import SpeciesCreationForm, SpeciesEditForm, SearchSpecies
 
@@ -33,11 +32,6 @@ def species_search(column, searchword, conservStatus):
     return render_template("species/list.html",
          species = Species.search(form.column.data, searchword, form.conservStatus.data),
           conservInfo = conservInfo, form = SearchSpecies())
-
-@app.route("/species/new/")
-@login_required
-def species_form():
-    return render_template("species/new.html", form = SpeciesCreationForm())
 
 @app.route("/species/edit/<species_id>/", methods=["GET", "POST"])
 @login_required
@@ -74,9 +68,12 @@ def species_delete(species_id):
      db.session.commit()
      return redirect(url_for("species_search", column="all", searchword="all", conservStatus=0))
 
-@app.route("/species/", methods=["POST"])
-@login_required
+@app.route("/species/", methods=["GET", "POST"])
+@login_required(role="ADMIN")
 def species_create():
+
+    if request.method == "GET":
+        return render_template("species/new.html", form = SpeciesCreationForm())
 
     form = SpeciesCreationForm(request.form) 
     if not form.validate():
