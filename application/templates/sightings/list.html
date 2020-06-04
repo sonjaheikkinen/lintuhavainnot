@@ -2,23 +2,37 @@
 
 {% block body %}
 <h1>Havainnot</h1>
+
+<!--
 <h2>Eniten havaitut lajit</h2>
 <table class="table">
   {% for species in species %}
    <tr><th>{{ species[0] }}:</th><td>{{ species[1] }} havaintoa</td></tr>
   {% endfor %}
 </table>
+-->
 
-{% if current_user.is_authenticated %}
-<form method="GET" action="{{ url_for('sightings_listUserSightings', account_id=current_user.id) }}">
-  <button type="submit" class="btn btn-primary">Näytä vain omat havaintoni</button>
+
+<h2>Rajaa havaintoja</h2>
+<form method="POST" action="{{ url_for('sightings_list',
+ column='all', searchword='all', conservStatus='0') }}" role="form"> 
+  <div class="row">
+    <div class="col">
+      {{ wtf.form_field(form.column, class='form-control') }}
+    </div>
+    <div class="col">
+      {{ wtf.form_field(form.searchword, class='form-control') }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    {{ wtf.form_field(form.conservStatus, class='form-control') }}
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Hae</button>
 </form>
+
 <br>
-<form method="GET" action="{{ url_for('sightings_list') }}">
-  <button type="submit" class="btn btn-primary">Näytä kaikki havainnot</button>
-</form>
-<br>
-{% endif %}
 
 <h2>Lista havainnoista</h2>
   <table class="table">

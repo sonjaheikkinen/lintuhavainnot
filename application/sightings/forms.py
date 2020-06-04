@@ -12,6 +12,21 @@ class AddSighting(FlaskForm):
     class Meta:
         csrf = False
     
+class SearchSightings(FlaskForm):
+
+    SpeciesFieldChoices = [("all", "Kaikki kentät"), ("name", "Lajinimi"),
+     ("species", "Tieteellinen nimi"), ("sp_genus", "Suku"), ("sp_family", "Heimo"),
+     ("sp_order", "Lahko"), ("info", "Lajikuvaus")]
+    conservChoices2 = [("0", "Älä rajaa uhanalaisuuden perusteella"), ("1", "Elinvoimainen"),
+     ("2", "Silmälläpidettävä"), ("3", "Vaarantunut"), ("4", "Erittäin uhanalainen"),
+     ("5", "Äärimmäisen uhanalainen")]
+
+    column = SelectField("Rajaa lajin perusteella -- kenttä", choices = SpeciesFieldChoices)
+    searchword = StringField("Rajaa lajin perusteella -- hakusana (jätä tyhjäksi, jos et halua hakea hakusanan perusteella):", [validators.Length(max=255, message="Kentän tulee olla enintään %(max)d merkkiä pitkä.")])	
+    conservStatus = SelectField("Rajaa uhanalaisuuden perusteella:", choices=conservChoices2)
+
+    class Meta:
+        csrf = False
     
     
 

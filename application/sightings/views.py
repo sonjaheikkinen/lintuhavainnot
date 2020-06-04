@@ -3,34 +3,48 @@ from flask_login import current_user
 
 from application import app, db, login_required
 from application.sightings.models import Sighting
-from application.sightings.forms import AddSighting
+from application.sightings.forms import AddSighting, SearchSightings
 
 from application.species.models import Species
 from application.auth.models import User
 from application.places.models import Place, PlaceHabitat, Habitat
 
-@app.route("/sightings/", methods=["GET"])
-def sightings_list():
-
+@app.route("/sightings/search/<column>/<searchword>/<conservStatus>/", methods=["GET", "POST"])
+def sightings_list(column, searchword, conservStatus):
+    
     speciesWithMostSightings = Sighting.speciesWithMostSightings()
+    sightingsList = []
+    form = ""
 
-    sightingsList = Sighting.query.all()
-    sightings = getSightingInformation(sightingsList)
+    if request.method == "POST":
+        form = SearchSightings(request.form)
+        searchword = ""
+        if form.searchword.data == "":
+            searchword = "all"
+        else: 
+            searchword = form.searchword.data
+        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data)
+        sightings = getSightingInformation(sightingsList)
+    else:
+        form = SearchSightings()
+        sightingsList = Sighting.search(column, searchword, conservStatus)
+        sightings = getSightingInformation(sightingsList)
 
     return render_template("sightings/list.html", sightings = sightings,
-     species = speciesWithMostSightings)
+     species = speciesWithMostSightings, form=form)
 
-@app.route("/sightings/<account_id>", methods=["GET"])
-@login_required
-def sightings_listUserSightings(account_id):
 
-    speciesWithMostSightings = Sighting.speciesWithMostSightings()
+#@app.route("/sightings/<account_id>", methods=["GET"])
+#@login_required
+#def sightings_listUserSightings(account_id):
 
-    sightingsList = db.session.query(Sighting).filter(Sighting.account_id == current_user.id)
-    sightings = getSightingInformation(sightingsList)
+#   speciesWithMostSightings = Sighting.speciesWithMostSightings()
 
-    return render_template("sightings/list.html", sightings = sightings,
-     species = speciesWithMostSightings)
+#    sightingsList = db.session.query(Sighting).filter(Sighting.account_id == current_user.id)
+#    sightings = getSightingInformation(sightingsList)
+
+#    return render_template("sightings/list.html", sightings = sightings,
+#     species = speciesWithMostSightings)
 
 
 @app.route("/sightings/new/", methods=["GET", "POST"])
@@ -60,7 +74,7 @@ def sightings_add():
         db.session().add(sighting)
         db.session().commit()
   
-        return redirect(url_for("sightings_list"))
+        return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0"))
 
     else:
     
@@ -80,14 +94,17 @@ def getSightingInformation(sightingsList):
 
     sightings = []
 
+    print("Printataan jokainen haettu sighting")
     for sighting in sightingsList:
 
-        species = Species.query.get(sighting.species_id)
+        print(sighting)
+
+        species = sighting.species
         account = getAccountString(sighting)
         place = db.session.query(Place).filter(sighting.place_id == Place.id).first()
         habitats = getHabitatString(place)
         placeHabitatString = place.name + habitats
-        sightings.append([species.name, placeHabitatString, account, sighting.info])
+        sightings.append([species, placeHabitatString, account, sighting.info])
    
     return sightings
 
