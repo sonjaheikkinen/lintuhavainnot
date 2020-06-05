@@ -32,12 +32,8 @@ Näytä/piilota tilastot
 
 <br>
 
-<h2 class="inlineHeading">Rajaa havaintoja</h2>
-<button type="button" data-toggle="collapse" data-target="#searchform">
-Näytä/piilota hakulomake
-</button>
+<h2>Rajaa havaintoja</h2>
 
-<div class=collapse id="searchform">
 <p><i>Täytä vain ne rivit, joiden perusteella haluat rajata näkyviä havaintoja. Jätä muut tyhjäksi. </i></p>
 <form method="POST" action="{{ url_for('sightings_list',
  column='all', searchword='all', conservStatus='0', place='all', habitat='all', account='all') }}" role="form"> 
@@ -71,7 +67,6 @@ Näytä/piilota hakulomake
   </div>
   <button type="submit" class="btn btn-primary">Hae</button>
 </form>
-</div>
 
 <br>
 
