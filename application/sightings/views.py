@@ -9,6 +9,11 @@ from application.species.models import Species
 from application.auth.models import User
 from application.places.models import Place, PlaceHabitat, Habitat
 
+conservInfo = {0: "kaikki", 1: "Elinvoimainen, LC", 2: "Silmälläpidettävä, NT", 3: "Vaarantunut, VU", 
+    4: "Erittäin uhanalainen, EN", 5: "Äärimmäisen uhanalainen, CR"}
+columnInfo = {"all": "kaikki", "name": "lajinimi", "species": "tieteellinen nimi", "sp_genus": "suku", 
+    "sp_family": "heimo", "sp_order": "lahko", "info": "lajikuvaus"}
+
 @app.route("/sightings/search/<column>/<searchword>/<conservStatus>/<place>/<habitat>/<account>/", methods=["GET", "POST"])
 def sightings_list(column, searchword, conservStatus, place, habitat, account):
     
@@ -16,22 +21,28 @@ def sightings_list(column, searchword, conservStatus, place, habitat, account):
     speciesWithLeastSightings = Sighting.speciesWithLeastSightings()
     sightingsList = []
     form = ""
+    searchResultString = ""
 
     if request.method == "POST":
         form = SearchSightings(request.form)
-        searchword = getSearchString(form.searchword.data)
-        place = getSearchString(form.place.data)
-        habitat = getSearchString(form.habitat.data)
-        account = getSearchString(form.account.data)
-        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data, place, habitat, account)
+        column = form.column.data
+        searchword = getSearchString(form.searchword.data, "all")
+        conservStatus = form.conservStatus.data
+        place = getSearchString(form.place.data, "all")
+        habitat = getSearchString(form.habitat.data, "all")
+        account = getSearchString(form.account.data, "all")
+        sightingsList = Sighting.search(column, searchword, conservStatus, place, habitat, account)
         sightings = getSightingInformation(sightingsList)
     else:
         form = SearchSightings()
         sightingsList = Sighting.search(column, searchword, conservStatus, place, habitat, account)
         sightings = getSightingInformation(sightingsList)
 
+    searchResultString = getSearchResultString(column, searchword, conservStatus, place, habitat, account)
+
     return render_template("sightings/list.html", sightings = sightings,
-     speciesMost = speciesWithMostSightings, speciesLeast = speciesWithLeastSightings, form=form)
+     speciesMost = speciesWithMostSightings, speciesLeast = speciesWithLeastSightings, form=form,
+     searchResultString = searchResultString)
 
 
 @app.route("/sightings/new/", methods=["GET", "POST"])
@@ -144,11 +155,20 @@ def addHabitats(placeId, selectedHabitats):
     db.session.add_all(addList)
     db.session.commit()
 
-def getSearchString(data):
-    if data == "":
-        return "all"
+def getSearchString(data, allString):
+    if data == "" or data == "all":
+        return allString
     else: 
         return data
+
+def getSearchResultString(column, searchword, conservStatus, place, habitat, account):
+    string = "Hakutulokset haulle kenttä: " + columnInfo[column] 
+    string = string + ", hakusana: " + getSearchString(searchword, "kaikki")
+    string = string + ", uhanalaisuusluokitus: " + conservInfo[int(conservStatus)]
+    string = string + ", havaintopaikka: " + getSearchString(place, "kaikki")
+    string = string + ", elinympäristö: " + getSearchString(habitat, "kaikki")
+    string = string + ", käyttäjätunnus: " + getSearchString(account, "kaikki")
+    return string
 
 
 

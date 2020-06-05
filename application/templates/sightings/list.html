@@ -34,7 +34,7 @@ Näytä/piilota tilastot
 
 <h2>Rajaa havaintoja</h2>
 
-<p><i>Täytä vain ne rivit, joiden perusteella haluat rajata näkyviä havaintoja. Jätä muut tyhjäksi. </i></p>
+<p><i>Täytä vain ne kentät, joiden perusteella haluat rajata näkyviä havaintoja. Jätä muut tyhjäksi. </i></p>
 <form method="POST" action="{{ url_for('sightings_list',
  column='all', searchword='all', conservStatus='0', place='all', habitat='all', account='all') }}" role="form"> 
   <div class="row">
@@ -54,13 +54,10 @@ Näytä/piilota tilastot
     <div class="col">
     {{ wtf.form_field(form.place, class='form-control') }}
     </div>
-  </div>
-  <div class="row">
     <div class="col">
     {{ wtf.form_field(form.habitat, class='form-control') }}
     </div>
-  </div>
-  <div class="row">
+
     <div class="col">
     {{ wtf.form_field(form.account, class='form-control') }}
     </div>
@@ -71,6 +68,7 @@ Näytä/piilota tilastot
 <br>
 
 <h2>Lista havainnoista</h2>
+<p><i>{{ searchResultString }}</i></p>
   <table class="table">
     <thead>
     <tr>
