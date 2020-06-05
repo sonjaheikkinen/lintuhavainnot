@@ -13,6 +13,7 @@ from application.places.models import Place, PlaceHabitat, Habitat
 def sightings_list(column, searchword, conservStatus, place, habitat, account):
     
     speciesWithMostSightings = Sighting.speciesWithMostSightings()
+    speciesWithLeastSightings = Sighting.speciesWithLeastSightings()
     sightingsList = []
     form = ""
 
@@ -30,20 +31,7 @@ def sightings_list(column, searchword, conservStatus, place, habitat, account):
         sightings = getSightingInformation(sightingsList)
 
     return render_template("sightings/list.html", sightings = sightings,
-     species = speciesWithMostSightings, form=form)
-
-
-#@app.route("/sightings/<account_id>", methods=["GET"])
-#@login_required
-#def sightings_listUserSightings(account_id):
-
-#   speciesWithMostSightings = Sighting.speciesWithMostSightings()
-
-#    sightingsList = db.session.query(Sighting).filter(Sighting.account_id == current_user.id)
-#    sightings = getSightingInformation(sightingsList)
-
-#    return render_template("sightings/list.html", sightings = sightings,
-#     species = speciesWithMostSightings)
+     speciesMost = speciesWithMostSightings, speciesLeast = speciesWithLeastSightings, form=form)
 
 
 @app.route("/sightings/new/", methods=["GET", "POST"])

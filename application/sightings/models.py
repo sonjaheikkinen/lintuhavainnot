@@ -27,6 +27,21 @@ class Sighting(Base, Info):
         return response
 
     @staticmethod
+    def speciesWithLeastSightings():
+        
+        stmt = text("SELECT Species.name, COUNT(*) AS count FROM Sighting"
+                    " JOIN Species ON Sighting.species_id = Species.id"
+                    " GROUP BY Species.id"
+                    " ORDER BY count ASC"
+                    " LIMIT 5")
+
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append(row)
+        return response
+
+    @staticmethod
     def search(column, searchword, conservStatus, place, habitat, account):
 
         stmtString = Sighting.defineSelectAndJoins()

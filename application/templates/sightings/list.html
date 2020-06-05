@@ -1,19 +1,43 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
 <h1>Havainnot</h1>
 
-<!--
-<h2>Eniten havaitut lajit</h2>
-<table class="table">
-  {% for species in species %}
-   <tr><th>{{ species[0] }}:</th><td>{{ species[1] }} havaintoa</td></tr>
-  {% endfor %}
-</table>
--->
+<h2 class="inlineHeading">Havaintotilastoja</h2>
+<button type="button" data-toggle="collapse" data-target="#statistics">
+Näytä/piilota tilastot
+</button>
 
+<div class="collapse" id="statistics">
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <tr><th colspan="2">Eniten havaitut lajit</th></tr>
+          {% for species in speciesMost %}
+          <tr><td>{{ species[0] }}:</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="col">
+        <table class="table">
+          <tr><th colspan="2">Vähiten havaitut lajit</th></tr>
+          {% for species in speciesLeast %}
+          <tr><td>{{ species[0] }}:</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+</div>
 
-<h2>Rajaa havaintoja</h2>
+<br>
+
+<h2 class="inlineHeading">Rajaa havaintoja</h2>
+<button type="button" data-toggle="collapse" data-target="#searchform">
+Näytä/piilota hakulomake
+</button>
+
+<div class=collapse id="searchform">
 <p><i>Täytä vain ne rivit, joiden perusteella haluat rajata näkyviä havaintoja. Jätä muut tyhjäksi. </i></p>
 <form method="POST" action="{{ url_for('sightings_list',
  column='all', searchword='all', conservStatus='0', place='all', habitat='all', account='all') }}" role="form"> 
@@ -47,6 +71,7 @@
   </div>
   <button type="submit" class="btn btn-primary">Hae</button>
 </form>
+</div>
 
 <br>
 
