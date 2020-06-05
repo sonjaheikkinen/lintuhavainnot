@@ -26,38 +26,41 @@
 
 <br>
 
+<h2>Lista lajeista</h2>
+<p><i>{{ searchResultString }}</i></p>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Laji</th>
-        <th>Tieteellinen nimi</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for species in species %}
+<table class="table">
+  <thead>
     <tr>
-      <td>{{ species.name }}</td>
-      <td><i>{{ species.species }}</i></td>
-      <td>
-        <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
-          <button type="submit">Näytä lajin tiedot</button>
-        </form>
-      </td>
-      {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
-      <td>
-        <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
-	        <button type="submit">Muokkaa tietoja</button>
-        </form>
-      </td>
-      <td>
-        <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
-	        <button type="submit">Poista</button>
-        </form>
-      </td>
-      {% endif %}
+      <th>Laji</th>
+      <th>Tieteellinen nimi</th>
     </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  </thead>
+  <tbody>
+  {% for species in species %}
+  <tr>
+    <td>{{ species.name }}</td>
+    <td><i>{{ species.species }}</i></td>
+    <td>
+      <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
+        <button type="submit">Näytä lajin tiedot</button>
+      </form>
+    </td>
+    {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
+    <td>
+      <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
+      <button type="submit">Muokkaa tietoja</button>
+      </form>
+    </td>
+    <td>
+      <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
+      <button type="submit">Poista</button>
+      </form>
+    </td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
 {% endblock %}

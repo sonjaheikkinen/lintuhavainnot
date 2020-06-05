@@ -6,16 +6,19 @@ from application.species.forms import SpeciesCreationForm, SpeciesEditForm, Sear
 
 from application.sightings.models import Sighting
 
-conservInfo = {1: "Elinvoimainen, LC", 2: "Silmälläpidettävä, NT", 3: "Vaarantunut, VU", 
+conservInfo = {0: "kaikki", 1: "Elinvoimainen, LC", 2: "Silmälläpidettävä, NT", 3: "Vaarantunut, VU", 
     4: "Erittäin uhanalainen, EN", 5: "Äärimmäisen uhanalainen, CR"}
+columnInfo = {"all": "kaikki", "name": "lajinimi", "species": "tieteellinen nimi", "sp_genus": "suku", 
+    "sp_family": "heimo", "sp_order": "lahko", "info": "lajikuvaus"}
 
 @app.route("/species/search/<column>/<searchword>/<conservStatus>/", methods=["GET", "POST"])
 def species_search(column, searchword, conservStatus):
     
     if request.method == "GET":
+        searchResultString = getSearchResultString(column, searchword, conservStatus)
         return render_template("species/list.html",
          species = Species.search(column, searchword, conservStatus), conservInfo = conservInfo,
-         form = SearchSpecies())
+         form = SearchSpecies(), searchResultString = searchResultString)
 
     form = SearchSpecies(request.form)
     if not form.validate():
@@ -23,15 +26,15 @@ def species_search(column, searchword, conservStatus):
          species = Species.search(column, searchword, conservStatus), conservInfo = conservInfo,
          form = SearchSpecies())
     
-    searchword = ""
-    if form.searchword.data == "":
-        searchword = "all"
-    else:
-        searchword = form.searchword.data
+    column = form.column.data
+    searchword = getSearchString(form.searchword.data, "all")
+    conservStatus = form.conservStatus.data
+   
+    searchResultString = getSearchResultString(column, searchword, conservStatus)
 
     return render_template("species/list.html",
          species = Species.search(form.column.data, searchword, form.conservStatus.data),
-          conservInfo = conservInfo, form = SearchSpecies())
+          conservInfo = conservInfo, form = SearchSpecies(), searchResultString = searchResultString)
 
 @app.route("/species/edit/<species_id>/", methods=["GET", "POST"])
 @login_required(role="ADMIN")
@@ -100,3 +103,16 @@ def species_show(species_id):
         nameLatin = nameparts[1]
 
     return render_template("species/info.html", species = species, conservInfo = conservInfo, nameLatin = nameLatin)
+
+def getSearchString(data, allString):
+    if data == "" or data == "all":
+        return allString
+    else:
+        return data
+
+def getSearchResultString(column, searchword, conservStatus):
+    string = "Hakutulokset haulle kenttä: " + columnInfo[column]
+    string = string + ", hakusana: " + getSearchString(searchword, "kaikki") 
+    string = string + ", uhanalaisuusluokitus: " + conservInfo[int(conservStatus)] 
+    return string
+
