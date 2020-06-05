@@ -27,7 +27,7 @@ class Sighting(Base, Info):
         return response
 
     @staticmethod
-    def search(column, searchword, conservStatus, place):
+    def search(column, searchword, conservStatus, place, habitat):
 
         stmtString = "SELECT Sighting.*, Species.name AS species,"
         stmtString = stmtString + " Place.name AS place, Habitat.name AS habitat,"
@@ -52,9 +52,14 @@ class Sighting(Base, Info):
             place = "%" + place.upper() + "%"
             stmtString = Sighting.searchByPlace(place, stmtString)
         
+        if not habitat == "all":
+            habitat = "%" + habitat.upper() + "%"
+            stmtString = Sighting.searchByHabitat(habitat, stmtString)
+        
         stmtString = stmtString + " ORDER BY Sighting.id"
 
-        stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus, place = place)
+        stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus,
+         place = place, habitat = habitat)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -101,4 +106,12 @@ class Sighting(Base, Info):
             stmtString = stmtString + " AND (Place.name LIKE :place)"
         else:
             stmtString = stmtString + " WHERE (Place.name LIKE :place)"
+        return stmtString
+    
+    @staticmethod
+    def searchByHabitat(habitat, stmtString):
+        if "WHERE" in stmtString:
+            stmtString = stmtString + " AND (Habitat.name LIKE :habitat)"
+        else:
+            stmtString = stmtString + " WHERE (Habitat.name LIKE :habitat)"
         return stmtString

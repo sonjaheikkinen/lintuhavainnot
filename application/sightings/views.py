@@ -9,8 +9,8 @@ from application.species.models import Species
 from application.auth.models import User
 from application.places.models import Place, PlaceHabitat, Habitat
 
-@app.route("/sightings/search/<column>/<searchword>/<conservStatus>/<place>/", methods=["GET", "POST"])
-def sightings_list(column, searchword, conservStatus, place):
+@app.route("/sightings/search/<column>/<searchword>/<conservStatus>/<place>/<habitat>/", methods=["GET", "POST"])
+def sightings_list(column, searchword, conservStatus, place, habitat):
     
     speciesWithMostSightings = Sighting.speciesWithMostSightings()
     sightingsList = []
@@ -28,11 +28,16 @@ def sightings_list(column, searchword, conservStatus, place):
             place = "all"
         else: 
             place = form.place.data
-        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data, place)
+        habitat = ""
+        if form.habitat.data == "":
+            habitat = "all"
+        else: 
+            habitat = form.habitat.data
+        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data, place, habitat)
         sightings = getSightingInformation(sightingsList)
     else:
         form = SearchSightings()
-        sightingsList = Sighting.search(column, searchword, conservStatus, place)
+        sightingsList = Sighting.search(column, searchword, conservStatus, place, habitat)
         sightings = getSightingInformation(sightingsList)
 
     return render_template("sightings/list.html", sightings = sightings,
@@ -79,7 +84,8 @@ def sightings_add():
         db.session().add(sighting)
         db.session().commit()
   
-        return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0", place="all"))
+        return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0",
+         place="all", habitat="all"))
 
     else:
     

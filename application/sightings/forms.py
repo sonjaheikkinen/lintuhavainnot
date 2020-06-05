@@ -25,6 +25,7 @@ class SearchSightings(FlaskForm):
     searchword = StringField("Rajaa lajin perusteella -- hakusana:", [validators.Length(max=255, message="Kentän tulee olla enintään %(max)d merkkiä pitkä.")])	
     conservStatus = SelectField("Rajaa uhanalaisuuden perusteella:", choices=conservChoices2)
     place = StringField("Rajaa paikan perusteella:", [validators.Length(max=255, message="Kentän tulee olla enintään %(max)d merkkiä pitkä.")])
+    habitat = StringField("Rajaa elinympäristön perusteella:", [validators.Length(max=255, message="Kentän tulee olla enintään %(max)d merkkiä pitkä.")])
 
     class Meta:
         csrf = False

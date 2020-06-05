@@ -16,7 +16,7 @@
 <h2>Rajaa havaintoja</h2>
 <p><i>Täytä vain ne rivit, joiden perusteella haluat rajata näkyviä havaintoja. Jätä muut tyhjäksi. </i></p>
 <form method="POST" action="{{ url_for('sightings_list',
- column='all', searchword='all', conservStatus='0', place='all') }}" role="form"> 
+ column='all', searchword='all', conservStatus='0', place='all', habitat='all') }}" role="form"> 
   <div class="row">
     <div class="col">
       {{ wtf.form_field(form.column, class='form-control') }}
@@ -33,6 +33,11 @@
   <div class="row">
     <div class="col">
     {{ wtf.form_field(form.place, class='form-control') }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    {{ wtf.form_field(form.habitat, class='form-control') }}
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Hae</button>

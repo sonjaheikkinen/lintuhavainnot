@@ -33,10 +33,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('species_search', column='all', searchword='all', conservStatus='0'       ) }}">Lajit</a>
+            <a class="nav-link" href="{{ url_for('species_search', column='all', searchword='all', conservStatus='0') }}">Lajit</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('sightings_list', column='all', searchword='all', conservStatus='0', place='all') }}">Havainnot</a>
+            <a class="nav-link" href="{{ url_for('sightings_list', column='all', searchword='all', conservStatus='0', place='all', habitat='all') }}">Havainnot</a>
           </li>
           {% if current_user.is_authenticated %}
             {% if current_user.role == "ADMIN" %}
