@@ -30,12 +30,13 @@ class Sighting(Base, Info):
     def search(column, searchword, conservStatus):
 
         stmtString = "SELECT Sighting.*, Species.name AS species,"
-        stmtString = stmtString + " Place.name AS place, Habitat.name AS habitat"
-        stmtString = stmtString + " FROM Sighting"
+        stmtString = stmtString + " Place.name AS place, Habitat.name AS habitat,"
+        stmtString = stmtString + " Account.name AS account FROM Sighting"
         stmtString = stmtString + " JOIN Species ON Sighting.species_id = Species.id"
         stmtString = stmtString + " JOIN Place ON Sighting.place_id = Place.id"
-        stmtString = stmtString + " JOIN place_habitat ON place_habitat.place_id = Place.id"
-        stmtString = stmtString + " JOIN Habitat ON place_habitat.habitat_id = Habitat.id"
+        stmtString = stmtString + " LEFT JOIN place_habitat ON place_habitat.place_id = Place.id"
+        stmtString = stmtString + " LEFT JOIN Habitat ON place_habitat.habitat_id = Habitat.id"
+        stmtString = stmtString + " LEFT JOIN Account ON Sighting.account_id = Account.id"
 
         if not searchword == "all":
             searchword = "%" + searchword.upper() + "%"

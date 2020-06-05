@@ -106,6 +106,8 @@ def getSightingInformation(sightingsList):
         if index == 0:
             sightingInformation = [species, place, habitat, account, info]
         elif (index > 0) and (sighting.id != sightingsList[index - 1].id):
+            if sightingInformation[2] == None:
+                sightingInformation[2] = "Elinympäristö tuntematon"
             sightings.append(sightingInformation)
             sightingInformation = [species, place, habitat, account, info]
         else:
@@ -114,12 +116,10 @@ def getSightingInformation(sightingsList):
     return sightings
 
 def getAccountString(sighting):
-    account = User.query.get(sighting.account_id)
-    if account == None:
-        account = "Poistunut käyttäjä"
+    if sighting.account_id == None:
+        return "Poistunut käyttäjä"
     else:
-        account = account.name
-    return account
+        return sighting.account
 
 def getHabitatString(place_id):
 
