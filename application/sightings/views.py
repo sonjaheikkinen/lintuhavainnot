@@ -18,21 +18,9 @@ def sightings_list(column, searchword, conservStatus, place, habitat):
 
     if request.method == "POST":
         form = SearchSightings(request.form)
-        searchword = ""
-        if form.searchword.data == "":
-            searchword = "all"
-        else: 
-            searchword = form.searchword.data
-        place = ""
-        if form.place.data == "":
-            place = "all"
-        else: 
-            place = form.place.data
-        habitat = ""
-        if form.habitat.data == "":
-            habitat = "all"
-        else: 
-            habitat = form.habitat.data
+        searchword = getSearchString(form.searchword.data)
+        place = getSearchString(form.place.data)
+        habitat = getSearchString(form.habitat.data)
         sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data, place, habitat)
         sightings = getSightingInformation(sightingsList)
     else:
@@ -138,25 +126,6 @@ def getAccountString(sighting):
     else:
         return sighting.account
 
-def getHabitatString(place_id):
-
-    placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place_id).all()
-
-    habitatIds = []
-    for habitat in placeHabitats:
-        habitatIds.append(habitat.habitat_id)
-
-    habitatString = ""
-
-    if habitatIds:
-        habitatString = " ("
-        for id in habitatIds:
-            habitat = Habitat.query.get(id)
-            habitatString = habitatString  + habitat.name + ", "      
-        habitatString = habitatString[:-2] + ")"
-
-    return habitatString
-
 def getPlaceId(selectedPlace):
 
     placeFound = db.session.query(Place).filter(Place.name == selectedPlace).first()
@@ -186,6 +155,11 @@ def addHabitats(placeId, selectedHabitats):
     db.session.add_all(addList)
     db.session.commit()
 
+def getSearchString(data):
+    if data == "":
+        return "all"
+    else: 
+        return data
 
 
 

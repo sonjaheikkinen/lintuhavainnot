@@ -29,6 +29,17 @@ class Sighting(Base, Info):
     @staticmethod
     def search(column, searchword, conservStatus, place, habitat):
 
+        stmtString = Sighting.defineSelectAndJoins()
+        stmt = Sighting.constructSearchStatement(stmtString, column, searchword, conservStatus, place, habitat)      
+        
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append(row)
+        return response
+
+    @staticmethod
+    def defineSelectAndJoins():
         stmtString = "SELECT Sighting.*, Species.name AS species,"
         stmtString = stmtString + " Place.name AS place, Habitat.name AS habitat,"
         stmtString = stmtString + " Account.name AS account FROM Sighting"
@@ -37,6 +48,10 @@ class Sighting(Base, Info):
         stmtString = stmtString + " LEFT JOIN place_habitat ON place_habitat.place_id = Place.id"
         stmtString = stmtString + " LEFT JOIN Habitat ON place_habitat.habitat_id = Habitat.id"
         stmtString = stmtString + " LEFT JOIN Account ON Sighting.account_id = Account.id"
+        return stmtString
+    
+    @staticmethod
+    def constructSearchStatement(stmtString, column, searchword, conservStatus, place, habitat):
 
         if not searchword == "all":
             searchword = "%" + searchword.upper() + "%"
@@ -57,14 +72,10 @@ class Sighting(Base, Info):
             stmtString = Sighting.searchByHabitat(habitat, stmtString)
         
         stmtString = stmtString + " ORDER BY Sighting.id"
-
         stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus,
          place = place, habitat = habitat)
-        res = db.engine.execute(stmt)
-        response = []
-        for row in res:
-            response.append(row)
-        return response
+        
+        return stmt
 
     @staticmethod
     def searchFromColumn(column, searchword, stmtString):
