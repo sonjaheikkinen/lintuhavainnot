@@ -15,7 +15,7 @@ Näytä/piilota tilastot
         <table class="table">
           <tr><th colspan="2">Eniten havaitut lajit</th></tr>
           {% for species in speciesMost %}
-          <tr><td>{{ species[0] }}:</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
+          <tr><td>{{ species[0] }}</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
           {% endfor %}
         </table>
       </div>
@@ -23,7 +23,7 @@ Näytä/piilota tilastot
         <table class="table">
           <tr><th colspan="2">Vähiten havaitut lajit</th></tr>
           {% for species in speciesLeast %}
-          <tr><td>{{ species[0] }}:</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
+          <tr><td>{{ species[0] }}</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
           {% endfor %}
         </table>
       </div>

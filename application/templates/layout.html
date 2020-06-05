@@ -64,7 +64,7 @@
         <div class="form-inline mt-2 mt-md-0">
           {% if current_user.is_authenticated %}
           <span class="navbar-text">
-            Kirjautunut nimellä {{ current_user.name }}
+            Kirjautunut tunnuksella {{ current_user.username }}
           </span>
           <li class="nav-item">
             <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
