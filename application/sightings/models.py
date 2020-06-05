@@ -133,23 +133,23 @@ class Sighting(Base, Info):
     @staticmethod
     def searchByPlace(place, stmtString):
         if "WHERE" in stmtString:
-            stmtString = stmtString + " AND (Place.name LIKE :place)"
+            stmtString = stmtString + " AND (upper(Place.name) LIKE :place)"
         else:
-            stmtString = stmtString + " WHERE (Place.name LIKE :place)"
+            stmtString = stmtString + " WHERE (upper(Place.name) LIKE :place)"
         return stmtString
     
     @staticmethod
     def searchByHabitat(habitat, stmtString):
         if "WHERE" in stmtString:
-            stmtString = stmtString + " AND (Habitat.name LIKE :habitat)"
+            stmtString = stmtString + " AND (upper(Habitat.name) LIKE :habitat)"
         else:
-            stmtString = stmtString + " WHERE (Habitat.name LIKE :habitat)"
+            stmtString = stmtString + " WHERE (upper(Habitat.name) LIKE :habitat)"
         return stmtString
     
     @staticmethod
     def searchByAccount(account, stmtString):
         if "WHERE" in stmtString:
-            stmtString = stmtString + " AND (Account.name LIKE :account)"
+            stmtString = stmtString + " AND (upper(Account.name) LIKE :account)"
         else:
-            stmtString = stmtString + " WHERE (Account.name LIKE :account)"
+            stmtString = stmtString + " WHERE (upper(Account.name) LIKE :account)"
         return stmtString
