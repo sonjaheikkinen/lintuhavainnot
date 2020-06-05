@@ -62,7 +62,7 @@ def sightings_add():
         db.session().commit()
   
         return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0",
-         place="all", habitat="all"))
+         place="all", habitat="all", account="all"))
 
     else:
     
