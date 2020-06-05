@@ -27,7 +27,7 @@ class Sighting(Base, Info):
         return response
 
     @staticmethod
-    def search(column, searchword, conservStatus):
+    def search(column, searchword, conservStatus, place):
 
         stmtString = "SELECT Sighting.*, Species.name AS species,"
         stmtString = stmtString + " Place.name AS place, Habitat.name AS habitat,"
@@ -47,10 +47,14 @@ class Sighting(Base, Info):
         
         if not conservStatus == "0":
             stmtString = Sighting.searchByConservStatus(conservStatus, stmtString)
+
+        if not place == "all":
+            place = "%" + place.upper() + "%"
+            stmtString = Sighting.searchByPlace(place, stmtString)
         
         stmtString = stmtString + " ORDER BY Sighting.id"
 
-        stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus)
+        stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus, place = place)
         res = db.engine.execute(stmt)
         response = []
         for row in res:
@@ -86,7 +90,15 @@ class Sighting(Base, Info):
     @staticmethod
     def searchByConservStatus(conservStatus, stmtString):
         if "WHERE" in stmtString:
-            stmtString = stmtString + " AND Species.conserv_status = :conservStatus"
+            stmtString = stmtString + " AND (Species.conserv_status = :conservStatus)"
         else:
-            stmtString = stmtString + " WHERE Species.conserv_status = :conservStatus"
+            stmtString = stmtString + " WHERE (Species.conserv_status = :conservStatus)"
+        return stmtString
+
+    @staticmethod
+    def searchByPlace(place, stmtString):
+        if "WHERE" in stmtString:
+            stmtString = stmtString + " AND (Place.name LIKE :place)"
+        else:
+            stmtString = stmtString + " WHERE (Place.name LIKE :place)"
         return stmtString

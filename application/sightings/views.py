@@ -9,8 +9,8 @@ from application.species.models import Species
 from application.auth.models import User
 from application.places.models import Place, PlaceHabitat, Habitat
 
-@app.route("/sightings/search/<column>/<searchword>/<conservStatus>/", methods=["GET", "POST"])
-def sightings_list(column, searchword, conservStatus):
+@app.route("/sightings/search/<column>/<searchword>/<conservStatus>/<place>/", methods=["GET", "POST"])
+def sightings_list(column, searchword, conservStatus, place):
     
     speciesWithMostSightings = Sighting.speciesWithMostSightings()
     sightingsList = []
@@ -23,11 +23,16 @@ def sightings_list(column, searchword, conservStatus):
             searchword = "all"
         else: 
             searchword = form.searchword.data
-        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data)
+        place = ""
+        if form.place.data == "":
+            place = "all"
+        else: 
+            place = form.place.data
+        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data, place)
         sightings = getSightingInformation(sightingsList)
     else:
         form = SearchSightings()
-        sightingsList = Sighting.search(column, searchword, conservStatus)
+        sightingsList = Sighting.search(column, searchword, conservStatus, place)
         sightings = getSightingInformation(sightingsList)
 
     return render_template("sightings/list.html", sightings = sightings,
@@ -74,7 +79,7 @@ def sightings_add():
         db.session().add(sighting)
         db.session().commit()
   
-        return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0"))
+        return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0", place="all"))
 
     else:
     
@@ -110,8 +115,14 @@ def getSightingInformation(sightingsList):
                 sightingInformation[2] = "Elinympäristö tuntematon"
             sightings.append(sightingInformation)
             sightingInformation = [species, place, habitat, account, info]
+            if index == len(sightingInformation) - 1:
+                sightings.append(sightingInformation)
         else:
             sightingInformation[2] = sightingInformation[2] + ", " + habitat
+        
+        if index == len(sightingsList) - 1:
+                sightings.append(sightingInformation)
+        
    
     return sightings
 
