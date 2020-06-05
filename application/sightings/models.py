@@ -27,10 +27,10 @@ class Sighting(Base, Info):
         return response
 
     @staticmethod
-    def search(column, searchword, conservStatus, place, habitat):
+    def search(column, searchword, conservStatus, place, habitat, account):
 
         stmtString = Sighting.defineSelectAndJoins()
-        stmt = Sighting.constructSearchStatement(stmtString, column, searchword, conservStatus, place, habitat)      
+        stmt = Sighting.constructSearchStatement(stmtString, column, searchword, conservStatus, place, habitat, account)      
         
         res = db.engine.execute(stmt)
         response = []
@@ -51,7 +51,7 @@ class Sighting(Base, Info):
         return stmtString
     
     @staticmethod
-    def constructSearchStatement(stmtString, column, searchword, conservStatus, place, habitat):
+    def constructSearchStatement(stmtString, column, searchword, conservStatus, place, habitat, account):
 
         if not searchword == "all":
             searchword = "%" + searchword.upper() + "%"
@@ -71,9 +71,13 @@ class Sighting(Base, Info):
             habitat = "%" + habitat.upper() + "%"
             stmtString = Sighting.searchByHabitat(habitat, stmtString)
         
+        if not account == "all":
+            account = "%" + account.upper() + "%"
+            stmtString = Sighting.searchByAccount(account, stmtString)
+        
         stmtString = stmtString + " ORDER BY Sighting.id"
         stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus,
-         place = place, habitat = habitat)
+         place = place, habitat = habitat, account = account)
         
         return stmt
 
@@ -125,4 +129,12 @@ class Sighting(Base, Info):
             stmtString = stmtString + " AND (Habitat.name LIKE :habitat)"
         else:
             stmtString = stmtString + " WHERE (Habitat.name LIKE :habitat)"
+        return stmtString
+    
+    @staticmethod
+    def searchByAccount(account, stmtString):
+        if "WHERE" in stmtString:
+            stmtString = stmtString + " AND (Account.name LIKE :account)"
+        else:
+            stmtString = stmtString + " WHERE (Account.name LIKE :account)"
         return stmtString

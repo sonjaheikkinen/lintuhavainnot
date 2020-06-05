@@ -9,8 +9,8 @@ from application.species.models import Species
 from application.auth.models import User
 from application.places.models import Place, PlaceHabitat, Habitat
 
-@app.route("/sightings/search/<column>/<searchword>/<conservStatus>/<place>/<habitat>/", methods=["GET", "POST"])
-def sightings_list(column, searchword, conservStatus, place, habitat):
+@app.route("/sightings/search/<column>/<searchword>/<conservStatus>/<place>/<habitat>/<account>/", methods=["GET", "POST"])
+def sightings_list(column, searchword, conservStatus, place, habitat, account):
     
     speciesWithMostSightings = Sighting.speciesWithMostSightings()
     sightingsList = []
@@ -21,11 +21,12 @@ def sightings_list(column, searchword, conservStatus, place, habitat):
         searchword = getSearchString(form.searchword.data)
         place = getSearchString(form.place.data)
         habitat = getSearchString(form.habitat.data)
-        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data, place, habitat)
+        account = getSearchString(form.account.data)
+        sightingsList = Sighting.search(form.column.data, searchword, form.conservStatus.data, place, habitat, account)
         sightings = getSightingInformation(sightingsList)
     else:
         form = SearchSightings()
-        sightingsList = Sighting.search(column, searchword, conservStatus, place, habitat)
+        sightingsList = Sighting.search(column, searchword, conservStatus, place, habitat, account)
         sightings = getSightingInformation(sightingsList)
 
     return render_template("sightings/list.html", sightings = sightings,
