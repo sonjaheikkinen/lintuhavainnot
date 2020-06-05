@@ -92,19 +92,24 @@ def makeChoiceList(items):
 
 def getSightingInformation(sightingsList):
 
+    sightingInformation = []
     sightings = []
 
-    print("Printataan jokainen haettu sighting")
-    for sighting in sightingsList:
-
-        print(sighting)
+    for index, sighting in enumerate(sightingsList):
 
         species = sighting.species
+        place = sighting.place
+        habitat = sighting.habitat
         account = getAccountString(sighting)
-        place = db.session.query(Place).filter(sighting.place_id == Place.id).first()
-        habitats = getHabitatString(place)
-        placeHabitatString = place.name + habitats
-        sightings.append([species, placeHabitatString, account, sighting.info])
+        info = sighting.info
+        
+        if index == 0:
+            sightingInformation = [species, place, habitat, account, info]
+        elif (index > 0) and (sighting.id != sightingsList[index - 1].id):
+            sightings.append(sightingInformation)
+            sightingInformation = [species, place, habitat, account, info]
+        else:
+            sightingInformation[2] = sightingInformation[2] + ", " + habitat
    
     return sightings
 
@@ -116,9 +121,9 @@ def getAccountString(sighting):
         account = account.name
     return account
 
-def getHabitatString(place):
+def getHabitatString(place_id):
 
-    placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place.id).all()
+    placeHabitats = db.session.query(PlaceHabitat).filter(PlaceHabitat.place_id == place_id).all()
 
     habitatIds = []
     for habitat in placeHabitats:

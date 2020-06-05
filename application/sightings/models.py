@@ -29,9 +29,13 @@ class Sighting(Base, Info):
     @staticmethod
     def search(column, searchword, conservStatus):
 
-        stmtString = "SELECT Sighting.*, Species.name AS species FROM Sighting JOIN Species ON Sighting.species_id = Species.id"
-        print("conservstatus")
-        print(conservStatus)
+        stmtString = "SELECT Sighting.*, Species.name AS species,"
+        stmtString = stmtString + " Place.name AS place, Habitat.name AS habitat"
+        stmtString = stmtString + " FROM Sighting"
+        stmtString = stmtString + " JOIN Species ON Sighting.species_id = Species.id"
+        stmtString = stmtString + " JOIN Place ON Sighting.place_id = Place.id"
+        stmtString = stmtString + " JOIN place_habitat ON place_habitat.place_id = Place.id"
+        stmtString = stmtString + " JOIN Habitat ON place_habitat.habitat_id = Habitat.id"
 
         if not searchword == "all":
             searchword = "%" + searchword.upper() + "%"
@@ -42,14 +46,14 @@ class Sighting(Base, Info):
         
         if not conservStatus == "0":
             stmtString = Sighting.searchByConservStatus(conservStatus, stmtString)
+        
+        stmtString = stmtString + " ORDER BY Sighting.id"
 
         stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus)
         res = db.engine.execute(stmt)
         response = []
-        print("Hakutulokset havaintohaulle")
         for row in res:
             response.append(row)
-            print(row)
         return response
 
     @staticmethod
