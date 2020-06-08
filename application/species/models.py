@@ -35,6 +35,8 @@ class Species(Base, Name, Info):
         if not conservStatus == "0":
             stmtString = Species.searchByConservStatus(conservStatus, stmtString)
 
+        stmtString = stmtString + " ORDER BY name"
+
         stmt = text(stmtString).params(searchword = searchword, conservStatus = conservStatus)
         res = db.engine.execute(stmt)
         response = []
