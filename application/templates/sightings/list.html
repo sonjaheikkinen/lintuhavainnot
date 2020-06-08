@@ -4,6 +4,13 @@
 
 <h1>Havainnot</h1>
 
+<p>Tällä sivulla voit tarkastella käyttäjien tekemiä lintuhavaintoja. Voit rajata näytettäviä havaintoja 
+  esimerkiksi lajin, lajiryhmän, paikan tai uhanalaisuuden perusteella.</p>
+
+{% if not current_user.is_authenticated %}
+<p>Kirjaudu sisään tai rekisteröidy tehdäksesi lisätäksesi omia havaintojasi.</p>
+{% endif %}
+
 <h2 class="inlineHeading">Havaintotilastoja</h2>
 <button type="button" data-toggle="collapse" data-target="#statistics">
 Näytä/piilota tilastot
