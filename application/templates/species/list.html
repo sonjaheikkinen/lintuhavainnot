@@ -30,38 +30,46 @@
 
 <p><em>{{ searchResultString }}</em></p>
 
-<table class="table">
+<table data-toggle="table" data-pagination="true">
   <thead>
     <tr>
       <th>Laji</th>
       <th>Tieteellinen nimi</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-  {% for species in species %}
-  <tr>
-    <td>{{ species.name }}</td>
-    <td><em>{{ species.species }}</em></td>
-    <td>
-      <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
-        <button type="submit">Näytä lajin tiedot</button>
-      </form>
-    </td>
-    {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
-    <td>
-      <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
-      <button type="submit">Muokkaa tietoja</button>
-      </form>
-    </td>
-    <td>
-      <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
-      <button type="submit">Poista</button>
-      </form>
-    </td>
-    {% endif %}
-  </tr>
-  {% endfor %}
+  {% if not species %}
+  <tr><td colspan="3">Tietokannassa ei ole vielä lintulajeja</td></tr>
+  {% else %}
+    {% for species in species %}
+    <tr>
+      <td>{{ species.name }}</td>
+      <td><em>{{ species.species }}</em></td>
+      <td>
+        <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
+          <button type="submit">Näytä lajin tiedot</button>
+        </form>
+      </td>
+      {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
+      <td>
+        <form method="GET" action="{{ url_for('species_edit_information', species_id=species.id) }}">
+          <button type="submit">Muokkaa tietoja</button>
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('species_delete', species_id=species.id) }}">
+          <button type="submit">Poista</button>
+        </form>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  {% endif %}
   </tbody>
 </table>
+
+<br>
+
 
 {% endblock %}

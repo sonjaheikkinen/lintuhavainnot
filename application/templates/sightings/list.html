@@ -69,18 +69,23 @@ Näytä/piilota tilastot
 
 <h2>Lista havainnoista</h2>
 <p><em>{{ searchResultString }}</em></p>
-  <table class="table">
+  
+<table data-toggle="table" data-pagination="true">
     <thead>
     <tr>
       <th>Laji</th><th>Havaintopaikka</th><th>Havaitsija</th><th>Lisätietoja</th>
     </tr>
     </thead>
     <tbody>
-    {% for sighting in sightings %}
-    <tr>
-      <td><a title="Näytä lajin tiedot" href="{{ url_for('species_show', species_id=sighting[0]) }}">{{ sighting[1] }}</a></td><td>{{ sighting[2] }}, ({{ sighting[3] }})</td><td>{{ sighting[4] }}</td><td>{{ sighting[5] }}</td>
-    </tr>
-    {% endfor %}
+    {% if not sightings %}
+    <tr><td colspan="4">Tietokannassa ei ole vielä havaintoja</td></tr>
+    {% else %}
+      {% for sighting in sightings %}
+      <tr>
+        <td><a title="Näytä lajin tiedot" href="{{ url_for('species_show', species_id=sighting[0]) }}">{{ sighting[1] }}</a></td><td>{{ sighting[2] }}, ({{ sighting[3] }})</td><td>{{ sighting[4] }}</td><td>{{ sighting[5] }}</td>
+      </tr>
+      {% endfor %}
+    {% endif %}
     </tbody>
   </table>
 {% endblock %}

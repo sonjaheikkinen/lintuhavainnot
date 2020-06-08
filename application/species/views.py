@@ -108,7 +108,7 @@ def getSearchString(data, allString):
     if data == "" or data == "all":
         return allString
     else:
-        return "'" + data + "'"
+        return data
 
 def getSearchResultString(column, searchword, conservStatus):
     string = "Hakutulokset haulle kenttä: " + columnInfo[column]
