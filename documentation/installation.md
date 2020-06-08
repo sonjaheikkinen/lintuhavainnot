@@ -29,6 +29,8 @@
 
 3. Luo tarvittaessa tunnus [GitHubiin](https://github.com/), ja luo uusi repositorio valitsemalla oikean ylänurkan pudotusvalikosta "Your repositories" ja painamalla vihreää nappia "New". Varmista, että kohta "Initialize this repository with a README" ei ole valittuna. https://github.com/
 
+*Suorita seuraavat vaiheet kansiossa lintuhavainnot-master*
+
 4. Lisää sovellukselle versionhallinta komennolla `git init`. 
 
 5. Yhdistä sovelluksesi GitHubin repositorioon komennolla `git remote add origin git@github.com:githubkäyttäjätunnus/repositorionnimi`.
