@@ -30,7 +30,7 @@ def auth_register():
     password = form.password.data
     hashedPassword = bcrypt.generate_password_hash(password).decode('utf-8')
     
-    user = User(form.name.data, form.username.data, hashedPassword, "ADMIN", form.info.data)
+    user = User(form.name.data, form.username.data, hashedPassword, registerRole, form.info.data)
     db.session().add(user)
     db.session().commit()
 
@@ -151,6 +151,13 @@ def auth_changeUserRole(account_id):
     else:
         user.role = "USER"
     db.session.commit()
+    accounts = User.query.all()
+    return render_template("auth/listAccounts.html", accounts = accounts)
+
+@app.route("/auth/changeRegisterRole/<register_role>", methods = ["POST"])
+@login_required(role="ADMIN")
+def auth_changeRegisterRole(register_role):
+    registerRole = register_role
     accounts = User.query.all()
     return render_template("auth/listAccounts.html", accounts = accounts)
 

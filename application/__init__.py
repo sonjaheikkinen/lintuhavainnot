@@ -53,8 +53,8 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 # Kayttajaroolit
-from functools import wraps
 
+from functools import wraps
 def login_required(_func=None, *, role="ANY"):
     def wrapper(func):
         @wraps(func)
