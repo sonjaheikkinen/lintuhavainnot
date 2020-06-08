@@ -9,8 +9,12 @@ from application.auth.forms import Login, Registration, Edit, Password
 
 bcrypt = Bcrypt(app)
 
+registerRole = "ADMIN"
+
 @app.route("/auth/register", methods = ["GET", "POST"])
 def auth_register():
+
+    global registerRole
 
     if request.method == "GET":
         return render_template("auth/registration.html", form = Registration())
@@ -157,7 +161,10 @@ def auth_changeUserRole(account_id):
 @app.route("/auth/changeRegisterRole/<register_role>", methods = ["POST"])
 @login_required(role="ADMIN")
 def auth_changeRegisterRole(register_role):
+    global registerRole
     registerRole = register_role
+    registerInfo = {"ADMIN": "admin-käyttäjinä", "USER": "tavallisina käyttäjinä"}
+    registerString = "Uudet käyttäjät rekisteröidään nyt " + registerInfo[register_role] + "."
     accounts = User.query.all()
-    return render_template("auth/listAccounts.html", accounts = accounts)
+    return render_template("auth/listAccounts.html", accounts = accounts, registerString = registerString)
 

@@ -5,6 +5,8 @@
 
 <h2>Valitse mikä käyttäjärooli uusille käyttäjille rekisteröidään</h2>
 
+{{ registerString }}
+
 <form method="POST" action="{{ url_for('auth_changeRegisterRole', register_role='USER') }}">
   <button type="submit">Rekisteröi uudet käyttäjät tavallisina käyttäjinä.</button>
 </form> 
