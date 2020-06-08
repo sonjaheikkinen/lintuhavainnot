@@ -9,9 +9,9 @@
 <h3>Tieteellinen luokittelu:</h3>
 <table class="table">
     <tr><th>Laji</th><td>{{ species.name }}, {{ nameLatin }}</td></tr>
-    <tr><th>Suku:</th><td>{{ species.sp_genus }}</td></tr>
-    <tr><th>Heimo:</th><td>{{ species.sp_family }}</td></tr>
-    <tr><th>Lahko:</th><td>{{ species.sp_order }}</td></tr>
+    <tr><th>Suku:</th><td><a title="Hae taksoniin kuuluvat lajit" href="{{ url_for('species_search', column='sp_genus', searchword=species.sp_genus, conservStatus='0') }}">{{ species.sp_genus }}</a></td></tr>
+    <tr><th>Heimo:</th><td><a title="Hae taksoniin kuuluvat lajit" href="{{ url_for('species_search', column='sp_family', searchword=species.sp_family, conservStatus='0') }}">{{ species.sp_family }}</a></td></tr>
+    <tr><th>Lahko:</th><td><a title="Hae taksoniin kuuluvat lajit" href="{{ url_for('species_search', column='sp_order', searchword=species.sp_order, conservStatus='0') }}">{{ species.sp_order }}</a></td></tr>
     <tr><th>Luokka:</th><td>Linnut, Aves</td></tr>
     <tr><th>Alajakso:</th><td>Selkärankaiset, Vertebrata</td></tr>
     <tr><th>Pääjakso:</th><td>Selkäjänteiset, Chordata</td></tr>
@@ -19,7 +19,7 @@
 </table>
 
 <h3>Uhanalaisuus:</h3>
-<p>{{ conservInfo[species.conserv_status] }}</p>
+<p><a title="Hae samaan uhanalaisuusluokkaan kuuluvat lajit" href="{{ url_for('species_search', column='all', searchword='all', conservStatus=species.conserv_status) }}">{{ conservInfo[species.conserv_status] }}</a></p>
 
 <h3>Tietoa lajista:</h3>
 <p>{{ species.info }}</p>
