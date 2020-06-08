@@ -27,7 +27,8 @@
 <br>
 
 <h2>Lista lajeista</h2>
-<p><i>{{ searchResultString }}</i></p>
+
+<p><em>{{ searchResultString }}</em></p>
 
 <table class="table">
   <thead>
@@ -40,7 +41,7 @@
   {% for species in species %}
   <tr>
     <td>{{ species.name }}</td>
-    <td><i>{{ species.species }}</i></td>
+    <td><em>{{ species.species }}</em></td>
     <td>
       <form method="GET" action="{{ url_for('species_show', species_id=species.id) }}">
         <button type="submit">Näytä lajin tiedot</button>

@@ -15,7 +15,7 @@ Näytä/piilota tilastot
         <table class="table">
           <tr><th colspan="2">Eniten havaitut lajit</th></tr>
           {% for species in speciesMost %}
-          <tr><td>{{ species[0] }}</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
+          <tr><td>{{ species[0] }}</td><td><em>{{ species[1] }} havaintoa</em></td></tr>
           {% endfor %}
         </table>
       </div>
@@ -23,7 +23,7 @@ Näytä/piilota tilastot
         <table class="table">
           <tr><th colspan="2">Vähiten havaitut lajit</th></tr>
           {% for species in speciesLeast %}
-          <tr><td>{{ species[0] }}</td><td><i>{{ species[1] }} havaintoa</i></td></tr>
+          <tr><td>{{ species[0] }}</td><td><em>{{ species[1] }} havaintoa</em></td></tr>
           {% endfor %}
         </table>
       </div>
@@ -34,7 +34,7 @@ Näytä/piilota tilastot
 
 <h2>Rajaa havaintoja</h2>
 
-<p><i>Täytä vain ne kentät, joiden perusteella haluat rajata näkyviä havaintoja. Jätä muut tyhjäksi. </i></p>
+<p><em>Täytä vain ne kentät, joiden perusteella haluat rajata näkyviä havaintoja. Jätä muut tyhjäksi. </em></p>
 <form method="POST" action="{{ url_for('sightings_list',
  column='all', searchword='all', conservStatus='0', place='all', habitat='all', account='all') }}" role="form"> 
   <div class="row">
@@ -68,7 +68,7 @@ Näytä/piilota tilastot
 <br>
 
 <h2>Lista havainnoista</h2>
-<p><i>{{ searchResultString }}</i></p>
+<p><em>{{ searchResultString }}</em></p>
   <table class="table">
     <thead>
     <tr>
