@@ -27,7 +27,7 @@
 
 2. Asenna tarvittaessa [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli), jotta voit käyttää Herokua komentoriviltä. Kirjaudu Herokuun komennolla `heroku login`. 
 
-3. Luo tarvittaessa tunnus [GitHubiin](https://github.com/), ja luo uusi repositorio valitsemalla oikean ylänurkan pudotusvalikosta "Your repositories" ja painamalla vihreää nappia "New". Varmista, että kohta "Initialize this repository with a README" ei ole valittuna. https://github.com/
+3. Luo tarvittaessa tunnus [GitHubiin](https://github.com/), ja luo uusi repositorio valitsemalla oikean ylänurkan pudotusvalikosta "Your repositories" ja painamalla vihreää nappia "New". Varmista, että kohta "Initialize this repository with a README" ei ole valittuna. 
 
 *Suorita seuraavat vaiheet kansiossa lintuhavainnot-master*
 
@@ -43,4 +43,4 @@
 
 8. Siirrä projekti Herokuun komennoilla `git add .`, `git commit -m "Initial commit"` ja `git push heroku master`.
 
-9. Sovellus toimii nyt osoitteessa https://sovellusnimi.herokuapp.com/.s
+9. Sovellus toimii nyt osoitteessa https://sovellusnimi.herokuapp.com/
