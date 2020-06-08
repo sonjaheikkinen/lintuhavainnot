@@ -78,7 +78,7 @@ Näytä/piilota tilastot
     <tbody>
     {% for sighting in sightings %}
     <tr>
-      <td>{{ sighting[0] }}</td><td>{{ sighting[1] }}, ({{ sighting[2] }})</td><td>{{ sighting[3] }}</td><td>{{ sighting[4] }}</td>
+      <td><a title="Näytä lajin tiedot" href="{{ url_for('species_show', species_id=sighting[0]) }}">{{ sighting[1] }}</a></td><td>{{ sighting[2] }}, ({{ sighting[3] }})</td><td>{{ sighting[4] }}</td><td>{{ sighting[5] }}</td>
     </tr>
     {% endfor %}
     </tbody>
