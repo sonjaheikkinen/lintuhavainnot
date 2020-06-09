@@ -3,7 +3,7 @@ from flask_login import current_user
 
 from application import app, db, login_required
 from application.sightings.models import Sighting
-from application.sightings.forms import AddSighting, SearchSightings
+from application.sightings.forms import AddSighting, SearchSightings, EditSighting
 
 from application.species.models import Species
 from application.auth.models import User
@@ -83,6 +83,49 @@ def sightings_add():
 
         return render_template("sightings/new.html", form = form)
 
+@app.route("/sightings/edit/<sighting_id>/", methods=["GET", "POST"])
+@login_required(role="ADMIN")
+def sightings_edit(sighting_id):
+
+    sighting = Sighting.query.get(sighting_id)
+    speciesChoices = makeChoiceList(Species.query.all())
+    
+    if request.method == "POST":
+
+        form = EditSighting(request.form) 
+        form.species.choices = speciesChoices
+        if not form.validate():
+            return render_template("sightings/edit.html", sighting_id=sighting.id, form = form)
+
+        sighting.species_id = form.species.data
+        sighting.info = form.info.data
+        db.session().commit()
+  
+        return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0",
+         place="all", habitat="all", account="all"))
+    
+    form = EditSighting() 
+    form.species.choices = speciesChoices
+    species = db.session.query(Species).filter(Species.id == sighting.species_id).first()
+    form.species.default = species.id
+    form.info.default = sighting.info
+    form.process()
+    return render_template("sightings/edit.html", sighting_id=sighting.id, form=form)
+
+@app.route("/sightings/delete/<sighting_id>/", methods=["POST"])
+@login_required(role="ADMIN")
+def sightings_delete(sighting_id):
+    db.session.query(Sighting).filter(Sighting.id == sighting_id).delete()
+    db.session.commit()
+    return redirect(url_for("sightings_list", column="all", searchword="all", conservStatus="0",
+         place="all", habitat="all", account="all"))
+    
+
+@app.route("/sightings/admintools/")
+@login_required(role="ADMIN")
+def sightings_admintools():
+    return render_template("sightings/admintools.html")
+
 def makeChoiceList(items):
     choiceList = []
     for item in items:
@@ -96,6 +139,7 @@ def getSightingInformation(sightingsList):
 
     for index, sighting in enumerate(sightingsList):
 
+        sightingID = sighting.id
         speciesID = sighting.speciesID
         species = sighting.species
         place = sighting.place
@@ -104,16 +148,18 @@ def getSightingInformation(sightingsList):
         info = sighting.info
         
         if index == 0:
-            sightingInformation = [speciesID, species, place, habitat, account, info]
+            sightingInformation = {"id": sightingID, "species_id": speciesID, "species_name": species, 
+            "place": place, "habitat": habitat, "account": account,"info": info}
         elif (index > 0) and (sighting.id != sightingsList[index - 1].id):
-            if sightingInformation[3] == None:
-                sightingInformation[3] = "Elinympäristö tuntematon"
+            if sightingInformation["habitat"] == None:
+                sightingInformation["habitat"] = "Elinympäristö tuntematon"
             sightings.append(sightingInformation)
-            sightingInformation = [speciesID, species, place, habitat, account, info]
+            sightingInformation = {"id": sightingID, "species_id": speciesID, "species_name": species, 
+            "place": place, "habitat": habitat, "account": account,"info": info}
             if index == len(sightingInformation) - 1:
                 sightings.append(sightingInformation)
         else:
-            sightingInformation[3] = sightingInformation[3] + ", " + habitat
+            sightingInformation["habitat"] = sightingInformation["habitat"] + ", " + habitat
         
         if index == len(sightingsList) - 1:
                 sightings.append(sightingInformation)

@@ -54,11 +54,11 @@
           {% if current_user.role == "ADMIN" %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Admin-muokkaustyökalut
+              Admin-työkalut
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{{ url_for('species_admintools') }}">Lajit</a>
-              <a class="dropdown-item" href="#">Havainnot</a>
+              <a class="dropdown-item" href="{{ url_for('sightings_admintools') }}">Havainnot</a>
               <a class="dropdown-item" href="{{ url_for('auth_listAccounts') }}">Käyttäjäroolit</a>
               <a class="dropdown-item" href="#">Paikat ja elinympäristöt</a>
             </div>

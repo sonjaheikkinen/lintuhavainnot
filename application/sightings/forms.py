@@ -30,6 +30,14 @@ class SearchSightings(FlaskForm):
 
     class Meta:
         csrf = False
+
+class EditSighting(FlaskForm):
+
+    species = SelectField("Vaihda väärintunnistettu laji:", coerce=int)
+    info = TextAreaField("Muokkaa lisätietoja:", render_kw={"rows": 10, "cols": 30})
+
+    class Meta:
+        csrf = False
     
     
 

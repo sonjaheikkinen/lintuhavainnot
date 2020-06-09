@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+
+{{ message }}
+
+<h1>Muokkaa ja poista havaintoja</h1>
+
+<p> 
+  Voit muokata ja poistaa havaintoja suoraan 
+  <a href="{{ url_for('sightings_list', column='all', searchword='all', conservStatus='0',
+  place='all', habitat='all', account='all') }}">havaintolistauksen </a>
+  kautta. 
+</p>
+
+<br>
+
+{% endblock %}

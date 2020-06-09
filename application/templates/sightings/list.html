@@ -80,7 +80,14 @@ Näytä/piilota tilastot
 <table data-toggle="table" data-pagination="true">
     <thead>
     <tr>
-      <th>Laji</th><th>Havaintopaikka</th><th>Havaitsija</th><th>Lisätietoja</th>
+      <th>Laji</th>
+      <th>Havaintopaikka</th>
+      <th>Havaitsija</th>
+      <th>Lisätietoja</th>
+      {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
+      <th>Muokkaa</th>
+      <th>Poista</th>
+      {% endif %}
     </tr>
     </thead>
     <tbody>
@@ -89,7 +96,22 @@ Näytä/piilota tilastot
     {% else %}
       {% for sighting in sightings %}
       <tr>
-        <td><a title="Näytä lajin tiedot" href="{{ url_for('species_show', species_id=sighting[0]) }}">{{ sighting[1] }}</a></td><td>{{ sighting[2] }}, ({{ sighting[3] }})</td><td>{{ sighting[4] }}</td><td>{{ sighting[5] }}</td>
+        <td><a title="Näytä lajin tiedot" href="{{ url_for('species_show', species_id=sighting['species_id']) }}">{{ sighting["species_name"] }}</a></td>
+        <td>{{ sighting["place"] }}, ({{ sighting["habitat"] }})</td>
+        <td>{{ sighting["account"] }}</td>
+        <td>{{ sighting["info"] }}</td>
+        {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
+        <td>
+          <form method="GET" action="{{ url_for('sightings_edit', sighting_id=sighting['id']) }}">
+            <button type="submit">Muokkaa tietoja</button>
+          </form>
+        </td>
+      <td>
+        <form method="POST" action="{{ url_for('sightings_delete', sighting_id=sighting['id']) }}">
+          <button type="submit">Poista</button>
+        </form>
+      </td>
+      {% endif %}
       </tr>
       {% endfor %}
     {% endif %}

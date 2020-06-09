@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+
+<h1>Muokkaa havainnon tietoja</h1>
+
+<form method="POST" action="{{ url_for('sightings_edit', sighting_id=sighting_id) }}" role="form"> 
+  <div class="formgroup">
+    {{ wtf.form_field(form.species, class='form-control') }}
+  </div>
+  <div class="formgroup">
+    {{ wtf.form_field(form.info, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Tallenna</button>
+</form>
+
+
+{% endblock %}
