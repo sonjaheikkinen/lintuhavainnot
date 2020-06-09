@@ -2,8 +2,17 @@
   
 {% block body %}
 
-<h1>Syötä lajin tiedot</h1>
+{{ message }}
 
+<h1>Lisää, muokkaa ja poista lajeja</h1>
+
+<p> 
+  Voit muokata ja poistaa lajeja suoraan 
+  <a href="{{ url_for('species_search', column='all', searchword='all', conservStatus='0') }}">lajilistauksen </a>
+  kautta. Lisää uusi laji alla olevalla lomakkeella.
+</p>
+
+<h2>Syötä lajin tiedot</h2>
 <form method="POST" action="{{ url_for('species_create') }}" role="form"> 
   <div class="formgroup">
     {{ wtf.form_field(form.name, class='form-control') }}

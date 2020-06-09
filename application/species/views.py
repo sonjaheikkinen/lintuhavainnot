@@ -33,7 +33,7 @@ def species_search(column, searchword, conservStatus):
     searchResultString = getSearchResultString(column, searchword, conservStatus)
 
     return render_template("species/list.html",
-         species = Species.search(form.column.data, searchword, form.conservStatus.data),
+         species = Species.search(form.column.data, searchword, fSorm.conservStatus.data),
           conservInfo = conservInfo, form = SearchSpecies(), searchResultString = searchResultString)
 
 @app.route("/species/edit/<species_id>/", methods=["GET", "POST"])
@@ -71,24 +71,26 @@ def species_delete(species_id):
      db.session.commit()
      return redirect(url_for("species_search", column="all", searchword="all", conservStatus=0))
 
-@app.route("/species/", methods=["GET", "POST"])
+@app.route("/species/admintools/", methods=["GET"])
+@login_required(role="ADMIN")
+def species_admintools():
+    return render_template("species/admintools.html", form = SpeciesCreationForm())
+
+@app.route("/species/create", methods=["POST"])
 @login_required(role="ADMIN")
 def species_create():
 
-    if request.method == "GET":
-        return render_template("species/new.html", form = SpeciesCreationForm())
-
     form = SpeciesCreationForm(request.form) 
     if not form.validate():
-        return render_template("species/new.html", form = form)
+        return render_template("species/admintools.html", form = form)
 
     species = Species(form.name.data, form.species.data,
      form.sp_genus.data, form.sp_family.data, form.sp_order.data,
      form.conserv_status.data, form.info.data)
     db.session().add(species)
     db.session().commit()
-  
-    return redirect(url_for("species_search", column="all", searchword="all", conservStatus=0))
+
+    return redirect(url_for("species_admintools"))
 
 @app.route("/species/show/<species_id>/")
 def species_show(species_id):

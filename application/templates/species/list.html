@@ -35,7 +35,11 @@
     <tr>
       <th>Laji</th>
       <th>Tieteellinen nimi</th>
-      <th></th>
+      <th>Tiedot</th>
+      {% if current_user.is_authenticated and current_user.role == "ADMIN" %}
+      <th>Muokkaa</th>
+      <th>Poista</th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
