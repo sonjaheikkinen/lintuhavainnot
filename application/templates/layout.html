@@ -48,17 +48,20 @@
              place='all', habitat='all', account='all') }}">Havainnot</a>
           </li>
           {% if current_user.is_authenticated %}
-            {% if current_user.role == "ADMIN" %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('species_create') }}">Lisää uusi laji</a>
-          </li>
-            {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('sightings_add') }}">Lisää havainto</a>
           </li>
           {% if current_user.role == "ADMIN" %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('auth_listAccounts') }}">Muokkaa käyttäjärooleja</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin-muokkaustyökalut
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{ url_for('species_create') }}">Lajit</a>
+              <a class="dropdown-item" href="#">Havainnot</a>
+              <a class="dropdown-item" href="{{ url_for('auth_listAccounts') }}">Käyttäjäroolit</a>
+              <a class="dropdown-item" href="#">Paikat ja elinympäristöt</a>
+            </div>
           </li>
             {% endif %}
           {% endif %}
