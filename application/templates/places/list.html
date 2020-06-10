@@ -50,8 +50,11 @@
   </tbody>
 </table>
 
-<h2>Lista elinympäristöistä</h2>
-<table data-toggle="table" data-pagination="true">
+<h2 style="margin-bottom: -50px;">Lista elinympäristöistä</h2>
+<table data-toggle="table"
+       data-pagination="true"
+       data-search="true"
+       data-search-on-enter-key="true">
   <thead>
     <tr>
       <th>Nimi</th>
@@ -82,5 +85,17 @@
   </tbody>
 </table>
 
+<br>
+
+<h2>Lisää elinympäristö</h2>
+
+<form method="POST" action="{{ url_for('habitats_add') }}" role="form"> 
+  <div class="form-group">
+    {{ wtf.form_field(addHabitatForm.name, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Lähetä</button>
+</form>
+
+<br>
 
 {% endblock %}
