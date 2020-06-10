@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Muokkaa paikkoja ja elinympäristöjä</h1>
+
+<h2>Hae paikannimellä</h2>
+
+<form method="POST" action="{{ url_for('places_search', searchword='all') }}" role="form"> 
+  <div class="form-group">
+    {{ wtf.form_field(form.name, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Hae</button>
+</form>
+
+<br>
+
+<h2>Lista paikoista</h2>
+
+<table data-toggle="table" data-pagination="true">
+  <thead>
+    <tr>
+      <th>Nimi</th>
+      <th>Elinympäristöt</th>
+      <th>Muokkaa</th>
+      <th>Poista</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if not places %}
+  <tr><td colspan="3">Tietokannassa ei ole vielä havaintopaikkoja</td></tr>
+  {% else %}
+    {% for place in places %}
+    <tr>
+      <td>{{ place["place"] }}</td>
+      <td>{{ place["habitats"] }}</td>
+      <td>
+       <form method="GET" action="{{ url_for('places_edit', place_id=place['id']) }}">
+          <button type="submit">Muokkaa</button>
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('places_delete', place_id=place['id']) }}">
+          <button type="submit">Poista</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+
+<br>
+
+
+{% endblock %}

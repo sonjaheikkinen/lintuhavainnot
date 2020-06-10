@@ -76,3 +76,4 @@ from application import views
 from application.species import views
 from application.auth import views
 from application.sightings import views
+from application.places import views

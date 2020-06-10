@@ -60,7 +60,7 @@
               <a class="dropdown-item" href="{{ url_for('species_admintools') }}">Lajit</a>
               <a class="dropdown-item" href="{{ url_for('sightings_admintools') }}">Havainnot</a>
               <a class="dropdown-item" href="{{ url_for('auth_listAccounts') }}">Käyttäjäroolit</a>
-              <a class="dropdown-item" href="#">Paikat ja elinympäristöt</a>
+              <a class="dropdown-item" href="{{ url_for('places_search', searchword='all') }}">Paikat ja elinympäristöt</a>
             </div>
           </li>
             {% endif %}

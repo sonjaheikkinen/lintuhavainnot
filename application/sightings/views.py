@@ -156,8 +156,6 @@ def getSightingInformation(sightingsList):
             sightings.append(sightingInformation)
             sightingInformation = {"id": sightingID, "species_id": speciesID, "species_name": species, 
             "place": place, "habitat": habitat, "account": account,"info": info}
-            if index == len(sightingInformation) - 1:
-                sightings.append(sightingInformation)
         else:
             sightingInformation["habitat"] = sightingInformation["habitat"] + ", " + habitat
         
