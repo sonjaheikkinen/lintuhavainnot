@@ -15,3 +15,10 @@ class EditPlace(FlaskForm):
 
     class Meta:
         csrf = False
+
+class EditHabitat(FlaskForm):
+
+    name = StringField("Muuta nimeä:", [validators.Length(min=1, max=255, message="Kentän tulee sisältää vähintään %(min)d ja enintään %(max)d merkkiä.")])
+
+    class Meta:
+        csrf = False

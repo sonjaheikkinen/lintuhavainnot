@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+
+<h1>Muokkaa elinympäristöä</h1>
+
+<form method="POST" action="{{ url_for('habitats_edit', habitat_id = habitat_id) }}" role="form"> 
+  <div class="formgroup">
+    {{ wtf.form_field(form.name, class='form-control') }}
+  </div>
+  <button type="submit" class="btn btn-primary">Tallenna</button>
+</form>
+
+<br>
+
+
+{% endblock %}

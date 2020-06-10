@@ -50,7 +50,37 @@
   </tbody>
 </table>
 
-<br>
+<h2>Lista elinympäristöistä</h2>
+<table data-toggle="table" data-pagination="true">
+  <thead>
+    <tr>
+      <th>Nimi</th>
+      <th>Muokkaa</th>
+      <th>Poista</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if not habitats %}
+  <tr><td colspan="3">Tietokannassa ei ole vielä elinympäristöjä</td></tr>
+  {% else %}
+    {% for habitat in habitats %}
+    <tr>
+      <td>{{ habitat.name }}</td>
+      <td>
+       <form method="GET" action="{{ url_for('habitats_edit', habitat_id=habitat.id) }}">
+          <button type="submit">Muokkaa</button>
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('habitats_delete', habitat_id=habitat.id) }}">
+          <button type="submit">Poista</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
 
 
 {% endblock %}

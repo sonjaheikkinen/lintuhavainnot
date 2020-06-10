@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
 from flask_login import current_user
 from application import app, db, login_required
-from application.places.forms import Search, EditPlace
+from application.places.forms import Search, EditPlace, EditHabitat
 from application.places.models import Place, PlaceHabitat, Habitat
 from application.sightings.models import Sighting
 
@@ -23,7 +23,7 @@ def places_search(searchword):
 
     places = getPlaceInformation(places)
 
-    return render_template("places/list.html", places = places, form = form)
+    return render_template("places/list.html", places = places, habitats = Habitat.query.all(), form = form)
 
 @app.route("/places/delete/<place_id>/", methods=["POST"])
 @login_required(role="ADMIN")
@@ -33,12 +33,7 @@ def places_delete(place_id):
     db.session.query(Sighting).filter(Sighting.place_id == place_id).delete()
     db.session.query(Place).filter(Place.id == place_id).delete()
     db.session.commit()
-
-    form = Search()
-    places = Place.getPlaceAndHabitats("all")
-    places = getPlaceInformation(places)
-
-    return render_template("places/list.html", places = places, form = form)
+    return redirect(url_for("places_search", searchword = "all"))
 
 @app.route("/places/edit/<place_id>/", methods=["GET", "POST"])
 @login_required(role="ADMIN")
@@ -58,10 +53,33 @@ def places_edit(place_id):
         place.name = form.name.data
         editPlaceHabitats(place, form.habitat.data)
         db.session.commit()
-        form = Search()
-        places = Place.getPlaceAndHabitats("all")
-        places = getPlaceInformation(places)
-        return render_template("places/list.html", places = places, form = form)
+        return redirect(url_for("places_search", searchword = "all"))        
+
+@app.route("/habitats/edit/<habitat_id>/", methods=["GET", "POST"])
+@login_required(role="ADMIN")
+def habitats_edit(habitat_id):
+
+    habitat = Habitat.query.get(habitat_id)
+
+    if request.method == "GET":
+        form = EditHabitat()
+        form.name.default = habitat.name
+        form.process()
+        return render_template("places/editHabitat.html", habitat_id = habitat_id, form = form)
+    else:
+        form = EditHabitat(request.form)
+        habitat.name = form.name.data
+        db.session.commit()
+        return redirect(url_for("places_search", searchword = "all"))
+
+@app.route("/habitats/delete/<habitat_id>/", methods=["POST"])
+@login_required(role="ADMIN")
+def habitats_delete(habitat_id):
+
+    db.session.query(PlaceHabitat).filter(PlaceHabitat.habitat_id == habitat_id).delete()
+    db.session.query(Place).filter(Habitat.id == habitat_id).delete()
+    db.session.commit()
+    return redirect(url_for("places_search", searchword = "all"))
 
 
 def getPlaceInformation(places):
