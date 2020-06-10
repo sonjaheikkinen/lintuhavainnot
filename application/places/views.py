@@ -13,7 +13,12 @@ def places_search(searchword):
     addHabitatForm = AddHabitat()
 
     if request.method == "POST":
+
         form = Search(request.form)
+        if not form.validate():
+            return render_template("places/list.html", places = Place.getPlaceAndHabitats("all"), 
+            habitats = Habitat.query.all(), form = form, addHabitatForm = addHabitatForm)
+        
         searchword = form.name.data
 
     places = []
@@ -43,6 +48,9 @@ def places_edit(place_id):
         return render_template("places/editPlace.html", place_id = place_id, form = form)
     else:
         form = EditPlace(request.form)
+        form.habitat.choices = makeChoiceList(Habitat.query.all())
+        if not form.validate():
+            return render_template("places/editPlace.html", place_id = place_id, form = form)
         place.name = form.name.data
         editPlaceHabitats(place, form.habitat.data)
         db.session.commit()
@@ -71,6 +79,8 @@ def habitats_edit(habitat_id):
         return render_template("places/editHabitat.html", habitat_id = habitat_id, form = form)
     else:
         form = EditHabitat(request.form)
+        if not form.validate():
+            return render_template("places/editHabitat.html", habitat_id = habitat_id, form = form)
         habitat.name = form.name.data
         db.session.commit()
         return redirect(url_for("places_search", searchword = "all"))
