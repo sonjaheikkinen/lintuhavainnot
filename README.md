@@ -30,6 +30,8 @@ Projektin tietokanta on englanninkielinen, ja tietokantakaavio tullaan myöhemmi
 
 [Käyttötapaukset](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/usecases.md)
 
+[Kehitysideoita](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/developmentIdeas.md)
+
 
 
 
