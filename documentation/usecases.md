@@ -4,27 +4,27 @@ Alla lueteltuna sovelluksen käyttötapaukset. Jokaisen käyttötapauksen lopust
 
 ## Tavallinen käyttäjä
 
-Käyttäjänä haluan saada tietoa Suomen lintulajeista. Lajien tiedot pitää pystyä listaamaan. Lintulajeista olisi hyvä olla tallennettuna vähintään kansankielinen nimi, kaksiosainen tieteellinen nimi ja lyhyt lajikuvaus. Muita tallennettavia tietoja voisivat olla esimerkiksi lajin tieteellinen luokittelu, levinneisyys ja uhanalaisuus. *(1c)*
+Käyttäjänä haluan saada tietoa Suomen lintulajeista. Lajien tiedot pitää pystyä listaamaan. Lintulajeista olisi hyvä olla tallennettuna vähintään kansankielinen nimi, kaksiosainen tieteellinen nimi ja lyhyt lajikuvaus. Muita tallennettavia tietoja voisivat olla esimerkiksi lajin tieteellinen luokittelu ja uhanalaisuus. *(1c)* **Valmis**
 
-Käyttäjänä haluan hakea lintulajien tietoja myös rajatusti. Lajeja pitäisi pystyä rajaamaan ainakin nimen perusteella. Lisäksi talletettavista tiedoista riippuen lajeja voisi hakea esimerkiksi lajiryhmän tai uhanalaisuuden perusteella. *(1e, 1f, 1g, 1h, 1i)*
+Käyttäjänä haluan hakea lintulajien tietoja myös rajatusti. Lajeja pitäisi pystyä rajaamaan ainakin nimen perusteella. Lisäksi talletettavista tiedoista riippuen lajeja voisi hakea esimerkiksi lajiryhmän tai uhanalaisuuden perusteella. *(1e, 1f, 1g, 1h, 1i)* **Valmis**
 
-Käyttäjänä haluan lähettää tietokantaan omia lajihavaintojani. Havainnosta pitäisi tallettaa ainakin päivämäärä, paikka, ja havaittu laji. Lisäksi paikkoihin pitäisi pystyä liittämään niihin liittyviä elinympäristöjä. *(3a, 4a, 4b, 5a)*
+Käyttäjänä haluan lähettää tietokantaan omia lajihavaintojani. Havainnosta pitäisi tallettaa ainakin päivämäärä, paikka, ja havaittu laji. Lisäksi paikkoihin pitäisi pystyä liittämään niihin liittyviä elinympäristöjä. *(3a, 4a, 4b, 5a)* **Valmis**
 
-Käyttäjänä haluan voida tarkastella omia havaintojani. Tätä varten tarvitaan jokin tapa tunnistaa käyttäjät, esimerkiksi kirjautumistoiminto. Omat havainnot pitää pystyä vähintään listaamaan. *(2a, 2b)*
+Käyttäjänä haluan voida tarkastella omia havaintojani. Tätä varten tarvitaan jokin tapa tunnistaa käyttäjät, esimerkiksi kirjautumistoiminto. Omat havainnot pitää pystyä vähintään listaamaan. *(2a, 2b, 5d)* **Valmis**
 
-Kirjautuneena käyttäjänä haluan voida muokata omia tietojani, esimerkiksi yhteystietoja. *(2c, 2d, 2e)*
+Kirjautuneena käyttäjänä haluan voida muokata omia tietojani. *(2c, 2d, 2e)* **Valmis**
 
-Käyttäjänä haluan tarkastella muiden tekemiä lintuhavaintoja. Havainnot pitäisi pystyä listaamaan ainakin lintulajin perusteella. Riippuen talletettavista attribuuteista havainnot olisi hyvä pystyä listaamaan myös esimerkiksi paikan, elinympäristön, linturyhmän ja uhanalaisuuden perusteella. *(5b)*
+Käyttäjänä haluan tarkastella muiden tekemiä lintuhavaintoja. Havainnot pitäisi pystyä listaamaan ainakin lintulajin perusteella. Riippuen talletettavista attribuuteista havainnot olisi hyvä pystyä listaamaan myös esimerkiksi paikan, elinympäristön, linturyhmän ja uhanalaisuuden perusteella. *(5b, 5d)* **Valmis**
 
-Käyttäjänä haluaisin tietää, mitä lintulajeja havaitaan eniten. *(6a)*
+Käyttäjänä haluaisin tietää, mitä lintulajeja havaitaan eniten, ja mitä vähiten. *(6a)* **Valmis**
 
 ## Ylläpitäjä (esimerkiksi lintututkija)
 
 *Tietokannan ylläpitäjänä haluan jo edellä mainittujen ominaisuuksien lisäksi seuraavat ominaisuudet:*
 
-Ylläpitäjänä haluan voida lisätä, poistaa ja muokata lintulajien tietoja. *(1a, 1b, 1d, 5c)*
+Ylläpitäjänä haluan voida lisätä, poistaa ja muokata lintulajien tietoja. *(1a, 1b, 1d, 5c)* **Valmis**
 
-Ylläpitäjänä haluan voida tarkastella, muokata ja poistaa käyttäjien tekemiä lintuhavaintoja (esimerkiksi selvästi väärin tunnistettu laji). Havainnot pitää pystyä listaamaan yllä mainittujen ominaisuuksien lisäksi myös havaitsijan perusteella. *(5b)*
+Ylläpitäjänä haluan voida tarkastella, muokata ja poistaa käyttäjien tekemiä lintuhavaintoja (esimerkiksi selvästi väärin tunnistettu laji). Havainnot pitää pystyä listaamaan yllä mainittujen ominaisuuksien lisäksi myös havaitsijan perusteella. *(5b, 5d, 5e, 5f)* **Valmis**
 
 Ylläpitäjänä haluan tavallisten laji- ja havaintolistausten lisäksi mahdollisuuden hakea samoilla tiedoilla id-listoja sekä nimi-id-taulukon tilastollisessa tutkimuksessa käytettäväksi.
 
@@ -170,6 +170,44 @@ SELECT * FROM Sighting;
 DELETE FROM Sighting WHERE species_id = ?;
 ```
 
+**5d. Havaintohaku**
+
+Havaintohaun SQL-kysely rakennetaan ohjelmallisesti riippuen annetuista parametreistä. Koska mahdollisiä kysely-yhdistelmiä on todella monta, ei niitä kaikkia listata tässä erikseen. Alla valmis kysely, jossa on mukana kaikki mahdolliset rajausehdot. Mikäli jollekin rajausehdolle ei anneta parametria tai sen perusteella ei haeta, kyseinen rajausehto ei päädy toteutuneeseen kyselyyn. 
+
+```
+SELECT Sighting.*, Species.name AS species, Species.id AS speciesID, Place.name AS place, Habitat.name AS habitat, Account.username AS account FROM Sighting
+  JOIN Species ON Sighting.species_id = Species.id
+  JOIN Place ON Sighting.place_id = Place.id
+  LEFT JOIN place_habitat ON place_habitat.place_id = Place.id
+  LEFT JOIN Habitat ON place_habitat.habitat_id = Habitat.id
+  LEFT JOIN Account ON Sighting.account_id = Account.id
+  WHERE (upper(Species.name) LIKE ?
+    OR upper(Species.species) LIKE ?
+    OR upper(Species.sp_genus) LIKE ?
+    OR upper(Species.sp_family) LIKE ?
+    OR upper(Species.sp_order) LIKE ?
+    OR upper(Species.info) LIKE ?)
+  AND Species.conserv_status = ?
+  AND upper(Place.name) LIKE ?
+  AND upper(Habitat.name) LIKE ?
+  AND upper(Account.username) LIKE ?
+  ORDER BY Sighting.id;
+```
+
+**5e. Havainnon nimen ja kuvauksen muokkaus id:n perusteella**
+
+```
+UPDATE Sighting
+  SET name = ?, info = ?
+  WHERE id = ?;
+```
+
+**5f. Havainnon poisto id:n perusteella**
+
+```
+DELETE FROM Sighting WHERE id = ?;
+```
+
 ## Useampien taulujen kyselyt
 
 **6a. Eniten havaittujen lintulajien ja havaintojen määrän listaus**
@@ -178,7 +216,7 @@ SELECT Species.name, COUNT(*) AS count FROM Sighting
 JOIN Species ON Sighting.species_id = Species.id
 GROUP BY Species.id
 ORDER BY count DESC
-LIMIT 5
+LIMIT 5;
 ```
 
 
