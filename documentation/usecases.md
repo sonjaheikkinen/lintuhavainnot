@@ -26,13 +26,13 @@ Ylläpitäjänä haluan voida lisätä, poistaa ja muokata lintulajien tietoja. 
 
 Ylläpitäjänä haluan voida tarkastella, muokata ja poistaa käyttäjien tekemiä lintuhavaintoja (esimerkiksi selvästi väärin tunnistettu laji). Havainnot pitää pystyä listaamaan yllä mainittujen ominaisuuksien lisäksi myös havaitsijan perusteella. *(5b, 5d, 5e, 5f)* **Valmis**
 
-Ylläpitäjänä haluan tavallisten laji- ja havaintolistausten lisäksi mahdollisuuden hakea samoilla tiedoilla id-listoja sekä nimi-id-taulukon tilastollisessa tutkimuksessa käytettäväksi.
+Ylläpitäjänä haluan tavallisten laji- ja havaintolistausten lisäksi mahdollisuuden hakea samoilla tiedoilla id-listoja sekä nimi-id-taulukon tilastollisessa tutkimuksessa käytettäväksi. **Ei toteutettu**
 
-Ylläpitäjänä haluan pystyä vahvistamaan havaintoja. Näin muut käyttäjät voivat esimerkiksi harvinaisten lajien kohdalla tietää, että kyseinen laji todella on havaittu, eikä vain väärin tunnistettu. Vahvistamista tehdään harkiten, jos samasta lajista on esimerkiksi useita havaintoja, tai havainto on tullut tunnetulta lintuharrastajalta.
+Ylläpitäjänä haluan pystyä vahvistamaan havaintoja. Näin muut käyttäjät voivat esimerkiksi harvinaisten lajien kohdalla tietää, että kyseinen laji todella on havaittu, eikä vain väärin tunnistettu. Vahvistamista tehdään harkiten, jos samasta lajista on esimerkiksi useita havaintoja, tai havainto on tullut tunnetulta lintuharrastajalta. **Ei toteutettu**
 
-Ylläpitäjänä haluan, että sivusto on tietoturvallinen. Käyttäjien henkilötietojen ei tule näkyä muille kuin ylläpitäjille havaintoja listatessa. Salasanat tulee säilöä salattuna.
+Ylläpitäjänä haluan, että sivusto on tietoturvallinen. Käyttäjien henkilötietojen ei tule näkyä muille kuin ylläpitäjille havaintoja listatessa. Salasanat tulee säilöä salattuna. *(Käyttötapaukseen ei liity sql-kyselyitä)* **Valmis**
 
-Ylläpitäjänä haluan voida tarkastella, poistaa ja muokata paikkoihin liitettyjä elinympäristöjä. Jokaisessa havaintopaikassa voi olla useampaa eri elinympäristöä, ja toisaalta sama elinympäristö voi liittyä useampaan eri paikkaan. Käyttäjät voivat kuitenkin havaintoja tehdessään tunnistaa elinympäristön väärin, joten korjausmahdollisuus tarvitaan. 
+Ylläpitäjänä haluan voida tarkastella, poistaa ja muokata paikkoja sekä niihin liitettyjä elinympäristöjä. Jokaisessa havaintopaikassa voi olla useampaa eri elinympäristöä, ja toisaalta sama elinympäristö voi liittyä useampaan eri paikkaan. Käyttäjät voivat kuitenkin havaintoja tehdessään tunnistaa elinympäristön väärin, joten korjausmahdollisuus tarvitaan. *(4c-4l, 5g)* **Valmis**
 
 # Käyttötapauksiin liittyvät SQL-kyselyt
 
@@ -153,6 +153,66 @@ INSERT INTO Place (name) VALUES (?);
 INSERT INTO PlaceHabitat (place_id, habitat_id) VALUES (?, ?);
 ```
 
+**4c. Paikkojen ja elinympäristöjen listaus**
+```
+SELECT Place.id AS placeID, Place.name AS place,
+ Habitat.name AS habitat FROM Place
+  LEFT JOIN place_habitat ON place_habitat.place_id = Place.id
+  LEFT JOIN Habitat ON Habitat.id = place_habitat.habitat_id;
+```
+
+**4d. Paikkojen ja elinympäristöjen haku paikannimen perusteella**
+```
+SELECT Place.id AS placeID, Place.name AS place,
+ Habitat.name AS habitat FROM Place
+  LEFT JOIN place_habitat ON place_habitat.place_id = Place.id
+  LEFT JOIN Habitat ON Habitat.id = place_habitat.habitat_id
+  WHERE place LIKE ?;
+```
+
+**4f. Paikkaan liitettyjen elinympäristöjen haku paikan id:n perusteella**
+```
+SELECT Habitat.id AS id FROM Habitat
+ JOIN place_habitat ON place_habitat.habitat_id = Habitat.id
+ JOIN Place ON Place.id = place_habitat.place_id
+ WHERE Place.id = ?;
+```
+
+**4g. Paikka-elinympäristö-liitosten poisto paikan id:n perusteella**
+```
+DELETE FROM place_habitat 
+ WHERE place_habitat.place_id = ?;
+```
+
+**4h. Paikan poisto id:n perusteella**
+```
+DELETE FROM Place WHERE Place.id = ?;
+```
+
+**4i. Paikan nimen muokkaus id:n perusteella**
+```
+UPDATE Place
+ SET name = ?
+ WHERE id = ?;
+```
+**4j. Paikka-elinympäristö-liitosten poisto elinympäristön id:n perusteella**
+```
+DELETE FROM place_habitat 
+ WHERE place_habitat.habitat_id = ?;
+```
+
+**4k. Elinympäristön poisto id:n perusteella**
+```
+DELETE FROM Habitat WHERE Habitat.id = ?;
+```
+
+**4l. Elinympäristön nimen muokkaus id:n perusteella**
+```
+UPDATE Habitat
+ SET name = ?
+ WHERE id = ?;
+```
+
 ## Havainnot
 
 **5a. Havainnon lisäys**
@@ -175,7 +235,9 @@ DELETE FROM Sighting WHERE species_id = ?;
 Havaintohaun SQL-kysely rakennetaan ohjelmallisesti riippuen annetuista parametreistä. Koska mahdollisiä kysely-yhdistelmiä on todella monta, ei niitä kaikkia listata tässä erikseen. Alla valmis kysely, jossa on mukana kaikki mahdolliset rajausehdot. Mikäli jollekin rajausehdolle ei anneta parametria tai sen perusteella ei haeta, kyseinen rajausehto ei päädy toteutuneeseen kyselyyn. 
 
 ```
-SELECT Sighting.*, Species.name AS species, Species.id AS speciesID, Place.name AS place, Habitat.name AS habitat, Account.username AS account FROM Sighting
+SELECT Sighting.*, Species.name AS species, Species.id AS speciesID,
+ Place.name AS place, Habitat.name AS habitat,
+ Account.username AS account FROM Sighting
   JOIN Species ON Sighting.species_id = Species.id
   JOIN Place ON Sighting.place_id = Place.id
   LEFT JOIN place_habitat ON place_habitat.place_id = Place.id
@@ -195,7 +257,6 @@ SELECT Sighting.*, Species.name AS species, Species.id AS speciesID, Place.name 
 ```
 
 **5e. Havainnon nimen ja kuvauksen muokkaus id:n perusteella**
-
 ```
 UPDATE Sighting
   SET name = ?, info = ?
@@ -203,9 +264,13 @@ UPDATE Sighting
 ```
 
 **5f. Havainnon poisto id:n perusteella**
-
 ```
 DELETE FROM Sighting WHERE id = ?;
+```
+
+**5g. Havainnon poisto paikka-id:n perusteella**
+```
+DELETE FROM Sighting WHERE place_id = ?;
 ```
 
 ## Useampien taulujen kyselyt
