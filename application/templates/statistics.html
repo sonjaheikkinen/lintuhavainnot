@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Tilastotietoja</h1>
+
+<h2 class="tableHeading">Havaintolukumäärät lajeittain</h2>
+
+<table data-toggle="table"
+       data-pagination="true"
+       data-height="460"
+       data-search="true"
+       data-search-on-enter-key="true">
+  <thead>
+    <tr>
+      <th>Laji</th>
+      <th>Tieteellinen nimi</th>
+      <th>Havaintoja</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if not speciesViewCount %}
+  <tr><td colspan="3">Tilastoja ei voitu laskea</td></tr>
+  {% else %}
+    {% for species in speciesViewCount %}
+    <tr>
+      <td><a title="Näytä lajin tiedot" href="{{ url_for('species_show', species_id = species.id) }}">{{ species.name }}</a></td>
+      <td><em>{{ species.species }}</em></td>
+      <td>{{ species.viewCount }}</td>
+    </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+
+<br>
+
+<h2 class="tableHeading">Elinympäristöjen lajiston suuruus havaintojen perusteella</h2>
+
+<table data-toggle="table"
+       data-pagination="true"
+       data-height="460"
+       data-search="true"
+       data-search-on-enter-key="true">
+  <thead>
+    <tr>
+      <th>Elinympäristö</th>
+      <th>Lajeja havaittu</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if not speciesPerHabitat %}
+  <tr><td colspan="3">Tilastoja ei voitu laskea</td></tr>
+  {% else %}
+    {% for habitat in speciesPerHabitat %}
+    <tr>
+      <td>{{ habitat.habitat }}</td>
+      <td>{{ habitat.speciesCount }}</td>
+    </tr>
+    {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+
+<br>
+
+
+{% endblock %}

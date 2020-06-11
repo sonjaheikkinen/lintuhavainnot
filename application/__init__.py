@@ -27,6 +27,9 @@ from application.auth import models
 from application.sightings import models 
 from application.places import models
 
+# Statistiikat
+from application import statistics
+
 # Luodaan tietokantataulut
 try: 
     db.create_all()
