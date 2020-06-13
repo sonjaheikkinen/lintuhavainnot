@@ -16,7 +16,7 @@ Kirjautuneena käyttäjänä haluan voida muokata omia tietojani. *(2c, 2d, 2e)*
 
 Käyttäjänä haluan tarkastella muiden tekemiä lintuhavaintoja. Havainnot pitäisi pystyä listaamaan ainakin lintulajin perusteella. Riippuen talletettavista attribuuteista havainnot olisi hyvä pystyä listaamaan myös esimerkiksi paikan, elinympäristön, linturyhmän ja uhanalaisuuden perusteella. *(5b, 5d)* **Valmis**
 
-Käyttäjänä haluaisin tietää, mitä lintulajeja havaitaan eniten, ja mitä vähiten. *(6a)* **Valmis**
+Käyttäjänä haluaisin tietää, mitä lintulajeja havaitaan eniten, ja mitä vähiten. *(6a, 6b)* **Valmis**
 
 ## Ylläpitäjä (esimerkiksi lintututkija)
 
@@ -29,6 +29,8 @@ Ylläpitäjänä haluan voida tarkastella, muokata ja poistaa käyttäjien tekem
 Ylläpitäjänä haluan, että sivusto on tietoturvallinen. Käyttäjien henkilötietojen ei tule näkyä muille kuin ylläpitäjille havaintoja listatessa. Salasanat tulee säilöä salattuna. *(Käyttötapaukseen ei liity sql-kyselyitä)* **Valmis**
 
 Ylläpitäjänä haluan voida tarkastella, poistaa ja muokata paikkoja sekä niihin liitettyjä elinympäristöjä. Jokaisessa havaintopaikassa voi olla useampaa eri elinympäristöä, ja toisaalta sama elinympäristö voi liittyä useampaan eri paikkaan. Käyttäjät voivat kuitenkin havaintoja tehdessään tunnistaa elinympäristön väärin, joten korjausmahdollisuus tarvitaan. *(4c-4l, 5g)* **Valmis**
+
+Ylläpitäjänä haluan tarkastella aineistosta muodostettuja tilastoja. Haluan tietää kuinka paljon mitäkin lajia havaitaan, ja missä elinympäristöissä on eniten lajeja. *(6c, 6d)* **Valmis**
 
 # Käyttötapauksiin liittyvät SQL-kyselyt
 
@@ -280,6 +282,34 @@ ORDER BY count DESC
 LIMIT 5;
 ```
 
+**6b. Vähiten havaittujen lintulajien ja havaintojen määrän listaus**
+```
+SELECT Species.name, COUNT(*) AS count FROM Sighting
+JOIN Species ON Sighting.species_id = Species.id
+GROUP BY Species.id
+ORDER BY count ASC
+LIMIT 5;
+```
+
+**6c. Lajien ja havaintomäärien listaus**
+```
+SELECT Species.id AS id, Species.name AS name, Species.species AS species,
+ COUNT(Sighting.id) AS viewCount FROM Species
+LEFT JOIN Sighting ON Sighting.species_id = Species.id
+GROUP BY Species.id
+ORDER BY viewCount DESC
+```
+
+**6d. Elinympäristöissä havaittujen lajien määrä**
+```
+SELECT Habitat.name AS habitat, COUNT(Species.id) AS speciesCount FROM Habitat
+LEFT JOIN place_habitat ON place_habitat.habitat_id = Habitat.id
+LEFT JOIN Place ON Place.id = place_habitat.place_sd
+LEFT JOIN Sighting ON Sighting.place_id = Place.id
+LEFT JOIN Species ON Species.id = Sighting.species_id
+GROUP BY habitat
+ORDER BY speciesCount DESC
+```
 
 
 
