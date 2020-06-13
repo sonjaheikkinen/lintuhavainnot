@@ -31,7 +31,7 @@ Voit hakea tietoa lintulajeista välilehdeltä lajit. Etsi haluamasi laji listal
 
 **Havainnot**
 
-Voit tarkastella lintuhavaintoja linkistä havainnot. Havaintosivun yläreunalla on hakulomake, jonka avulla voit rajata näytettäviä havaintoja hyvinkin tarkasti. Voit myös tarkastella havainnoista muodostettuja tilastoja painamalla nappia "Näytä/piilota tilastot". 
+Voit tarkastella lintuhavaintoja linkistä havainnot. Havaintosivun yläreunalla on hakulomake, jonka avulla voit rajata näytettäviä havaintoja hyvinkin tarkasti. Omat havaintosi näät kirjoittamalla käyttäjätunnuksesi kohtaan "Hae käyttäjätunnuksella". Voit myös tarkastella havainnoista muodostettuja tilastoja painamalla nappia "Näytä/piilota tilastot". 
 
 Kirjaudu sisään ja paina nappia "Lisää havainto" lisätäksesi uusia lintuhavaintoja. Havainnon lisäämiseksi vaaditaan vähintään laji ja havaintopaikka, mutta halutessasi voit myös kirjoittaa havainnosta lisätietoja, sekä liittää havaintoon elinympäristön, jossa havaitsit lajin. 
 
