@@ -22,7 +22,7 @@ Käyttäjistä voisi tallettaa enemmän henkilötietoja, esimerkiksi sähköpost
 
 ### Paikat ja elinympäristöt
 
-Havaintopaikalle voisi tallettaa nimen lisäksi tarkemmat koordinaatin. Lisäksi paikka voisi muutenkin olla tarkemmin määritelty, kuin vain yksinäinen merkkijono. Erilliset kentään tarvittaisiin ainakin Kaupungille/Kunnalle, Kaupunginosalle/Kylälle/Paikkakunnalle ja aikaisemmin mainituille koordinaateille. Sekä paikoista, että elinympäristöistä voisi myös tallettaa sanalliset kuvaukset, jolloin myös luontoa tuntemattomat osaisivat paremmin valita havaintoon liitettävän elinympäristön oikein. 
+Havaintopaikalle voisi tallettaa nimen lisäksi tarkemmat koordinaatin. Lisäksi paikka voisi muutenkin olla tarkemmin määritelty, kuin vain yksinäinen merkkijono. Erilliset kentään tarvittaisiin ainakin kaupungille/kunnalle, kaupunginosalle/kylälle/paikkakunnalle ja aikaisemmin mainituille koordinaateille. Sekä paikoista, että elinympäristöistä voisi myös tallettaa sanalliset kuvaukset, jolloin myös luontoa tuntemattomat osaisivat paremmin valita havaintoon liitettävän elinympäristön oikein. 
 
 ## Hakutoimintojen parantaminen
 
