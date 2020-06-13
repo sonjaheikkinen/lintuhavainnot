@@ -34,6 +34,20 @@ Lintuja voi tällä hetkellä hakea uhanalaisuuden, yhden kentän, tai kaikkien 
 
 Koska havaintohakuun kuuluu myös lajin perusteella hakeminen, niin tähän pätevät samat huomiot kuin yllä. Havaintoja olisi hyvä pystyä hakemaan myös päivämäärän, kuukauden, vuodenajan ja vuoden perusteella. 
 
+## Käyttäjäryhmät ja havaintojen vahvistus
+
+Havainnoilla pitäisi olla tieto, onko havainto vahvistettu, jotta käyttäjät tietäisivät mitkä havainnot ovat todennäköisesti luotettavasti oikein tunnistettuja. Tätä varten tarvitaan jonkinlainen admin-työkalu, jolla vahvistaminen on helppoa myös suuremmilla havaintomäärillä (kaikkea ei tarvitse vahvistaa yksitellen, vaan voitaisiin esimerkiksi asettaa, että kaikki tavanomaisissa ympäristöissä havaitut talitiaiset yms. peruslinnut vahvistetaan automaattisesti, ja toisaalta harvinaisten lintujen kohdalla ylläpitäjille voisi tulla jonkinlainen tarkistuskehotus). 
+
+Sovellukseen voisi myös lisätä tätä työtaakkaa helpottamaan erillisen lintuharrastajat-käyttäjäryhmän. Tämän statuksen saisivat tunnetut pitkäaikaiset lintuharrastajat. Lintuharrastajilla olisi oikeus vahvistaa muiden käyttäjien tekemiä havaintoja. 
+
+### Superadmin
+
+Tällä hetkellä kaikilla admin-käyttäjillä on oikeus jakaa ja poistaa adminoikeuksia mielivaltaisesti. Olisi hyvä, jos sovelluksen omistajalla/haltijalla olisi oma superadmin-status. Vain tällä käyttäjällä olisi oikeus muokata toisten käyttäjien admin-oikeuksia. 
+
+## Tilastotiedot
+
+Tilastosivulle voisi lisätä erilaisia työkaluja, joilla ylläpitäjät voisivat laskea erilaisia tilastollisia tunnuslukuja aineistosta itse antamillaan parametreilla, sekä tulostaa erilaisia id-listoja tarkempaa tilastollista analyysia varten. 
+
 
 
 
