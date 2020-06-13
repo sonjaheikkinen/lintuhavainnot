@@ -23,8 +23,7 @@ Voit vapaasti lisätä, muokata ja poistaa käyttäjiä ja lintulajeja. Älä mu
 
 [Käyttöohje](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/instructions.md)
 
-[Tietokantakaavio](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/lintuhavainnot_tietokantakaavio_12052020.png)
-Projektin tietokanta on englanninkielinen, ja tietokantakaavio tullaan myöhemmin korjaamaan sitä vastaavaksi.
+[Tietokantakaavio](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/databaseDiagram.png)
 
 [Tietokannan tekstimuotoinen kuvaus](https://github.com/sonjaheikkinen/lintuhavainnot/blob/master/documentation/databaseDescription.md)
 
