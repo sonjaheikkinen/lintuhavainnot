@@ -28,7 +28,7 @@ Havaintopaikalle voisi tallettaa nimen lisäksi tarkemmat koordinaatin. Lisäksi
 
 ### Lajihaku
 
-Lintuja voi tällä hetkellä hakea uhanalaisuuden, yhden kentän, tai kaikkien kenttien perusteella. Tähän voisi toteuttaa tarkennetun haun, jossa jokaiselle kentälle voitaisiin antaa erillinen hakusana. Lajeille voitaisiin asettaa myös avainsanoja (esim. vesilinnut, pikkulinnut) joiden avulla myös tieteellisiä lajiryhmiä tuntemattoman olisi helpompi löytää haluamansa laji. Jonkinlainen lajinavigointi esimerkiksi lajiryhmien perusteella voisi myös auttaa ongelmaan. 
+Lintuja voi tällä hetkellä hakea uhanalaisuuden, yhden kentän, tai kaikkien kenttien perusteella. Tähän voisi toteuttaa tarkennetun haun, jossa jokaiselle kentälle voitaisiin antaa erillinen hakusana. Lajeille voitaisiin asettaa myös avainsanoja (esim. vesilinnut, pikkulinnut) joiden avulla myös tieteellisiä lajiryhmiä tuntemattoman olisi helpompi löytää haluamansa laji. Jonkinlainen lajinavigointi esimerkiksi lajiryhmien ja/tai tuntomerkkien perusteella voisi myös auttaa ongelmaan. 
 
 ### Havaintohaku
 
