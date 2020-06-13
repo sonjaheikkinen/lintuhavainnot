@@ -79,7 +79,7 @@ CREATE TABLE sighting (
 )
 ```
 
-#### PlaceHabitat
+### PlaceHabitat
 
 ```
 CREATE TABLE place_habitat (
