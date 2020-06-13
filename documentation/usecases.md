@@ -26,10 +26,6 @@ Ylläpitäjänä haluan voida lisätä, poistaa ja muokata lintulajien tietoja. 
 
 Ylläpitäjänä haluan voida tarkastella, muokata ja poistaa käyttäjien tekemiä lintuhavaintoja (esimerkiksi selvästi väärin tunnistettu laji). Havainnot pitää pystyä listaamaan yllä mainittujen ominaisuuksien lisäksi myös havaitsijan perusteella. *(5b, 5d, 5e, 5f)* **Valmis**
 
-Ylläpitäjänä haluan tavallisten laji- ja havaintolistausten lisäksi mahdollisuuden hakea samoilla tiedoilla id-listoja sekä nimi-id-taulukon tilastollisessa tutkimuksessa käytettäväksi. **Ei toteutettu**
-
-Ylläpitäjänä haluan pystyä vahvistamaan havaintoja. Näin muut käyttäjät voivat esimerkiksi harvinaisten lajien kohdalla tietää, että kyseinen laji todella on havaittu, eikä vain väärin tunnistettu. Vahvistamista tehdään harkiten, jos samasta lajista on esimerkiksi useita havaintoja, tai havainto on tullut tunnetulta lintuharrastajalta. **Ei toteutettu**
-
 Ylläpitäjänä haluan, että sivusto on tietoturvallinen. Käyttäjien henkilötietojen ei tule näkyä muille kuin ylläpitäjille havaintoja listatessa. Salasanat tulee säilöä salattuna. *(Käyttötapaukseen ei liity sql-kyselyitä)* **Valmis**
 
 Ylläpitäjänä haluan voida tarkastella, poistaa ja muokata paikkoja sekä niihin liitettyjä elinympäristöjä. Jokaisessa havaintopaikassa voi olla useampaa eri elinympäristöä, ja toisaalta sama elinympäristö voi liittyä useampaan eri paikkaan. Käyttäjät voivat kuitenkin havaintoja tehdessään tunnistaa elinympäristön väärin, joten korjausmahdollisuus tarvitaan. *(4c-4l, 5g)* **Valmis**
