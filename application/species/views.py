@@ -33,7 +33,7 @@ def species_search(column, searchword, conservStatus):
     searchResultString = getSearchResultString(column, searchword, conservStatus)
 
     return render_template("species/list.html",
-         species = Species.search(form.column.data, searchword, fSorm.conservStatus.data),
+         species = Species.search(form.column.data, searchword, form.conservStatus.data),
           conservInfo = conservInfo, form = SearchSpecies(), searchResultString = searchResultString)
 
 @app.route("/species/edit/<species_id>/", methods=["GET", "POST"])
