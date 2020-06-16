@@ -140,7 +140,7 @@ def getSightingInformation(sightingsList):
     for index, sighting in enumerate(sightingsList):
 
         sightingID = sighting.id
-        speciesID = sighting.speciesID
+        species_id = sighting.speciesID
         species = sighting.species
         place = sighting.place
         habitat = sighting.habitat
@@ -148,13 +148,13 @@ def getSightingInformation(sightingsList):
         info = sighting.info
         
         if index == 0:
-            sightingInformation = {"id": sightingID, "species_id": speciesID, "species_name": species, 
+            sightingInformation = {"id": sightingID, "species_id": species_id, "species_name": species, 
             "place": place, "habitat": habitat, "account": account,"info": info}
         elif (index > 0) and (sighting.id != sightingsList[index - 1].id):
             if sightingInformation["habitat"] == None:
                 sightingInformation["habitat"] = "Elinympäristö tuntematon"
             sightings.append(sightingInformation)
-            sightingInformation = {"id": sightingID, "species_id": speciesID, "species_name": species, 
+            sightingInformation = {"id": sightingID, "species_id": species_id, "species_name": species, 
             "place": place, "habitat": habitat, "account": account,"info": info}
         else:
             sightingInformation["habitat"] = sightingInformation["habitat"] + ", " + habitat
