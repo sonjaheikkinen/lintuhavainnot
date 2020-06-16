@@ -55,7 +55,7 @@ class Sighting(Base, Info):
 
     @staticmethod
     def defineSelectAndJoins():
-        stmtString = "SELECT Sighting.*, Species.name AS species, Species.id AS speciesID,"
+        stmtString = "SELECT Sighting.*, Species.name AS species,"
         stmtString = stmtString + " Place.name AS place, Habitat.name AS habitat,"
         stmtString = stmtString + " Account.username AS account FROM Sighting"
         stmtString = stmtString + " JOIN Species ON Sighting.species_id = Species.id"

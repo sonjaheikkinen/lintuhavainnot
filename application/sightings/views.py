@@ -140,7 +140,7 @@ def getSightingInformation(sightingsList):
     for index, sighting in enumerate(sightingsList):
 
         sightingID = sighting.id
-        species_id = sighting.speciesID
+        species_id = sighting.species_id
         species = sighting.species
         place = sighting.place
         habitat = sighting.habitat
