@@ -3,7 +3,7 @@ Sepelkyyhky;Columba palumbus;Kyyhkyt, Columba;Kyyhkyt, Columbidae;Kyyhkylinnut, 
 Varis;Corvus corone cornix;Varikset, Corvus;Varikset, Corvidae;Varpuslinnut, Passeriformes;1;Mustaharmaa, älykäs lintu. Suurin osa yksilöistä muuttaa talveksi pois Suomesta.
 Harakka;Pica pica;Harakat, Pica;Varikset, Corvidae;Varpuslinnut, Passeriformes;2;Mustavalkoinen varislaji. Elävät yleensä koko elämänsä alle 10 km säteellä synnyinpaikastaan.
 Viherpeippo;Chloris chloris;Viherpeipot, Chloris;Peipot, Fringillidae;Varpuslinnut, Passeriformes;4;Yleisväriltään vihertävä, naaras harmaampi. Siivissä ja pyrstössä kirkkaankeltaista. Pesii katajassa tai kuusessa.
-Sinitiainen;Cyanistes caeruleus;Sinitiaiset, Cyanistes;Tiaiset, Paridae; Varpuslinnut, Passeriformes; 1;Keltainen vatsa. Päälaki, niska, siivet ja pyrstö siniset. Koiras naarasta kirkkaampi. Satakunnan maakuntalintu.
+Sinitiainen;Cyanistes caeruleus;Sinitiaiset, Cyanistes;Tiaiset, Paridae;Varpuslinnut, Passeriformes; 1;Keltainen vatsa. Päälaki, niska, siivet ja pyrstö siniset. Koiras naarasta kirkkaampi. Satakunnan maakuntalintu.
 Talitiainen;Parus major;Talitiaiset, Parus;Tiaiset, Paridae;Varpuslinnut, Passeriformes;1;Toiselta nimeltään talitintti. Keltaisen vatsan pystyjuova koiraalla leveämpi kuin naaraalla.Yleinen koko maassa.
 Varpunen;Passer domesticus;Varpuset, Passer;Varpuset, Passeridae;Varpuslinnut, Passeriformes;4;Ruskeaharmaa pieni lintu. Kanta taantunut. Parveilee, ja pitää orapihlaja-aidoista.
 Pikkuvarpunen;Passer montanus;Varpuset, Passer;Varpuset, Passeridae;Varpuslinnut, Passeriformes;1;Muistuttaa varpusta. Päälaki suklaanruskea. Valkoisessa poskessa musta täplä.
@@ -15,7 +15,7 @@ Mustarastas;Turdus merula;Rastaat, Turdus;Rastaat, Turdidae;Varpuslinnut, Passer
 Helmipöllö;Aegolius funereus;Helmipöllöt, Aegolius;Pöllöt, Strigidae;Pöllölinnut, Strigiformes;2;Pieni puputtava pöllö.  Ruskeavalkoinen kuviointi. Suomen yleisin pöllölaji. Pesii puunkoloissa ja pöntöissä. 
 Laulujoutsen;Cygnus cygnus;Joutsenet, Cygnus;Sorsat, Anatidae;Sorsalinnut, Anseriformes;1;Suomen kansallislintu. Pariuskollinen.
 Kyhmyjoutsen;Cygnus olor;Joutsenet, Cygnus;Sorsat, Anatidae;Sorsalinnut, Anseriformes;1;Euroopan painavin lintu, koiras jopa yli 14 kg. Nokan päällä kyhmy. 
-Pikkujoutsen;Cygnus columbianus;Joutsenet, Cygnus; Sorsat, Anatidae; Sorsalinnut, Anseriformes;1;Tavataan Suomessa läpimuuttajana (pesii tundralla). Muistuttaa laulujoutsenta. 
+Pikkujoutsen;Cygnus columbianus;Joutsenet, Cygnus;Sorsat, Anatidae;Sorsalinnut, Anseriformes;1;Tavataan Suomessa läpimuuttajana (pesii tundralla). Muistuttaa laulujoutsenta. 
 Merihanhi;Anser anser;Harmaahanhet, Anser;Sorsat, Anatidae;Sorsalinnut, Anseriformes;1;Pesii merialueilla, ei juurikaan tavata sisämaassa. Kesyhanhen kantamuoto.
 Metsähanhi;Anser fabalis;Harmaahanhet, Anser;Sorsat, Anatidae;Sorsalinnut, Anseriformers;3;Taigametsähanhi vaarantunut, tundrametsähanhi erittäin uhanalainen.
 Metso;Tetrao urogallus;Metsäkanat, Tetraonidae;Aitokanat, Phasianidae;Kanalinnut, Galliformes;1;Lajilla on näyttävä ryhmäsoidin.
