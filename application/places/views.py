@@ -112,12 +112,12 @@ def getPlaceInformation(places):
     
     for index, place in enumerate(places):
         if index == 0:
-            placeInfo = {"id": place.placeID, "place": place.place, "habitats": place.habitat}
+            placeInfo = {"id": place.place_id, "place": place.place, "habitats": place.habitat}
         elif (index > 0) and (place.place != places[index - 1].place):
             if placeInfo["habitats"] == None:
                 placeInfo["habitats"] = "Elinympäristö tuntematon"
             placeList.append(placeInfo)
-            placeInfo = {"id": place.placeID, "place": place.place, "habitats": place.habitat}
+            placeInfo = {"id": place.place_id, "place": place.place, "habitats": place.habitat}
         else:
             placeInfo["habitats"] = placeInfo["habitats"] + ", " + place.habitat
         if index == len(places) - 1:

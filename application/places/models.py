@@ -14,7 +14,7 @@ class Place(Base, Name):
     @staticmethod
     def getPlaceAndHabitats(searchword):
 
-        stmtString = "SELECT Place.id AS placeID, Place.name AS place, Habitat.name AS habitat FROM Place"
+        stmtString = "SELECT Place.id AS place_id, Place.name AS place, Habitat.name AS habitat FROM Place"
         stmtString = stmtString + " LEFT JOIN place_habitat ON place_habitat.place_id = Place.id"
         stmtString = stmtString + " LEFT JOIN Habitat ON Habitat.id = place_habitat.habitat_id"
        
