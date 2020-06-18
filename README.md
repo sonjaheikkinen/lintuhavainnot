@@ -3,7 +3,7 @@ Tietokantasovellus, kesä 2020
 
 ## Projektikuvaus:
 
-Lintuhavainnot on harjoitustyönä toteutettu tietokanta, johon kuka tahansa kirjautunut käyttäjä voi lähettää tietoa tekemistään lintuhavainnoista. Tietokannasta voi hakea tietoa ympäri suomen havaituista linnuista esimerkiksi havaintopaikan, uhanalaisuuden, elinympäristön tai lintulajin perusteella. Tietokannasta löytyy myös hieman tietoa ja kuvauksia itse lajeista, sekä niiden tieteellisestä luokittelusta. Ylläpitäjät voivat lisätä, poistaa ja muokata lähes kaikkea tietokannassa olevaa tietoa. Käyttäjät itse voivat muokata vain omia tietojaan. Lajien tiedot, sekä tietokantaan tehdyt havainnot ovat julkisesti näkyvillä kaikille. 
+Lintuhavainnot on harjoitustyönä toteutettu tietokanta, johon kuka tahansa kirjautunut käyttäjä voi lähettää tietoa tekemistään lintuhavainnoista. Tietokannasta voi hakea tietoa ympäri suomen havaituista linnuista esimerkiksi havaintopaikan, uhanalaisuuden, elinympäristön tai lintulajin perusteella. Tietokannasta löytyy myös hieman tietoa ja kuvauksia itse lajeista, sekä niiden tieteellisestä luokittelusta. Ylläpitäjät voivat lisätä, poistaa ja muokata lähes kaikkea tietokannassa olevaa tietoa. Käyttäjät itse voivat muokata vain omia tietojaan. Lajien tiedot sekä tietokantaan tehdyt havainnot ovat julkisesti näkyvillä kaikille. 
 
 ## Ohjeita
 
